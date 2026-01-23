@@ -31,10 +31,10 @@ export default function Article() {
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-5 flex justify-between">
                         Articles
 
-                    <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
-                        Hello, {user.name} !!
-                    </h3>
-                    </h2>   
+                        <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
+                            Hello, {user.name} !!
+                        </h3>
+                    </h2>
                     <DataTable columns={columns} data={data} />
                 </div>
             </Authenticated>

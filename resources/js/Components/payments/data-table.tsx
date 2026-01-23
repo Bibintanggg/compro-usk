@@ -53,7 +53,7 @@ export function DataTable<TData, TValue>({
 
                 <div className="flex items-center py-4">
                     <Input
-                        placeholder="Filter emails..."
+                        placeholder="Filter title..."
                         value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
                         onChange={(event) =>
                             table.getColumn("title")?.setFilterValue(event.target.value)
@@ -62,12 +62,12 @@ export function DataTable<TData, TValue>({
                     />
                 </div>
 
-                <div>
-                    <Button>
+                <a href="/admin/articles/create">
+                    <Button> 
                         Create New Article
                         <PlusIcon />
                     </Button>
-                </div>
+                </a>
             </div>
 
             <div className="overflow-hidden rounded-md border w-[160vh]">

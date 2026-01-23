@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "baseUrl": ".",
         "allowJs": true,
         "module": "ESNext",
         "moduleResolution": "bundler",
@@ -12,9 +13,17 @@
         "skipLibCheck": true,
         "noEmit": true,
         "paths": {
-            "@/*": ["./resources/js/*"],
-            "ziggy-js": ["./vendor/tightenco/ziggy"]
+            "@/*": [
+                "./resources/js/*"
+            ],
+            "ziggy-js": [
+                "./vendor/tightenco/ziggy"
+            ]
         }
     },
-    "include": ["resources/js/**/*.ts", "resources/js/**/*.tsx", "resources/js/**/*.d.ts"]
+    "include": [
+        "resources/js/**/*.ts",
+        "resources/js/**/*.tsx",
+        "resources/js/**/*.d.ts",
+    ]
 }

@@ -30,6 +30,9 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
 Route::middleware('auth')->prefix('admin')->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/articles', [ArticleController::class, 'index'])->name('admin.articles.index');
+    Route::get('/articles/create', function() {
+        return Inertia::render('Admin/Articles/create');
+    });
 });
 
 require __DIR__.'/auth.php';
