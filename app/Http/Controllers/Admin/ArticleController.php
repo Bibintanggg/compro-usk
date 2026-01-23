@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class ArticleController extends Controller
@@ -13,7 +15,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Articles/index');
+        $article = Article::latest()->get();
+        return Inertia::render('Admin/Articles/index', [
+            'articles' => $article,
+        ]);
     }
 
     /**
@@ -21,7 +26,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Articles/create');
     }
 
     /**
@@ -29,23 +34,37 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'title' => 'required|string|max:200',
+            'content' => 'required|string',
+            'thumbnail' => 'nullable|image|max:2048|mimes:png,jpg',
+            'author' => 'required|string|max:100',
+            // 'slug' => 'required|string|max:200|unique:articles,slug',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        if ($request->hasFile('thumbnail')) {
+            $path = $request->file('thumbnail')->store('thumbnails', 'public');
+            $validated['thumbnail'] = $path;
+            // dd($path);
+        }
+
+
+        $validated['slug'] = Str::slug($validated['title'], "-");
+
+        Article::create($validated);
+
+        return redirect()->route('admin.articles.index')->with('success', 'Article created succesfully');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Article $article)
     {
-        //
+        // dd($article);
+        return Inertia::render('Admin/Articles/edit', [
+            'article' => $article
+        ]);
     }
 
     /**
@@ -53,7 +72,27 @@ class ArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $article = Article::findOrFail($id);
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:200',
+            'content' => 'required|string',
+            'thumbnail' => 'nullable|image|max:2048|mimes:png,jpg',
+            'author' => 'required|string|max:100',
+        ]);
+
+        if ($request->hasFile('thumbnail')) {
+            $path = $request->file('thumbnail')->store('thumbnails', 'public');
+            $validated['thumbnail'] = $path;
+        } else (
+            $valdated['thumbnail'] = $article->thumbnail
+        );
+
+        $validated['slug'] = Str::slug($validated['title'], "-");
+
+        $article->update($validated);
+
+        return redirect()->route('admin.articles.index')->with('success', 'Article Updated Succesfully');
     }
 
     /**

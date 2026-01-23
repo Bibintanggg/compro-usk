@@ -6,24 +6,11 @@ import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { usePage } from "@inertiajs/react";
 import React, { useEffect } from "react";
 
-async function getData(): Promise<Payment[]> {
-    return [
-        {
-            id: "728ed52f",
-            title: "Jalan jalan ke 46",
-            thumbnail: "m@example.com",
-            content: "awokawokawokaowkaowkoawkoawkoawkoawkaowkwoak",
-            author: "m@example.com",
-        },
-    ]
-}
 export default function Article() {
     const user = usePage().props.auth.user
     const [data, setData] = React.useState<Payment[]>([])
+    const { articles } = usePage().props
 
-    useEffect(() => {
-        getData().then(setData)
-    }, [])
     return (
         <div className="p-10">
             <Authenticated>
@@ -35,7 +22,7 @@ export default function Article() {
                             Hello, {user.name} !!
                         </h3>
                     </h2>
-                    <DataTable columns={columns} data={data} />
+                    <DataTable columns={columns} data={articles as Payment[]} />
                 </div>
             </Authenticated>
         </div>
