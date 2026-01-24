@@ -35,6 +35,6 @@ Route::middleware('auth')->prefix('admin')->group(function() {
     Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('admin.articles.edit');
     Route::put('/articles/{id}', [ArticleController::class, 'update'])->name('admin.articles.update');
     Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('admin.articles.destroy');
-});
+}); 
 
 require __DIR__.'/auth.php';

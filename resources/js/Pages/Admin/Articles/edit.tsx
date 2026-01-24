@@ -32,8 +32,8 @@ export default function ArticlesEdit() {
     const { article } = usePage<Props>().props;
 
     const pageProps = usePage<Props>().props
-    console.log("testing",pageProps)
-    console.log("testing",article)
+    console.log("testing", pageProps)
+    console.log("testing", article)
     const [thumbnail, setThumbnail] = useState<File | null>(null)
     const [fileName, setFileName] = useState<string>("")
     const [preview, setPreview] = useState<string>("")
@@ -143,13 +143,6 @@ export default function ArticlesEdit() {
                                             <UploadIcon className="mr-2 h-4 w-4" />
                                             Submit
                                         </Button>
-
-                                        <a href="/admin/articles">
-                                            <Button className="mt-2">
-                                                <MoveLeftIcon className="mr-2 h-4 w-4" />
-                                                Back
-                                            </Button>
-                                        </a>
                                     </div>
                                 </div>
 
@@ -210,6 +203,15 @@ export default function ArticlesEdit() {
                         </div>
 
                     </form>
+
+                    <div className="relative py-10">
+                        <a href="/admin/articles">
+                            <Button className="mt-2 absolute right-0">
+                                <MoveLeftIcon className="mr-2 h-4 w-4" />
+                                Back
+                            </Button>
+                        </a>
+                    </div>
 
                 </div>
             </Authenticated>

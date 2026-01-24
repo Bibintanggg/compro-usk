@@ -22,7 +22,7 @@ export default function ArticlesCreate() {
     const [fileName, setFileName] = useState<string>("")
     const [preview, setPreview] = useState<string>("")
 
-    const {data, setData, post, processing, errors, reset} = useForm({
+    const { data, setData, post, processing, errors, reset } = useForm({
         'title': '',
         'author': '',
         'content': '',
@@ -38,7 +38,7 @@ export default function ArticlesCreate() {
         const file = e.target.files?.[0] ?? null
         setThumbnail(file)
 
-        if (file ) {
+        if (file) {
             setFileName(file.name)
             setData("thumbnail", file)
         } else {
@@ -97,7 +97,7 @@ export default function ArticlesCreate() {
                                             </div>
                                         )}
 
-                                         {errors.thumbnail &&
+                                        {errors.thumbnail &&
                                             <p className="mt-2 text-sm text-red-600">{errors.thumbnail}</p>
                                         }
                                     </div>
@@ -108,13 +108,6 @@ export default function ArticlesCreate() {
                                             <UploadIcon className="mr-2 h-4 w-4" />
                                             Submit
                                         </Button>
-
-                                        <a href="/admin/articles">
-                                        <Button className="mt-2">
-                                            <MoveLeftIcon className="mr-2 h-4 w-4" />
-                                            Back
-                                        </Button>
-                                        </a>
                                     </div>
                                 </div>
 
@@ -143,7 +136,7 @@ export default function ArticlesCreate() {
                                             type="text"
                                             placeholder="Enter your article author"
                                         />
-                                         {errors.author &&
+                                        {errors.author &&
                                             <p className="mt-2 text-sm text-red-600">{errors.author}</p>
                                         }
                                         <FieldDescription>
@@ -165,7 +158,7 @@ export default function ArticlesCreate() {
                                             />
 
                                         </InputGroup>
-                                         {errors.content &&
+                                        {errors.content &&
                                             <p className="mt-2 text-sm text-red-600">{errors.content}</p>
                                         }
                                     </div>
@@ -175,6 +168,15 @@ export default function ArticlesCreate() {
                         </div>
 
                     </form>
+
+                    <div className="relative mx-auto py-10 w-[150vh]">
+                    <a href="/admin/articles" className="absolute top-0 right-0">
+                        <Button className="mt-2">
+                            <MoveLeftIcon className="mr-2 h-4 w-4" />
+                            Back
+                        </Button>
+                    </a>
+                    </div>
 
                 </div>
             </Authenticated>
