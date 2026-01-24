@@ -12,7 +12,7 @@ export default function ProductsCreate() {
         'name': "",
         'description': '',
         'content': "",
-        'image': "",
+        'image': null,
         "price": 0,
         'is_active': true,
         'order': 0
