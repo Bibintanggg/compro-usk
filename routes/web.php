@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -29,6 +29,7 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
 
 Route::middleware('auth')->prefix('admin')->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
     Route::get('/articles', [ArticleController::class, 'index'])->name('admin.articles.index');
     Route::get('/articles/create', [ArticleController::class, 'create'])->name('admin.articles.create');
     Route::post('/articles', [ArticleController::class, 'store'])->name('admin.articles.store');
@@ -36,9 +37,8 @@ Route::middleware('auth')->prefix('admin')->group(function() {
     Route::put('/articles/{id}', [ArticleController::class, 'update'])->name('admin.articles.update');
     Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('admin.articles.destroy');
 
-    Route::get('/products', function() {
-        return Inertia::render('Admin/Products/index');
-    });
+    Route::get('/products', [ProductsController::class, 'index'])->name('admin.products.index');
+    Route::get('/products/create', [ProductsController::class, 'create'])->name('admin.products.create');
 });
 
 require __DIR__.'/auth.php';

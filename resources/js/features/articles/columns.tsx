@@ -49,6 +49,7 @@ export const columns: ColumnDef<Payment>[] = [
                         method="delete"
                         as="button"
                         className="text-red-600 hover:underline"
+                        onBefore={() => confirm("Apakah kamu yakin??")}
                     >
                         <Trash2Icon size={15} />
                     </Link>

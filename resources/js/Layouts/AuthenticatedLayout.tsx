@@ -12,7 +12,7 @@ export default function Authenticated({ children }: { children: React.ReactNode 
         <SidebarProvider>
             <AppSidebar />
             <main>
-                <SidebarTrigger />
+                {/* <SidebarTrigger /> */}
                 {children}
             </main>
         </SidebarProvider>

@@ -63,7 +63,7 @@ export default function ArticleForm({
 
                             {fileName && (
                                 <div className="text-xl flex items-center justify-center text-center">
-                                    <h3 className="scroll-m-20 text-lg font-semibold tracking-tight">
+                                    <h3 className="scroll-m-20 text-sm font-semibold tracking-tight">
                                         Selected File : {fileName}
                                     </h3>
                                 </div>
