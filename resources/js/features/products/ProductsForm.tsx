@@ -21,7 +21,7 @@ type ProductsFormProps = {
         content: string
         image: File | null
         price: number
-        is_active: true
+        is_active: boolean
         order: number
     }
 

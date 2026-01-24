@@ -4,18 +4,7 @@ import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { usePage } from "@inertiajs/react";
 
 export default function Products() {
-    const products = {
-        id: 1,
-        name: "Premium Hoodie",
-        slug: "premium-hoodie",
-        description: "Hoodie nyaman dengan bahan premium",
-        content: "Hoodie ini terbuat dari cotton fleece, cocok untuk daily wear.",
-        image: "/images/products/hoodie.jpg",
-        price: 299000,
-        is_active: true,
-        order: 1,
-    }
-
+    const { products } = usePage().props
     const user = usePage().props.auth.user
     return (
         <div className="p-10">

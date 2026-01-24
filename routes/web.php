@@ -39,6 +39,7 @@ Route::middleware('auth')->prefix('admin')->group(function() {
 
     Route::get('/products', [ProductsController::class, 'index'])->name('admin.products.index');
     Route::get('/products/create', [ProductsController::class, 'create'])->name('admin.products.create');
+    Route::post('/products', [ProductsController::class, 'store'])->name('admin.products.store');
 });
 
 require __DIR__.'/auth.php';

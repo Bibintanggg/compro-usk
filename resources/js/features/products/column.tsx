@@ -22,15 +22,13 @@ export const articleColumns: ColumnDef<Products>[] = [
     {
         accessorKey: "image",
         header: "Image",
-        // cell: ({ row }) => {
-        //     const thumbnail = row.original.image;
-        //     const url = thumbnail ? `/storage/${images}` : "/no-image.png"
-        //     return (
-        //         <img src={url} alt="" className="w-20" />
-
-
-        //     )
-        // }
+        cell: ({ row }) => {
+            const image = row.original.image;
+            const url = image ? `/storage/${image}` : "/no-image.png"
+            return (
+                <img src={url} alt="" className="w-20" />
+            )
+        }
     },
     {
         accessorKey: "price",
@@ -39,6 +37,17 @@ export const articleColumns: ColumnDef<Products>[] = [
     {
         accessorKey: "is_active",
         header: "Status",
+        cell: ({ row }) => {
+            const is_active = row.original.is_active
+
+            return (
+                <>
+                    <span>
+                        {is_active ? "Publish" : "Draft"}
+                    </span>
+                </>
+            )
+        }
     },
     {
         accessorKey: "order",

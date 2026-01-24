@@ -23,7 +23,12 @@ export default function Article() {
                             Hello, {user.name} !!
                         </h3>
                     </h2>
-                    <DataTable columns={columns} data={articles as Payment[]} filterColumn="name" createHref="/admin/articles/create" createLabel="Create new articles"/>
+                    <DataTable
+                    columns={columns}
+                    data={articles as Payment[]}
+                    filterColumn="name"
+                    createHref="/admin/articles/create"
+                    createLabel="Create new articles"/>
                 </div>
             </Authenticated>
         </div>
