@@ -8,7 +8,15 @@ import { MoveLeftIcon } from "lucide-react";
 export default function ProductsCreate() {
     const user = usePage().props.auth.user
 
-    const { data, setData, processing, errors, post } = useForm({
+    const { data, setData, processing, errors, post } = useForm<{
+        name: string;
+        description: string;
+        content: string;
+        image: string | File;
+        price: number;
+        is_active: boolean;
+        order: number;
+    }>({
         'name': "",
         'description': '',
         'content': "",
@@ -22,7 +30,7 @@ export default function ProductsCreate() {
         post(route('admin.products.create'))
     }
 
-    const fileName = data.image
+    const fileName = data.image instanceof File ? data.image.name : ""
     return (
         <div className="p-10">
             <Authenticated>
@@ -42,6 +50,7 @@ export default function ProductsCreate() {
                     processing={processing}
                     onChange={setData}
                     onSubmit={handleSubmit}
+                    fileName={fileName}
                 />
 
                 <div className="relative mx-auto py-10 w-[150vh]">

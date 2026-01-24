@@ -9,9 +9,10 @@ import TextareaAutosize from "react-textarea-autosize"
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { MoveLeftIcon, UploadIcon } from 'lucide-react'
 import { FileInput, Label } from "flowbite-react";
-import { Field, FieldDescription, FieldLabel } from "@/Components/ui/field"
+import { Field, FieldContent, FieldDescription, FieldLabel } from "@/Components/ui/field"
 import { Input } from "@/Components/ui/input"
-import { Button } from "@/Components/ui/button";
+import { Button } from "@/Components/ui/button"
+import { Switch } from "@/Components/ui/switch"
 
 type ProductsFormProps = {
     data: {
@@ -20,7 +21,7 @@ type ProductsFormProps = {
         content: string
         image: File | null
         price: number
-        is_active: boolean
+        is_active: true
         order: number
     }
 
@@ -127,7 +128,7 @@ export default function ProductsForm({
                             <Field>
                                 <FieldLabel htmlFor="input-field-price" className="text-2xl font-semibold">Order</FieldLabel>
                                 <Input
-                                    value={data.order   }
+                                    value={data.order}
                                     onChange={(e) => onChange('order', e.target.value)}
                                     type="text"
                                     placeholder="Enter your product order.."
@@ -140,6 +141,22 @@ export default function ProductsForm({
                                 </FieldDescription>
                             </Field>
                         </div>
+
+
+                        <Field orientation="horizontal" className="max-w-xl mt-2">
+                            <FieldContent>
+                                <FieldLabel htmlFor="switch-focus-mode" className="text-2xl font-semibold">
+                                    Products Status
+                                </FieldLabel>
+                                <FieldDescription>
+                                    Click here to activate your product on the homepage
+                                </FieldDescription>
+                            </FieldContent>
+                            <Switch
+                            id="switch-focus-mode"
+                            checked={data.is_active}
+                            onCheckedChange={(value) => onChange('is_active', value)}/>
+                        </Field>
 
                         <div className="grid w-full max-w-full gap-2">
                             <h3 className="text-2xl font-semibold tracking-tight">
