@@ -3,13 +3,8 @@
 import { Link, useForm } from "@inertiajs/react"
 import { ColumnDef } from "@tanstack/react-table"
 import { PencilIcon, Trash2Icon } from "lucide-react"
-export type Payment = {
-    id: string
-    title: string
-    thumbnail: string
-    content: string
-    author: string
-}
+import { Payment } from "./types"
+
 
 export const columns: ColumnDef<Payment>[] = [
     {

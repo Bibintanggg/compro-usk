@@ -1,4 +1,4 @@
-import { columns, Payment } from "@/Components/payments/columns";
+import { columns, Payment } from "@/features/articles/columns";
 import { DataTable } from "@/Components/payments/data-table";
 import { Field, FieldDescription, FieldLabel } from "@/Components/ui/field";
 // import { Input } from "@/Components/ui/input";
