@@ -26,11 +26,21 @@ import { PlusIcon } from "lucide-react"
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
+
+    filterColumn?: string
+    filterPlaceholder?: string
+
+    createHref?: string
+    createLabel?: string
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
+    filterColumn,
+    filterPlaceholder = "Filter...",
+    createHref,
+    createLabel
 }: DataTableProps<TData, TValue>) {
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
@@ -51,23 +61,28 @@ export function DataTable<TData, TValue>({
         <div className="w-full flex flex-col">
             <div className="flex justify-between items-center">
 
-                <div className="flex items-center py-4">
-                    <Input
-                        placeholder="Filter title..."
-                        value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-                        onChange={(event) =>
-                            table.getColumn("title")?.setFilterValue(event.target.value)
-                        }
-                        className="max-w-sm"
-                    />
-                </div>
+                {filterColumn && (
 
-                <a href="/admin/articles/create">
-                    <Button> 
-                        Create New Article
-                        <PlusIcon />
-                    </Button>
-                </a>
+                    <div className="flex items-center py-4">
+                        <Input
+                            placeholder="Filter title..."
+                            value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+                            onChange={(event) =>
+                                table.getColumn("title")?.setFilterValue(event.target.value)
+                            }
+                            className="max-w-sm"
+                        />
+                    </div>
+                )}
+
+                {createHref && (
+                    <a href={createHref}>
+                        <Button>
+                            {createLabel}
+                            <PlusIcon />
+                        </Button>
+                    </a>
+                )}
             </div>
 
             <div className="overflow-hidden rounded-md border w-[160vh]">

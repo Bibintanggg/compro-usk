@@ -3,33 +3,46 @@
 import { Link, useForm } from "@inertiajs/react"
 import { ColumnDef } from "@tanstack/react-table"
 import { PencilIcon, Trash2Icon } from "lucide-react"
-import { Payment } from "./types"
+import { Products } from "./types"
 
-export const columns: ColumnDef<Payment>[] = [
+
+export const articleColumns: ColumnDef<Products>[] = [
     {
-        accessorKey: "title",
-        header: "Title",
+        accessorKey: "name",
+        header: "Name",
+    },
+    {
+        accessorKey: "description",
+        header: "Description",
     },
     {
         accessorKey: "content",
         header: "Content",
     },
     {
-        accessorKey: "thumbnail",
-        header: "Thumbnail",
-        cell: ({ row }) => {
-            const thumbnail = row.original.thumbnail;
-            const url = thumbnail ? `/storage/${thumbnail}` : "/no-image.png"
-            return (
-                <img src={url} alt="" className="w-20" />
+        accessorKey: "image",
+        header: "Image",
+        // cell: ({ row }) => {
+        //     const thumbnail = row.original.image;
+        //     const url = thumbnail ? `/storage/${images}` : "/no-image.png"
+        //     return (
+        //         <img src={url} alt="" className="w-20" />
 
 
-            )
-        }
+        //     )
+        // }
     },
     {
-        accessorKey: "author",
-        header: "Author",
+        accessorKey: "price",
+        header: "Price",
+    },
+    {
+        accessorKey: "is_active",
+        header: "Status",
+    },
+    {
+        accessorKey: "order",
+        header: "Order",
     },
     {
         accessorKey: "action",
@@ -38,7 +51,7 @@ export const columns: ColumnDef<Payment>[] = [
             return (
                 <div className="flex gap-4">
                     <Link
-                        href={`/admin/articles/${row.original.id}/edit`}
+                        href={`/admin/products/${row.original.id}/edit`}
                         className="text-blue-600 hover:underline"
                     >
                         <PencilIcon size={15} />
