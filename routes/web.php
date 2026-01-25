@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -40,6 +41,8 @@ Route::middleware('auth')->prefix('admin')->group(function() {
     Route::get('/products', [ProductsController::class, 'index'])->name('admin.products.index');
     Route::get('/products/create', [ProductsController::class, 'create'])->name('admin.products.create');
     Route::post('/products', [ProductsController::class, 'store'])->name('admin.products.store');
+
+    Route::get('/events', [EventController::class, 'index'])->name('admin.events.index');
 });
 
 require __DIR__.'/auth.php';

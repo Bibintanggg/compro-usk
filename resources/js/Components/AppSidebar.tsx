@@ -1,4 +1,4 @@
-import { Calendar, ChevronUp, Home, Inbox, Package2, Paperclip, Search, Settings, User2 } from "lucide-react"
+    import { Calendar, ChevronUp, Home, Inbox, Package2, Paperclip, Search, Settings, User2 } from "lucide-react"
 import {
     Sidebar,
     SidebarContent,
@@ -11,6 +11,9 @@ import {
 } from "./ui/sidebar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { usePage } from "@inertiajs/react"
+import { Calendar1Icon } from "lucide-react"
+import { Users } from "lucide-react"
+import { Images } from "lucide-react"
 
 const items = [
     {
@@ -29,14 +32,19 @@ const items = [
         icon: Package2,
     },
     {
-        title: "Search",
-        url: "#",
-        icon: Search,
+        title: "Event",
+        url: "/admin/events",
+        icon: Calendar1Icon ,
     },
     {
-        title: "Settings",
-        url: "#",
-        icon: Settings,
+        title: "Clients",
+        url: "/admin/clients",
+        icon: Users,
+    },
+    {
+        title: "Gallery",
+        url: "/admin/gallery",
+        icon: Images,
     },
 ]
 

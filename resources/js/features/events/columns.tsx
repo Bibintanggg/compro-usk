@@ -3,10 +3,10 @@
 import { Link, useForm } from "@inertiajs/react"
 import { ColumnDef } from "@tanstack/react-table"
 import { PencilIcon, Trash2Icon } from "lucide-react"
-import { Products } from "./types"
+import { Events } from "./types"
 
 
-export const eventsColumns: ColumnDef<Products>[] = [
+export const articleColumns: ColumnDef<Events>[] = [
     {
         accessorKey: "name",
         header: "Name",
