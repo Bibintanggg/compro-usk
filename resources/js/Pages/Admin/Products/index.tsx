@@ -1,5 +1,5 @@
 import { DataTable } from "@/Components/payments/data-table";
-import { articleColumns } from "@/features/products/column";
+import { productsColumns } from "@/features/products/column";
 import type { Products } from "@/features/products/types";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { usePage } from "@inertiajs/react";
@@ -20,12 +20,12 @@ export default function Products() {
                         </h3>
                     </h2>
                     <DataTable
-                    columns={articleColumns}
-                    data={products as Products[]}
-                    filterColumn="name"
-                    filterPlaceholder="Filter Products"
-                    createHref="/admin/products/create"
-                    createLabel="Create new products"/>
+                        columns={productsColumns}
+                        data={products as Products[]}
+                        filterColumn="name"
+                        filterPlaceholder="Filter Products"
+                        createHref="/admin/products/create"
+                        createLabel="Create new products" />
                 </div>
             </Authenticated>
         </div>

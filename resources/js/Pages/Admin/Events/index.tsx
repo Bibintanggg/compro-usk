@@ -1,12 +1,13 @@
 import { DataTable } from "@/Components/payments/data-table";
-import { eventsColumns } from "@/features/products/column";
+import { eventColumns } from "@/features/events/columns";
+import { Event } from "@/features/events/types";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Article } from "@/types/article";
 import { usePage } from "@inertiajs/react";
 
 export default function Events() {
     const user = usePage().props.auth.user
-    const { articles } = usePage().props
+    // const { events } = usePage().props
 
     const events = [
         {
@@ -27,7 +28,7 @@ export default function Events() {
             <Authenticated>
                 <div className="w-full mx-auto py-10">
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-5 flex justify-between">
-                        Products
+                        Events
 
                         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
                             Hello, {user.name} !!
@@ -36,13 +37,11 @@ export default function Events() {
                 </div>
 
                 <DataTable
-                    columns={eventsColumns}
-                    data={events as Events[]}
+                    columns={eventColumns}
+                    data={events as Event[]}
                     filterColumn="name"
-                    createHref="/admin/articles/create"
-                    createLabel="Create new articles" />
-
-
+                    createHref="/admin/events/create"
+                    createLabel="Create new events" />
             </Authenticated>
         </div>
     )

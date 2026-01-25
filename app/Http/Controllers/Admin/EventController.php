@@ -14,7 +14,7 @@ class EventController extends Controller
     public function index()
     {
         return Inertia::render('Admin/Events/index', [
-            
+
         ]);
     }
 
@@ -23,7 +23,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Events/create');
     }
 
     /**

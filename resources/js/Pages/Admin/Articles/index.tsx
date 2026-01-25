@@ -1,4 +1,4 @@
-import { columns } from "@/features/articles/columns";
+import { columns } from "@/features/articles/columns"
 import { Payment } from "@/features/articles/types";
 import { DataTable } from "@/Components/payments/data-table";
 import { Field, FieldDescription, FieldLabel } from "@/Components/ui/field";
@@ -24,11 +24,11 @@ export default function Article() {
                         </h3>
                     </h2>
                     <DataTable
-                    columns={columns}
-                    data={articles as Payment[]}
-                    filterColumn="name"
-                    createHref="/admin/articles/create"
-                    createLabel="Create new articles"/>
+                        columns={columns}
+                        data={articles as Payment[]}
+                        filterColumn="name"
+                        createHref="/admin/articles/create"
+                        createLabel="Create new articles" />
                 </div>
             </Authenticated>
         </div>

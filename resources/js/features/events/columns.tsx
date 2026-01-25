@@ -6,10 +6,10 @@ import { PencilIcon, Trash2Icon } from "lucide-react"
 import { Events } from "./types"
 
 
-export const articleColumns: ColumnDef<Events>[] = [
+export const eventColumns: ColumnDef<Events>[] = [
     {
-        accessorKey: "name",
-        header: "Name",
+        accessorKey: "title",
+        header: "Title",
     },
     {
         accessorKey: "description",
@@ -31,8 +31,16 @@ export const articleColumns: ColumnDef<Events>[] = [
         }
     },
     {
-        accessorKey: "price",
-        header: "Price",
+        accessorKey: "location",
+        header: "Location",
+    },
+    {
+        accessorKey: "start_date",
+        header: "Start Date",
+    },
+    {
+        accessorKey: "end_date",
+        header: "End Date",
     },
     {
         accessorKey: "is_active",
@@ -48,10 +56,6 @@ export const articleColumns: ColumnDef<Events>[] = [
                 </>
             )
         }
-    },
-    {
-        accessorKey: "order",
-        header: "Order",
     },
     {
         accessorKey: "action",

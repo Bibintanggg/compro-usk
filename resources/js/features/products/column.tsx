@@ -6,7 +6,7 @@ import { PencilIcon, Trash2Icon } from "lucide-react"
 import { Products } from "./types"
 
 
-export const eventsColumns: ColumnDef<Products>[] = [
+export const productsColumns: ColumnDef<Products>[] = [
     {
         accessorKey: "name",
         header: "Name",
