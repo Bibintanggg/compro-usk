@@ -19,7 +19,7 @@ import { Calendar } from "@/Components/ui/calendar";
 
 interface FormEventProps {
     data: {
-        title: string
+        name: string
         description: string
         content: string
         image: File | null
@@ -103,18 +103,18 @@ export default function FormEvent({
                     <div className="flex flex-col gap-6 w-full">
 
                         <Field>
-                            <FieldLabel htmlFor="input-field-name" className="text-2xl font-semibold">Title</FieldLabel>
+                            <FieldLabel htmlFor="input-field-name" className="text-2xl font-semibold">Name</FieldLabel>
                             <Input
-                                value={data.title}
-                                onChange={(e) => onChange('title', e.target.value)}
+                                value={data.name}
+                                onChange={(e) => onChange('name', e.target.value)}
                                 type="text"
-                                placeholder="Enter your events title"
+                                placeholder="Enter your events name"
                             />
-                            {errors.title &&
-                                <p className="mt-2 text-sm text-red-600">{errors.title}</p>
+                            {errors.name &&
+                                <p className="mt-2 text-sm text-red-600">{errors.name}</p>
                             }
                             <FieldDescription>
-                                Fill your title for the events.
+                                Fill your name for the events.
                             </FieldDescription>
                         </Field>
 
@@ -142,7 +142,7 @@ export default function FormEvent({
                             <InputGroup>
                                 <TextareaAutosize
                                     data-slot="input-group-control"
-                                    value={data.content}
+                                    value={data.description}
                                     onChange={(e) => onChange('description', e.target.value)}
                                     className="flex field-sizing-content min-h-24 w-full resize-none rounded-md bg-transparent px-3 py-2.5 text-base outline-none"
                                     placeholder="Fill the description..."
@@ -171,10 +171,12 @@ export default function FormEvent({
                                             mode="single"
                                             selected={startDate}
                                             onSelect={(date) => {
+                                                if (!date) return
                                                 setStartDate(date)
-                                                onChange("start_date", date)
+                                                onChange("start_date", date.toISOString().split("T")[0])
                                                 setStartOpen(false)
                                             }}
+
                                         />
                                     </PopoverContent>
                                 </Popover>
@@ -197,7 +199,9 @@ export default function FormEvent({
                                             selected={endDate}
                                             onSelect={(date) => {
                                                 setEndDate(date)
-                                                onChange("end_date", date)
+                                                if (date) {
+                                                    onChange("end_date", date.toISOString().split("T")[0])
+                                                }
                                                 setEndOpen(false)
                                             }}
                                         />
@@ -224,24 +228,24 @@ export default function FormEvent({
 
                         <div className="flex items-center gap-10">
 
-                         <div className="grid w-full max-w-full gap-2">
-                            <h3 className="text-2xl font-semibold tracking-tight">
-                                Content
-                            </h3>
-                            <InputGroup>
-                                <TextareaAutosize
-                                    data-slot="input-group-control"
-                                    value={data.content}
-                                    onChange={(e) => onChange('content', e.target.value)}
-                                    className="flex field-sizing-description min-h-24 w-full resize-none rounded-md bg-transparent px-3 py-2.5 text-base outline-none"
-                                    placeholder="Fill the content..."
-                                />
+                            <div className="grid w-full max-w-full gap-2">
+                                <h3 className="text-2xl font-semibold tracking-tight">
+                                    Content
+                                </h3>
+                                <InputGroup>
+                                    <TextareaAutosize
+                                        data-slot="input-group-control"
+                                        value={data.content}
+                                        onChange={(e) => onChange('content', e.target.value)}
+                                        className="flex field-sizing-description min-h-24 w-full resize-none rounded-md bg-transparent px-3 py-2.5 text-base outline-none"
+                                        placeholder="Fill the content..."
+                                    />
 
-                            </InputGroup>
-                            {errors.content &&
-                                <p className="mt-2 text-sm text-red-600">{errors.content}</p>
-                            }
-                        </div>
+                                </InputGroup>
+                                {errors.content &&
+                                    <p className="mt-2 text-sm text-red-600">{errors.content}</p>
+                                }
+                            </div>
 
                         </div>
                     </div>

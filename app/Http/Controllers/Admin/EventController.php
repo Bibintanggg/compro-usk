@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Events;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class EventController extends Controller
@@ -13,9 +15,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Events/index', [
-
-        ]);
+        return Inertia::render('Admin/Events/index', []);
     }
 
     /**
@@ -31,7 +31,27 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:200',
+            'description' => 'required|string',
+            'content' => 'required|string',
+            'image' => 'nullable|image|mimes:png,jpg|max:2048',
+            'location' => "required|string",
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+            'is_active' => 'sometimes|boolean'
+        ]);
+
+        if($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+            $validated['image'] = $path;
+        };
+
+        $validated['slug'] = Str::slug($validated['name'], '-');
+
+        Events::create($validated);
+
+        return redirect()->route('admin.events.index')->with('success', 'Events succesfully created');
     }
 
     /**

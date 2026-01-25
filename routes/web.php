@@ -44,6 +44,7 @@ Route::middleware('auth')->prefix('admin')->group(function() {
 
     Route::get('/events', [EventController::class, 'index'])->name('admin.events.index');
     Route::get('/events/create', [EventController::class, 'create'])->name('admin.events.create');
+    Route::post('/events/create', [EventController::class, 'store'])->name('admin.events.store');
 });
 
 require __DIR__.'/auth.php';

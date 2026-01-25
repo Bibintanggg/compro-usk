@@ -28,7 +28,7 @@ export default function EventCreate() {
     })
 
     const user = usePage().props.auth.user
-    const fileName = data.image
+    const fileName = data.image?.name
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
