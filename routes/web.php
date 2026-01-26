@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -59,6 +60,13 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('/clients/create', [ClientController::class, 'store'])->name('admin.clients.store');
     Route::put('/clients/{id}', [ClientController::class, 'update'])->name('admin.clients.update');
     Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('admin.clients.destroy');
+
+    Route::get('/gallery', [GalleryController::class, 'index'])->name('admin.gallery.index');
+    Route::get('/gallery/create', [GalleryController::class, 'create'])->name('admin.gallery.create');
+    Route::post('/gallery/create', [GalleryController::class, 'store'])->name('admin.gallery.store');
+    Route::get('/gallery/{gallery}/edit', [GalleryController::class, 'edit'])->name('admin.gallery.edit');
+    Route::put('/gallery/{id}', [GalleryController::class, 'update'])->name('admin.gallery.update');
+    Route::delete('/gallery/{id}', [GalleryController::class, 'destroy'])->name('admin.gallery.destroy');
 });
 
 require __DIR__ . '/auth.php';
