@@ -27,7 +27,8 @@ export default function Article() {
                     <DataTable
                         columns={columns}
                         data={articles as Payment[]}
-                        filterColumn="name"
+                        filterColumn="title"
+                        filterPlaceholder="Filter Articles..."
                         createHref="/admin/articles/create"
                         createLabel="Create new articles" />
                 </div>

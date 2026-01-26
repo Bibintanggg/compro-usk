@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ProductsController;
@@ -45,12 +46,19 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::put('/products/{id}', [ProductsController::class, 'update'])->name('admin.products.update');
     Route::delete('/products/{id}', [ProductsController::class, 'destroy'])->name('admin.products.destroy');
 
-    Route::get('/events', [EventController::class,   'index'])->name('admin.events.index');
+    Route::get('/events', [EventController::class, 'index'])->name('admin.events.index');
     Route::get('/events/create', [EventController::class, 'create'])->name('admin.events.create');
     Route::post('/events/create', [EventController::class, 'store'])->name('admin.events.store');
     Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('admin.events.edit');
     Route::put('/events/{id}', [EventController::class, 'update'])->name('admin.events.update');
     Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('admin.events.destroy');
+
+    Route::get('/clients', [ClientController::class, 'index'])->name('admin.clients.index');
+    Route::get('/clients/create', [ClientController::class, 'create'])->name('admin.clients.create');
+    Route::get('/clients/{clients}/edit', [ClientController::class, 'edit'])->name('admin.clients.edit');
+    Route::post('/clients/create', [ClientController::class, 'store'])->name('admin.clients.store');
+    Route::put('/clients/{id}', [ClientController::class, 'update'])->name('admin.clients.update');
+    Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('admin.clients.destroy');
 });
 
 require __DIR__ . '/auth.php';
