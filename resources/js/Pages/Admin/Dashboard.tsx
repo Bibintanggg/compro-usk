@@ -98,7 +98,7 @@ export default function Dashboard() {
                             </div>
 
                             <div className="w-full bg-[#f7f7f7] rounded-md flex items-center justify-center text-white">
-                                
+
                             </div>
                         </div>
 

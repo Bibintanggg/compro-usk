@@ -1,4 +1,4 @@
-    import { Calendar, ChevronUp, Home, Inbox, Package2, Paperclip, Search, Settings, User2 } from "lucide-react"
+import { Calendar, ChevronUp, Home, Inbox, Package2, Paperclip, Search, Settings, User2 } from "lucide-react"
 import {
     Sidebar,
     SidebarContent,
@@ -10,7 +10,7 @@ import {
     SidebarMenuItem,
 } from "./ui/sidebar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
-import { usePage } from "@inertiajs/react"
+import { router, usePage } from "@inertiajs/react"
 import { Calendar1Icon } from "lucide-react"
 import { Users } from "lucide-react"
 import { Images } from "lucide-react"
@@ -34,7 +34,7 @@ const items = [
     {
         title: "Event",
         url: "/admin/events",
-        icon: Calendar1Icon ,
+        icon: Calendar1Icon,
     },
     {
         title: "Clients",
@@ -85,8 +85,8 @@ export function AppSidebar() {
                     side="top"
                     className="w-[--radix-popper-anchor-width]"
                 >
-                    <DropdownMenuItem>
-                        <span>Sign out</span>
+                    <DropdownMenuItem onClick={() => router.post('/logout')} className="cursor-pointer">
+                            Sign out
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
