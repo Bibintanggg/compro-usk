@@ -67,7 +67,7 @@ export const productsColumns: ColumnDef<Products>[] = [
                     </Link>
 
                     <Link
-                        href={route('admin.articles.destroy', row.original.id)}
+                        href={route('admin.products.destroy', row.original.id)}
                         method="delete"
                         as="button"
                         className="text-red-600 hover:underline"
