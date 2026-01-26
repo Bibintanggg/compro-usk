@@ -48,8 +48,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/events', [EventController::class,   'index'])->name('admin.events.index');
     Route::get('/events/create', [EventController::class, 'create'])->name('admin.events.create');
     Route::post('/events/create', [EventController::class, 'store'])->name('admin.events.store');
-
     Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('admin.events.edit');
+    Route::put('/events/{id}', [EventController::class, 'update'])->name('admin.events.update');
+    Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('admin.events.destroy');
 });
 
 require __DIR__ . '/auth.php';

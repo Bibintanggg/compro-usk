@@ -84,7 +84,7 @@ export const eventColumns: ColumnDef<Event>[] = [
                     </Link>
 
                     <Link
-                        href={route('admin.articles.destroy', row.original.id)}
+                        href={route('admin.events.destroy', row.original.id)}
                         method="delete"
                         as="button"
                         className="text-red-600 hover:underline"

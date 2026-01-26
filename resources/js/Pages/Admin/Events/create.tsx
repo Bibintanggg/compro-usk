@@ -17,7 +17,7 @@ import FormEvent from "@/features/events/EventForm";
 
 export default function EventCreate() {
     const { data, setData, processing, errors, post } = useForm({
-        'title': '',
+        'name': '',
         'description': '',
         'content': '',
         'image': null as File | null,
@@ -33,6 +33,19 @@ export default function EventCreate() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         post(route('admin.events.store'))
+    }
+
+    const [imagePreview, setImagePreview] = React.useState<string | null>(null)
+
+    const handleImageChange = (file: File | null) => {
+        setData('image', file)
+
+        if(file) {
+            const url = URL.createObjectURL(file)
+            setImagePreview(url)
+        } else {
+            setImagePreview(null)
+        }
     }
 
     return (
@@ -55,6 +68,8 @@ export default function EventCreate() {
                         onChange={setData}
                         onSubmit={handleSubmit}
                         fileName={fileName}
+                        onImageChange={handleImageChange}
+                        imagePreview={imagePreview}
                     />
 
                     <div className="relative mx-auto py-10 w-[150vh]">
