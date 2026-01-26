@@ -46,7 +46,7 @@ export default function EventsEdit() {
             <Authenticated>
                 <div className="w-[150vh] mx-auto py-10">
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-5 flex items-center justify-between">
-                        Products - Edit
+                        Events - Edit
 
                         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
                             Hello, {user.name} !!
