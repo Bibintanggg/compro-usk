@@ -7,7 +7,7 @@ import {
 } from "@/Components/ui/input-group"
 import TextareaAutosize from "react-textarea-autosize"
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { MoveLeftIcon, UploadIcon } from 'lucide-react'
+import { Captions, FolderUp, MoveLeftIcon, PaintBucket, UploadIcon, UserStar } from 'lucide-react'
 import { FileInput, Label } from "flowbite-react";
 import { Field, FieldDescription, FieldLabel } from "@/Components/ui/field"
 import { Input } from "@/Components/ui/input"
@@ -35,7 +35,8 @@ export default function ArticleForm({
             <div className="p-3 w-full">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                     <div className="flex flex-col items-start w-full gap-4">
-                        <h3 className="text-2xl font-semibold tracking-tight">
+                        <h3 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
+                            <FolderUp/>
                             Thumbnail Upload
                         </h3>
                         <div className="flex flex-col items-center w-full gap-4">
@@ -86,7 +87,10 @@ export default function ArticleForm({
                     <div className="flex flex-col gap-6 w-full">
 
                         <Field>
-                            <FieldLabel htmlFor="input-field-title" className="text-2xl font-semibold">Title</FieldLabel>
+                            <FieldLabel htmlFor="input-field-title" className="text-2xl font-semibold flex items-center">
+                                <Captions/>
+                                Title
+                            </FieldLabel>
                             <Input
                                 value={data.title}
                                 onChange={(e) => onChange('title', e.target.value)}
@@ -101,7 +105,10 @@ export default function ArticleForm({
                             </FieldDescription>
                         </Field>
                         <Field>
-                            <FieldLabel htmlFor="input-field-author" className="text-2xl font-semibold">Author</FieldLabel>
+                            <FieldLabel htmlFor="input-field-author" className="text-2xl font-semibold flex items-center">
+                                <UserStar/>
+                                Author
+                            </FieldLabel>
                             <Input
                                 value={data.author}
                                 onChange={(e) => onChange('author', e.target.value)}
@@ -117,7 +124,8 @@ export default function ArticleForm({
                         </Field>
 
                         <div className="grid w-full max-w-full gap-2">
-                            <h3 className="text-2xl font-semibold tracking-tight">
+                            <h3 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
+                                <PaintBucket/>
                                 Content
                             </h3>
                             <InputGroup>

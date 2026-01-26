@@ -25,10 +25,10 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->prefix('admin')->group(function() {
+Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/articles', [ArticleController::class, 'index'])->name('admin.articles.index');
@@ -45,8 +45,8 @@ Route::middleware('auth')->prefix('admin')->group(function() {
     Route::get('/events', [EventController::class, 'index'])->name('admin.events.index');
     Route::get('/events/create', [EventController::class, 'create'])->name('admin.events.create');
     Route::post('/events/create', [EventController::class, 'store'])->name('admin.events.store');
+
+    Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('admin.events.edit');
 });
 
-require __DIR__.'/auth.php';
-
-
+require __DIR__ . '/auth.php';

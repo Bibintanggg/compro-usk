@@ -15,7 +15,10 @@ class EventController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Events/index', []);
+        $event = Events::latest()->get();
+        return Inertia::render('Admin/Events/index', [
+            'events' => $event
+        ]);
     }
 
     /**
@@ -65,9 +68,9 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Events $event)
     {
-        //
+        return Inertia::render('Admin/Events/edit');
     }
 
     /**

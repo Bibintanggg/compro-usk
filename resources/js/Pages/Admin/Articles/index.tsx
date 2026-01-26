@@ -6,6 +6,7 @@ import { Field, FieldDescription, FieldLabel } from "@/Components/ui/field";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { usePage } from "@inertiajs/react";
 import React, { useEffect } from "react";
+// import { Images } from "lucide-react";
 
 export default function Article() {
     const user = usePage().props.auth.user

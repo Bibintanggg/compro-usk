@@ -7,21 +7,7 @@ import { usePage } from "@inertiajs/react";
 
 export default function Events() {
     const user = usePage().props.auth.user
-    // const { events } = usePage().props
-
-    const events = [
-        {
-            id: "1",
-            title: "Naufal",
-            description: "kWOKAOWKAOWKA",
-            content: "Hello gais aku dawpdlapdwla",
-            image: "/no-image.png",
-            location: "Jakarta",
-            start_date: "10-09-2020",
-            end_date: "28-12-2020",
-            is_active: true
-        }
-    ]
+    const { events } = usePage().props
 
     return (
         <div className="p-10">

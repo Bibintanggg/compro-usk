@@ -7,7 +7,7 @@ import {
 } from "@/Components/ui/input-group"
 import TextareaAutosize from "react-textarea-autosize"
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { ChevronDownIcon, MoveLeftIcon, UploadIcon } from 'lucide-react'
+import { CalendarArrowDown, CalendarArrowUp, Captions, ChartArea, ChevronDownIcon, FolderUp, LocationEdit, MoveLeftIcon, PaintBucket, PencilIcon, UploadIcon } from 'lucide-react'
 import { FileInput, Label } from "flowbite-react";
 import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "@/Components/ui/field"
 import { Input } from "@/Components/ui/input"
@@ -52,7 +52,8 @@ export default function FormEvent({
             <div className="p-3 w-full">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                     <div className="flex flex-col items-start w-full gap-4">
-                        <h3 className="text-2xl font-semibold tracking-tight">
+                        <h3 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
+                            <FolderUp />
                             Image Events Upload
                         </h3>
                         <div className="flex flex-col items-center w-full gap-4">
@@ -103,7 +104,10 @@ export default function FormEvent({
                     <div className="flex flex-col gap-6 w-full">
 
                         <Field>
-                            <FieldLabel htmlFor="input-field-name" className="text-2xl font-semibold">Name</FieldLabel>
+                            <FieldLabel htmlFor="input-field-name" className="text-2xl font-semibold flex items-center">
+                                <Captions />
+                                Name
+                            </FieldLabel>
                             <Input
                                 value={data.name}
                                 onChange={(e) => onChange('name', e.target.value)}
@@ -119,7 +123,10 @@ export default function FormEvent({
                         </Field>
 
                         <Field>
-                            <FieldLabel htmlFor="input-field-name" className="text-2xl font-semibold">Location</FieldLabel>
+                            <FieldLabel htmlFor="input-field-name" className="text-2xl font-semibold flex items-center">
+                                <LocationEdit />
+                                Location
+                            </FieldLabel>
                             <Input
                                 value={data.location}
                                 onChange={(e) => onChange('location', e.target.value)}
@@ -136,7 +143,8 @@ export default function FormEvent({
 
                         <div className="grid w-full max-w-full gap-2">
 
-                            <h3 className="text-2xl font-semibold tracking-tight">
+                            <h3 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
+                                <PaintBucket />
                                 Description
                             </h3>
                             <InputGroup>
@@ -157,7 +165,10 @@ export default function FormEvent({
                         <div className="flex justify-between gap-10 w-full items-center">
 
                             <Field className="mx-auto">
-                                <FieldLabel className="text-2xl font-semibold">Start Date</FieldLabel>
+                                <FieldLabel className="text-2xl font-semibold flex items-center gap-2">
+                                    <CalendarArrowUp />
+                                    Start Date
+                                </FieldLabel>
 
                                 <Popover open={startOpen} onOpenChange={setStartOpen}>
                                     <PopoverTrigger asChild>
@@ -184,7 +195,10 @@ export default function FormEvent({
 
 
                             <Field className="mx-auto">
-                                <FieldLabel className="text-2xl font-semibold">End Date</FieldLabel>
+                                <FieldLabel className="text-2xl font-semibold flex items-center gap-2">
+                                    <CalendarArrowDown />
+                                    End Date
+                                </FieldLabel>
 
                                 <Popover open={endOpen} onOpenChange={setEndOpen}>
                                     <PopoverTrigger asChild>
@@ -213,7 +227,8 @@ export default function FormEvent({
 
                         <Field orientation="horizontal" className="max-w-xl mt-2">
                             <FieldContent>
-                                <FieldLabel htmlFor="switch-focus-mode" className="text-2xl font-semibold">
+                                <FieldLabel htmlFor="switch-focus-mode" className="text-2xl font-semibold flex items-center gap-2">
+                                    <ChartArea />
                                     Events Status
                                 </FieldLabel>
                                 <FieldDescription>
@@ -229,7 +244,8 @@ export default function FormEvent({
                         <div className="flex items-center gap-10">
 
                             <div className="grid w-full max-w-full gap-2">
-                                <h3 className="text-2xl font-semibold tracking-tight">
+                                <h3 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
+                                    <PencilIcon/>
                                     Content
                                 </h3>
                                 <InputGroup>

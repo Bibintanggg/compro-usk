@@ -7,7 +7,7 @@ import {
 } from "@/Components/ui/input-group"
 import TextareaAutosize from "react-textarea-autosize"
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { MoveLeftIcon, UploadIcon } from 'lucide-react'
+import { BadgePercent, Captions, ChartArea, Folder, FolderUp, Hash, MoveLeftIcon, PaintBucket, PencilLine, UploadIcon } from 'lucide-react'
 import { FileInput, Label } from "flowbite-react";
 import { Field, FieldContent, FieldDescription, FieldLabel } from "@/Components/ui/field"
 import { Input } from "@/Components/ui/input"
@@ -42,7 +42,8 @@ export default function ProductsForm({
             <div className="p-3 w-full">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                     <div className="flex flex-col items-start w-full gap-4">
-                        <h3 className="text-2xl font-semibold tracking-tight">
+                        <h3 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
+                            <FolderUp/>
                             Image Product Upload
                         </h3>
                         <div className="flex flex-col items-center w-full gap-4">
@@ -93,7 +94,10 @@ export default function ProductsForm({
                     <div className="flex flex-col gap-6 w-full">
 
                         <Field>
-                            <FieldLabel htmlFor="input-field-name" className="text-2xl font-semibold">Name</FieldLabel>
+                            <FieldLabel htmlFor="input-field-name" className="text-2xl font-semibold flex items-center">
+                                <Captions />
+                                Name
+                            </FieldLabel>
                             <Input
                                 value={data.name}
                                 onChange={(e) => onChange('name', e.target.value)}
@@ -110,7 +114,10 @@ export default function ProductsForm({
 
                         <div className="flex justify-between items-center gap-10">
                             <Field>
-                                <FieldLabel htmlFor="input-field-price" className="text-2xl font-semibold">Price</FieldLabel>
+                                <FieldLabel htmlFor="input-field-price" className="text-2xl font-semibold flex items-center">
+                                    <BadgePercent />
+                                    Price
+                                </FieldLabel>
                                 <Input
                                     value={data.price}
                                     onChange={(e) => onChange('price', e.target.value)}
@@ -126,7 +133,10 @@ export default function ProductsForm({
                             </Field>
 
                             <Field>
-                                <FieldLabel htmlFor="input-field-price" className="text-2xl font-semibold">Order</FieldLabel>
+                                <FieldLabel htmlFor="input-field-price" className="text-2xl font-semibold flex items-center">
+                                    <Hash />
+                                    Order
+                                </FieldLabel>
                                 <Input
                                     value={data.order}
                                     onChange={(e) => onChange('order', e.target.value)}
@@ -145,7 +155,8 @@ export default function ProductsForm({
 
                         <Field orientation="horizontal" className="max-w-xl mt-2">
                             <FieldContent>
-                                <FieldLabel htmlFor="switch-focus-mode" className="text-2xl font-semibold">
+                                <FieldLabel htmlFor="switch-focus-mode" className="text-2xl font-semibold flex items-center">
+                                    <ChartArea />
                                     Products Status
                                 </FieldLabel>
                                 <FieldDescription>
@@ -153,13 +164,14 @@ export default function ProductsForm({
                                 </FieldDescription>
                             </FieldContent>
                             <Switch
-                            id="switch-focus-mode"
-                            checked={data.is_active}
-                            onCheckedChange={(value) => onChange('is_active', value)}/>
+                                id="switch-focus-mode"
+                                checked={data.is_active}
+                                onCheckedChange={(value) => onChange('is_active', value)} />
                         </Field>
 
                         <div className="grid w-full max-w-full gap-2">
-                            <h3 className="text-2xl font-semibold tracking-tight">
+                            <h3 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
+                                <PaintBucket />
                                 Content
                             </h3>
                             <InputGroup>
@@ -178,7 +190,8 @@ export default function ProductsForm({
                         </div>
 
                         <div className="grid w-full max-w-full gap-2">
-                            <h3 className="text-2xl font-semibold tracking-tight">
+                            <h3 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
+                                <PencilLine/>
                                 Description
                             </h3>
                             <InputGroup>

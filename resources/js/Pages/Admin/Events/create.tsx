@@ -10,7 +10,7 @@ import {
 } from "@/Components/ui/input-group"
 import TextareaAutosize from "react-textarea-autosize"
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { MoveLeftIcon, UploadIcon } from 'lucide-react'
+import { Images, MoveLeftIcon, UploadIcon } from 'lucide-react'
 import { Input } from "@/Components/ui/input"
 import { Button } from "@/Components/ui/button";
 import FormEvent from "@/features/events/EventForm";
@@ -40,6 +40,7 @@ export default function EventCreate() {
             <Authenticated>
                 <div className="w-[150vh] mx-auto py-10">
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-5 flex items-center justify-between">
+                        <Images />
                         Events
 
                         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">

@@ -10,7 +10,7 @@ import {
 } from "@/Components/ui/input-group"
 import TextareaAutosize from "react-textarea-autosize"
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { MoveLeftIcon, UploadIcon } from 'lucide-react'
+import { Images, MoveLeftIcon, UploadIcon } from 'lucide-react'
 import { FileInput, Label } from "flowbite-react";
 import { Field, FieldDescription, FieldLabel } from "@/Components/ui/field"
 import { Input } from "@/Components/ui/input"

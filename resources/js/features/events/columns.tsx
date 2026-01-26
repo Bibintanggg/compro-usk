@@ -3,13 +3,13 @@
 import { Link, useForm } from "@inertiajs/react"
 import { ColumnDef } from "@tanstack/react-table"
 import { PencilIcon, Trash2Icon } from "lucide-react"
-import { Events } from "./types"
+import { Event } from "./types"
 
 
-export const eventColumns: ColumnDef<Events>[] = [
+export const eventColumns: ColumnDef<Event>[] = [
     {
-        accessorKey: "title",
-        header: "Title",
+        accessorKey: "name",
+        header: "Name",
     },
     {
         accessorKey: "description",
@@ -37,10 +37,23 @@ export const eventColumns: ColumnDef<Events>[] = [
     {
         accessorKey: "start_date",
         header: "Start Date",
+        cell: ({ row }) => {
+            const start_date = row.original.start_date
+            return (
+                start_date ? start_date.slice(0, 10) : "-"
+            )
+        }
     },
     {
         accessorKey: "end_date",
         header: "End Date",
+        cell: ({ row }) => {
+            const end_date = row.original.end_date
+            return (
+                end_date ? end_date.slice(0, 10) : "-"
+            )
+        }
+
     },
     {
         accessorKey: "is_active",
@@ -64,7 +77,7 @@ export const eventColumns: ColumnDef<Events>[] = [
             return (
                 <div className="flex gap-4">
                     <Link
-                        href={`/admin/products/${row.original.id}/edit`}
+                        href={`/admin/events/${row.original.id}/edit`}
                         className="text-blue-600 hover:underline"
                     >
                         <PencilIcon size={15} />
