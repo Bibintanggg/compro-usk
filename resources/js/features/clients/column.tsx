@@ -25,6 +25,21 @@ export const clientColumn: ColumnDef<Client>[] = [
     {
         accessorKey: "website",
         header: "Website",
+        cell: ({ row }) => {
+            const website = row.original.website
+            const url = website?.startsWith('http') ? website : `https:///${website}`
+
+            return (
+                <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline truncate max-w-[200px] block"
+                >
+                    {website}
+                </a>
+            )
+        }
     },
     {
         accessorKey: "description",

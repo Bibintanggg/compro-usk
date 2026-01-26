@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Clients;
+use App\Models\Events;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -16,7 +18,14 @@ class DashboardController extends Controller
     public function index()
     {
         return Inertia::render('Admin/Dashboard', [
-            'activeArticles' => Product::where('is_active', true)->get()
+            'activeProducts' => Product::where('is_active', true)->get(),
+            'activeEvents' => Events::where('is_active', true)->get(),
+            'clientsCustomer' => Clients::latest()->get(),
+
+            'productsCount' => Product::count(),
+            'clientCount' => Clients::count(),
+            'eventCount' => Events::count(),
+            'articleCount' => Article::count()
         ]);
     }
 

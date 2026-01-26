@@ -50,7 +50,7 @@ class EventController extends Controller
             $validated['image'] = $path;
         };
 
-        $validated['slug'] = Str::slug($validated['name'], '-');
+        $validated['slug'] = Str::slug($validated['name'], '-'); 
 
         Events::create($validated);
 
