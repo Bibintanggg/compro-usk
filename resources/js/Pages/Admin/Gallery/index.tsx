@@ -19,7 +19,6 @@ export default function Gallery() {
                             Hello, {user.name} !!
                         </h3>
                     </h2>
-                </div>
 
                 <DataTable
                     columns={galleryColumns}
@@ -28,6 +27,7 @@ export default function Gallery() {
                     createHref="/admin/gallery/create"
                     filterPlaceholder="Filter Clients..."
                     createLabel="Create new gallery" />
+                    </div>
             </Authenticated>
         </div>
     )

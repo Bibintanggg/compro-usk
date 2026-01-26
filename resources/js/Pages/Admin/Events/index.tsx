@@ -13,6 +13,7 @@ export default function Events() {
         <div className="p-10">
             <Authenticated>
                 <div className="w-full mx-auto py-10">
+
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-5 flex justify-between">
                         Events
 
@@ -20,7 +21,6 @@ export default function Events() {
                             Hello, {user.name} !!
                         </h3>
                     </h2>
-                </div>
 
                 <DataTable
                     columns={eventColumns}
@@ -28,6 +28,7 @@ export default function Events() {
                     filterColumn="name"
                     createHref="/admin/events/create"
                     createLabel="Create new events" />
+                    </div>
             </Authenticated>
         </div>
     )

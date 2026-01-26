@@ -20,7 +20,6 @@ export default function Clients() {
                             Hello, {user.name} !!
                         </h3>
                     </h2>
-                </div>
 
                 <DataTable
                     columns={clientColumn}
@@ -29,6 +28,7 @@ export default function Clients() {
                     createHref="/admin/clients/create"
                     filterPlaceholder="Filter Clients..."
                     createLabel="Create new clients" />
+                    </div>
             </Authenticated>
         </div>
     )
