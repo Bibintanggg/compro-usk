@@ -50,7 +50,6 @@ export default function ArticlesEdit() {
         put(route('admin.articles.update', article.id))
     }
 
-
     useEffect(() => {
         if (article?.thumbnail) {
             setData({

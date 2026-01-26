@@ -44,7 +44,7 @@ class ProductsController extends Controller
             'is_active' => 'sometimes|boolean'
         ]);
 
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $path = $request->file('image')->store('image', 'public');
             $validated['image'] = $path;
         };
@@ -67,9 +67,11 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $products)
     {
-        //
+        return Inertia::render('Admin/Products/edit', [
+            'products' => $products
+        ]);
     }
 
     /**
@@ -77,7 +79,32 @@ class ProductsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $products = Product::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:200',
+            'description' => 'required|string',
+            'content' => 'required|string|max:5000',
+            'image' => 'nullable|image|mimes:jpg,png|max:2048',
+            'price' => 'required|numeric|min:0',
+            'order' => 'required|integer',
+            'is_active' => 'sometimes|boolean'
+        ]);
+
+        if($request->hasFile('image')) {
+            $path = $request->file('image')->store('image', 'public');
+            $validated['image'] = $path;
+        } else {
+            $validated['image'] = $products->image;
+        }
+
+        $validated['slug'] = Str::slug($validated['name'], '-');
+
+        $products->update($validated);
+
+        return redirect()->route('admin.products.index')->with('success', 'Products updated successfully');
+
+
     }
 
     /**

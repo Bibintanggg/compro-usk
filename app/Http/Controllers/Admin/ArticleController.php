@@ -84,9 +84,9 @@ class ArticleController extends Controller
         if ($request->hasFile('thumbnail')) {
             $path = $request->file('thumbnail')->store('thumbnails', 'public');
             $validated['thumbnail'] = $path;
-        } else (
-            $valdated['thumbnail'] = $article->thumbnail
-        );
+        } else {
+            $validated['thumbnail'] = $article->thumbnail;
+        }
 
         $validated['slug'] = Str::slug($validated['title'], "-");
 

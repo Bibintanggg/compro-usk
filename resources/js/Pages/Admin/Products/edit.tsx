@@ -1,48 +1,53 @@
+import { Button } from "@/Components/ui/button";
+import ProductsForm from "@/features/products/ProductsForm";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { useForm, usePage } from "@inertiajs/react";
-import ProductsForm from "@/features/products/ProductsForm";
-import React from "react";
-import { Button } from "@/Components/ui/button";
 import { MoveLeftIcon } from "lucide-react";
+import React, { useState } from "react";
+import type { Products } from "@/features/products/types";
+import { PageProps } from "@/types";
 
-export default function ProductsCreate() {
-    const user = usePage().props.auth.user
+type Props = PageProps & {
+    products: Products
+}
 
-    const { data, setData, processing, errors, post } = useForm({
-        'name': "",
-        'description': '',
-        'content': "",
+export default function ProductsEdit() {
+    const { products } = usePage<Props>().props
+    const { data, setData, put, errors, processing } = useForm({
+        'name': products.name,
+        'description': products.description,
+        'content': products.content,
         'image': null as File | null,
-        "price": 0,
-        'is_active': true,
-        'order': 0
+        "price": products.price,
+        'is_active': products.is_active,
+        'order': products.order
     })
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        post(route('admin.products.store'))
-    }
-
-    const [imagePreview, setImagePreview] = React.useState<string | null>(null)
+    // const [preview, setPreview] = useState("")
+    const [imagePreview, setImagePreview] = React.useState<string | null>(
+        products.image ? `/storage/${products.image}` : null
+    )
 
     const handleImageChange = (file: File | null) => {
         setData('image', file)
 
         if(file) {
-            const url = URL.createObjectURL(file)
-            setImagePreview(url)
-        } else {
-            setImagePreview(null)
+            setImagePreview(URL.createObjectURL(file))
         }
     }
 
-    const fileName = data.image
+    const user = usePage().props.auth.user
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        put(route('admin.products.update', products.id))
+    }
     return (
         <div className="p-10">
             <Authenticated>
                 <div className="w-[150vh] mx-auto py-10">
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-5 flex items-center justify-between">
-                        Products - Create
+                        Products - Edit
 
                         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
                             Hello, {user.name} !!

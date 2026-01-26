@@ -28,14 +28,16 @@ type ProductsFormProps = {
     fileName?: string
     errors: Record<string, string>
     processing: boolean
+    imagePreview?: string | null
 
     onChange: (key: string, value: any) => void
     onSubmit: (e: React.FormEvent) => void
+    onImageChange: (file: File | null) => void
 
 }
 
 export default function ProductsForm({
-    data, fileName, errors, processing, onChange, onSubmit
+    data, fileName, errors, processing, onChange, onSubmit, onImageChange, imagePreview
 }: ProductsFormProps) {
     return (
         <form onSubmit={onSubmit}>
@@ -43,7 +45,7 @@ export default function ProductsForm({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                     <div className="flex flex-col items-start w-full gap-4">
                         <h3 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
-                            <FolderUp/>
+                            <FolderUp />
                             Image Product Upload
                         </h3>
                         <div className="flex flex-col items-center w-full gap-4">
@@ -52,19 +54,30 @@ export default function ProductsForm({
                                 htmlFor="dropzone-file"
                                 className="flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100"
                             >
-                                <div className="flex flex-col items-center justify-center pb-6 pt-5">
-                                    <svg className="mb-4 h-8 w-8 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                                    </svg>
-                                    <p className="mb-2 text-sm text-gray-500">
-                                        <span className="font-semibold">Click to upload</span> or drag and drop
-                                    </p>
-                                    <p className="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-                                </div>
+                                {imagePreview ? (
+                                    <img
+                                        src={imagePreview}
+                                        alt="Preview"
+                                        className="h-64 w-full object-cover rounded-lg"
+                                    />
+                                ) : (
+
+                                    <div className="flex flex-col items-center justify-center pb-6 pt-5">
+                                        <svg className="mb-4 h-8 w-8 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                        </svg>
+                                        <p className="mb-2 text-sm text-gray-500">
+                                            <span className="font-semibold">Click to upload</span> or drag and drop
+                                        </p>
+                                        <p className="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                                    </div>
+                                )}
                                 <FileInput
                                     id="dropzone-file"
                                     className="hidden"
-                                    onChange={(e) => onChange('image', e.target.files?.[0] ?? null)}
+                                    onChange={(e) =>
+                                        onImageChange(e.target.files?.[0] ?? null)
+                                    }
 
                                 />
                             </Label>
@@ -191,7 +204,7 @@ export default function ProductsForm({
 
                         <div className="grid w-full max-w-full gap-2">
                             <h3 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
-                                <PencilLine/>
+                                <PencilLine />
                                 Description
                             </h3>
                             <InputGroup>

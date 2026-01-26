@@ -40,9 +40,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::get('/products', [ProductsController::class, 'index'])->name('admin.products.index');
     Route::get('/products/create', [ProductsController::class, 'create'])->name('admin.products.create');
+    Route::get('/products/{products}/edit', [ProductsController::class, 'edit'])->name('admin.products.edit');
     Route::post('/products', [ProductsController::class, 'store'])->name('admin.products.store');
+    Route::put('/products/{id}', [ProductsController::class, 'update'])->name('admin.products.update');
 
-    Route::get('/events', [EventController::class, 'index'])->name('admin.events.index');
+    Route::get('/events', [EventController::class,   'index'])->name('admin.events.index');
     Route::get('/events/create', [EventController::class, 'create'])->name('admin.events.create');
     Route::post('/events/create', [EventController::class, 'store'])->name('admin.events.store');
 
