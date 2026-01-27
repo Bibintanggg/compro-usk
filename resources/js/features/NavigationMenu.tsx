@@ -32,13 +32,13 @@ export default function NavigationMenuDemo() {
 
                     <NavigationMenuContent className="bg-white shadow-md rounded-md">
                         <ul className="p-2 space-y-1">
-                            <NavItem icon={<UserSquareIcon size={16} />} href="#">
+                            <NavItem icon={<UserSquareIcon size={16} />} href="#profile">
                                 Profile
                             </NavItem>
-                            <NavItem icon={<Signature size={16} />} href="#">
+                            <NavItem icon={<Signature size={16} />} href="#visi">
                                 Vision
                             </NavItem>
-                            <NavItem icon={<Users size={16} />} href="#">
+                            <NavItem icon={<Users size={16} />} href="#client">
                                 Clients
                             </NavItem>
                         </ul>
@@ -47,7 +47,18 @@ export default function NavigationMenuDemo() {
 
                 <NavigationMenuItem>
                     <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                        <Link href="/" className="bg-transparent">Products</Link>
+                        <Link
+                            className="bg-transparent"
+                            href="#product"
+                            onClick={(e) => {
+                                e.preventDefault()
+                                document.querySelector("#product")?.scrollIntoView({
+                                    behavior: "smooth",
+                                })
+                            }}
+                        >
+                            Products
+                        </Link>
                     </NavigationMenuLink>
                 </NavigationMenuItem>
 
@@ -58,13 +69,13 @@ export default function NavigationMenuDemo() {
 
                     <NavigationMenuContent className="bg-white shadow-md rounded-md">
                         <ul className="p-2 space-y-1">
-                            <NavItem icon={<BookCopyIcon size={16} />} href="#">
+                            <NavItem icon={<BookCopyIcon size={16} />} href="/#article">
                                 Article
                             </NavItem>
-                            <NavItem icon={<ImagesIcon size={16} />} href="#">
+                            <NavItem icon={<ImagesIcon size={16} />} href="/#gallery">
                                 Gallery
                             </NavItem>
-                            <NavItem icon={<LocationEditIcon size={16} />} href="#">
+                            <NavItem icon={<LocationEditIcon size={16} />} href="/#event">
                                 Events
                             </NavItem>
                         </ul>
@@ -73,7 +84,7 @@ export default function NavigationMenuDemo() {
 
                 <NavigationMenuItem>
                     <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                        <Link href="/" className="bg-transparent">Contact Me</Link>
+                        <Link href="#contact" className="bg-transparent">Contact Me</Link>
                     </NavigationMenuLink>
                 </NavigationMenuItem>
             </NavigationMenuList>
@@ -96,13 +107,20 @@ function NavItem({
     return (
         <li>
             <NavigationMenuLink asChild>
-                <Link
+                <a
                     href={href}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        const id = href.replace("#", "")
+                        document.getElementById(id)?.scrollIntoView({
+                            behavior: "smooth",
+                        })
+                    }}
                     className="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100"
                 >
                     {icon}
                     {children}
-                </Link>
+                </a>
             </NavigationMenuLink>
         </li>
     )
