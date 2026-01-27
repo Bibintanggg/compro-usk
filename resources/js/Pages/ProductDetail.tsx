@@ -109,7 +109,7 @@ export default function ProductDetail() {
                                 </p>
                             </div>
 
-                            <div className="mb-8">
+                            {/* <div className="mb-8">
                                 <label className="text-sm font-semibold text-gray-900 block mb-4">
                                     Quantity
                                 </label>
@@ -131,7 +131,7 @@ export default function ProductDetail() {
                                         +
                                     </button>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className="space-y-3 mb-8">
                                 <button className="w-full bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-900 transition-colors flex items-center justify-center gap-2 shadow-lg">

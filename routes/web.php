@@ -25,6 +25,8 @@ Route::get('/', [UserController::class, 'index'])->name('home');
 Route::get('/products/detail/{product}', [UserController::class, 'detail'])->name('product.detail');
 Route::get('/products/checkout/{product}', [UserController::class, 'product'])->name('product.checkout');
 
+Route::get('/articles/detail/{article}', [UserController::class, 'article'])->name('product.checkout');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

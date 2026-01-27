@@ -356,13 +356,13 @@ export default function Welcome() {
                             return (
                                 <Link
                                     key={article.id}
-                                    href={`/articles/${article.id}`}
+                                    href={`/articles/detail/${article.id}`}
                                     className={`group ${isLarge ? 'md:col-span-2 md:row-span-2' : ''}`}
                                 >
                                     <div className="relative h-full min-h-[300px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
                                         {isLarge && (
                                             <div className="absolute top-4 left-4 z-10 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                                                Featured
+                                                Article
                                             </div>
                                         )}
 

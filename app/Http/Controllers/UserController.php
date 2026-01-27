@@ -39,4 +39,12 @@ class UserController extends Controller
             'product' => $product
         ]);
     }
+
+    public function article(Article $article)
+    {
+        return Inertia::render('ArticleDetail', [
+            'article' => $article,
+            'latestArticles' => Article::get()
+        ]);
+    }
 }
