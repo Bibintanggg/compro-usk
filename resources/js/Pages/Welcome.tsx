@@ -40,18 +40,14 @@ interface WelcomeProps extends PageProps {
 }
 
 export default function Welcome() {
-    // const handleImageError = () => {
-    //     document
-    //         .getElementById('screenshot-container')
-    //         ?.classList.add('!hidden');
-    //     document.getElementById('docs-card')?.classList.add('!row-span-1');
-    //     document
-    //         .getElementById('docs-card-content')
-    //         ?.classList.add('!flex-row');
-    //     document.getElementById('background')?.classList.add('!hidden');
-    // };
-
     const { products, clients, articles, gallery, events } = usePage<WelcomeProps>().props
+    const formatPrice = (price: number) => {
+        return new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR",
+            minimumFractionDigits: 0,
+        }).format(price);
+    };
     return (
         <>
             <AppNavbar />
@@ -304,7 +300,7 @@ export default function Welcome() {
 
                                         <div className="relative h-full p-6 flex flex-col justify-between text-white">
                                             <div>
-                                                <h2 className="text-2xl font-bold">
+                                                <h2 className="text-2xl font-bold truncate">
                                                     {product.name}
                                                 </h2>
                                                 <h3 className="text-sm font-light mb-1 opacity-90">
@@ -314,12 +310,13 @@ export default function Welcome() {
 
                                             <div className="flex justify-between items-center">
 
-                                                <button className="bg-white text-black px-6 py-2 rounded-full font-medium text-sm w-fit hover:bg-gray-100 transition-colors">
+                                                <Link href={route('product.detail', product.id)}
+                                                    className="bg-white text-black px-6 py-2 rounded-full font-medium text-sm w-fit hover:bg-gray-100 transition-colors">
                                                     Browse
-                                                </button>
+                                                </Link>
 
                                                 <h3 className="text-xl font-semibold mb-1 opacity-90">
-                                                    {parseFloat(product.price as unknown as string).toString()}
+                                                    {formatPrice(product.price)}
                                                 </h3>
                                             </div>
                                         </div>

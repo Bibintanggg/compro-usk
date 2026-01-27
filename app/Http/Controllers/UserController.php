@@ -23,4 +23,20 @@ class UserController extends Controller
             'events' => Events::all(),
         ]);
     }
+
+    public function detail(Product $product)
+    {
+        // dd($product);
+        return Inertia::render('ProductDetail', [
+            'product' => $product,
+            'relatedProducts' => Product::all()
+        ]);
+    }
+
+    public function product(Product $product)
+    {
+        return Inertia::render('Products', [
+            'product' => $product
+        ]);
+    }
 }
