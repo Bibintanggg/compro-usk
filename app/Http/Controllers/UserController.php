@@ -18,7 +18,7 @@ class UserController extends Controller
         return Inertia::render('Welcome', [
             'products' => Product::all(),
             'clients' => Clients::all(),
-            'articles' => Article::all(),
+            'articles' => Article::latest()->limit(6)->get(),
             'gallery' => Gallery::all(),
             'events' => Events::all(),
         ]);
@@ -44,7 +44,14 @@ class UserController extends Controller
     {
         return Inertia::render('ArticleDetail', [
             'article' => $article,
-            'latestArticles' => Article::get()
+            'latestArticles' => Article::latest()->limit(6)->get()
+        ]);
+    }
+
+    public function viewAllArticle()
+    {
+        return Inertia::render('ViewAllArticles', [
+            'article' => Article::all()
         ]);
     }
 }

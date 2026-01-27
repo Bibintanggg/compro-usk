@@ -45,12 +45,9 @@ export default function Product() {
                 </div>
             </div> */}
 
-            {/* Main Content */}
             <div className="max-w-7xl mx-auto px-6 py-12">
                 <div className="grid lg:grid-cols-2 gap-12">
-                    {/* LEFT - Checkout Form */}
                     <div className="space-y-8">
-                        {/* Progress Steps */}
                         <div className="flex items-center justify-between mb-8">
                             <div className="flex items-center gap-2">
                                 <div className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center font-bold text-sm">

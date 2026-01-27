@@ -134,7 +134,7 @@ export default function ArticleDetail() {
                                         ))}
                                     </div>
 
-                                    <button className="w-full mt-6 py-3 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
+                                    <button onClick={() => router.visit(route('article.view'))} className="w-full mt-6 py-3 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
                                         View All Articles
                                         <ChevronRight className="w-5 h-5" />
                                     </button>

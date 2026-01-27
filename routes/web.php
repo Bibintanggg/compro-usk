@@ -25,7 +25,8 @@ Route::get('/', [UserController::class, 'index'])->name('home');
 Route::get('/products/detail/{product}', [UserController::class, 'detail'])->name('product.detail');
 Route::get('/products/checkout/{product}', [UserController::class, 'product'])->name('product.checkout');
 
-Route::get('/articles/detail/{article}', [UserController::class, 'article'])->name('product.checkout');
+Route::get('/articles/detail/{article}', [UserController::class, 'article'])->name('article.detail');
+Route::get('/articles/all', [UserController::class, 'viewAllArticle'])->name('article.view');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -323,6 +323,16 @@ export default function Welcome() {
                                     </div>
                                 );
                             })}
+
+                    </div>
+                    <div className="text-center mt-12">
+                        <Link
+                            href="/articles/all"
+                            className="inline-flex items-center gap-2 bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors"
+                        >
+                            View All Articles
+                            <ArrowUpRight className="w-4 h-4" />
+                        </Link>
                     </div>
                 </div>
 
@@ -406,7 +416,7 @@ export default function Welcome() {
 
                     <div className="text-center mt-12">
                         <Link
-                            href="/articles"
+                            href="/articles/all"
                             className="inline-flex items-center gap-2 bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors"
                         >
                             View All Articles
@@ -756,7 +766,7 @@ export default function Welcome() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
 
             <footer className="bg-gray-900 text-white mt-36">
                 <div className="max-w-7xl mx-auto px-12 py-16">
