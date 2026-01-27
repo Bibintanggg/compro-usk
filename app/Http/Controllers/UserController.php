@@ -19,7 +19,7 @@ class UserController extends Controller
             'products' => Product::all(),
             'clients' => Clients::all(),
             'articles' => Article::latest()->limit(6)->get(),
-            'gallery' => Gallery::all(),
+            'gallery' => Gallery::latest()->limit(4)->get(),
             'events' => Events::all(),
         ]);
     }
