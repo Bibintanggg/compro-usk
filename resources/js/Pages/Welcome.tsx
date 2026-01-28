@@ -2,7 +2,7 @@ import AppNavbar from '@/Components/Navbar';
 import { Client } from '@/features/clients/types';
 import { Products } from '@/features/products/types';
 import { PageProps } from '@/types';
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, Link, router, usePage } from '@inertiajs/react';
 import {
     Avatar,
     Dropdown,
@@ -30,6 +30,7 @@ import { Gallery } from '@/features/gallery/types';
 import { Event } from '@/features/events/types';
 import { formatDate } from '@/types/formatDate';
 import LeafletMap from '@/Components/LeafletMap';
+import { Button } from '@/Components/ui/button';
 
 interface WelcomeProps extends PageProps {
     products: Products[]
@@ -327,10 +328,10 @@ export default function Welcome() {
                     </div>
                     <div className="text-center mt-12">
                         <Link
-                            href="/articles/all"
+                            href="/products/all"
                             className="inline-flex items-center gap-2 bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors"
                         >
-                            View All Articles
+                            View All Product
                             <ArrowUpRight className="w-4 h-4" />
                         </Link>
                     </div>
@@ -425,7 +426,7 @@ export default function Welcome() {
                     </div>
                 </div>
 
-                <   div className="mt-36 px-12">
+                <div className="mt-36 px-12">
                     <div className="max-w-4xl mx-auto text-center mb-12">
 
                         <h2 data-aos="fade-up" data-aos-duration="1000" className="text-5xl font-semibold tracking-tight mb-4" id='gallery'>
@@ -477,6 +478,16 @@ export default function Welcome() {
                             );
                         })}
                     </div>
+                    <div className="text-center mt-12">
+                        <Link
+                            href="/gallery/all"
+                            className="inline-flex items-center gap-2 bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors"
+                        >
+                            View Our Documentary
+                            <ArrowUpRight className="w-4 h-4" />
+                        </Link>
+                    </div>
+
 
 
                 </div>
@@ -529,7 +540,7 @@ export default function Welcome() {
 
                                 return (
                                     <Link
-                                        href={`/events/${closestEvent.id}`}
+                                        href={`/event/${closestEvent.id}`}
                                         className="group block h-full"
                                     >
                                         <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 h-full">
@@ -590,10 +601,12 @@ export default function Welcome() {
                                                     </div>
                                                 </div>
 
-                                                <button className="w-full bg-red-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-red-700 transition-colors flex items-center justify-center gap-2 shadow-lg">
-                                                    Register Now
-                                                    <ArrowUpRight className="w-5 h-5" />
-                                                </button>
+                                                <Link href={route('event.detail', closestEvent.id)}>
+                                                    <button className="w-full flex items-center justify-center gap-4 bg-red-600 text-white py-4 rounded-xl ...">
+                                                        See Detail
+                                                        <ArrowUpRight className="w-5 h-5" />
+                                                    </button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </Link>
@@ -630,7 +643,7 @@ export default function Welcome() {
                                         return (
                                             <Link
                                                 key={event.id}
-                                                href={`/events/${event.id}`}
+                                                href={`/event/${event.id}`}
                                                 className="group block"
                                             >
                                                 <div className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-300 hover:shadow-lg transition-all duration-300">

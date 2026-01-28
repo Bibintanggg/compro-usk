@@ -16,11 +16,11 @@ class UserController extends Controller
     public function index()
     {
         return Inertia::render('Welcome', [
-            'products' => Product::all(),
-            'clients' => Clients::all(),
+            'products' => Product::latest()->limit(9)->get(),
+            'clients' => Clients::latest()->limit(9)->get(),
             'articles' => Article::latest()->limit(6)->get(),
             'gallery' => Gallery::latest()->limit(4)->get(),
-            'events' => Events::all(),
+            'events' => Events::latest()->limit(5)->get(),
         ]);
     }
 
@@ -52,6 +52,27 @@ class UserController extends Controller
     {
         return Inertia::render('ViewAllArticles', [
             'article' => Article::all()
+        ]);
+    }
+
+    public function viewAllProduct()
+    {
+        return Inertia::render('ViewAllProduct', [
+            'products' => Product::all(),
+        ]);
+    }
+
+    public function viewAllGallery()
+    {
+        return Inertia::render('ViewAllGallery', [
+            'gallery' => Gallery::all(),
+        ]);
+    }
+
+    public function viewDetailEvent(Events $event)
+    {
+        return Inertia::render('DetailEvent', [
+            'event' => $event
         ]);
     }
 }

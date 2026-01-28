@@ -22,11 +22,16 @@ use Inertia\Inertia;
 // });
 
 Route::get('/', [UserController::class, 'index'])->name('home');
+
 Route::get('/products/detail/{product}', [UserController::class, 'detail'])->name('product.detail');
+Route::get('/products/all', [UserController::class, 'viewAllProduct'])->name('product.view');
 Route::get('/products/checkout/{product}', [UserController::class, 'product'])->name('product.checkout');
 
 Route::get('/articles/detail/{article}', [UserController::class, 'article'])->name('article.detail');
 Route::get('/articles/all', [UserController::class, 'viewAllArticle'])->name('article.view');
+
+Route::get('/gallery/all', [UserController::class, 'viewAllGallery'])->name('gallery.view');
+Route::get('/event/{event}', [UserController::class, 'viewDetailEvent'])->name('event.detail');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -18,6 +18,12 @@ export const eventColumns: ColumnDef<Event>[] = [
     {
         accessorKey: "content",
         header: "Content",
+        cell: ({ row }) => {
+            const content = row.original.content
+            return (
+                <p className="truncate max-w-xs">{content}</p>
+            )
+        }
     },
     {
         accessorKey: "image",
