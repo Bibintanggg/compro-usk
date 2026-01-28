@@ -1,14 +1,14 @@
-import '../css/app.css';
-import './bootstrap';
-import 'leaflet/dist/leaflet.css';
+import '../css/app.css'
+import './bootstrap'
+import 'leaflet/dist/leaflet.css'
 
-import { createInertiaApp } from '@inertiajs/react';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { createRoot } from 'react-dom/client';
-// import { ThemeInit } from "flowbite-react"
+import { createInertiaApp } from '@inertiajs/react'
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
+import { createRoot } from 'react-dom/client'
 
+import AosProvider from '@/Providers/AosProvider'
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Laravel'
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -18,13 +18,15 @@ createInertiaApp({
             import.meta.glob('./Pages/**/*.tsx'),
         ),
     setup({ el, App, props }) {
-        const root = createRoot(el);
+        const root = createRoot(el)
 
         root.render(
-        <App {...props} />
-    );
+            <AosProvider>
+                <App {...props} />
+            </AosProvider>
+        )
     },
     progress: {
         color: '#4B5563',
     },
-});
+})

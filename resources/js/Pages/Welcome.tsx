@@ -102,7 +102,7 @@ export default function Welcome() {
                         <img src="/images/tech-about.jpg" alt="" className='w-full h-96 object-cover' />
 
                         <div className="flex items-start flex-col space-y-40">
-                            <h4 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                            <h4 data-aos="fade-up" className="scroll-m-20 text-2xl font-semibold tracking-tight">
                                 Deloitte Digital is part of block <span className='italic'>&quot; Deloitte &quot;</span>, delivering end-to-end digital transformation by combining deep industry insight, innovative technology, and human-centered design. We help organizations create meaningful digital experiences and sustainable business growth.
                             </h4>
 
