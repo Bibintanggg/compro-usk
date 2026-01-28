@@ -62,7 +62,7 @@ export default function Welcome() {
 
                     <div className="flex flex-col space-y-8 max-w-xl">
                         <div className='space-y-1'>
-                            <h1 className="text-7xl font-extrabold tracking-tight text-black">
+                            <h1 className="text-7xl font-extrabold tracking-tight text-white/80">
                                 Deloitte Digital
                             </h1>
                             <p className="mt-6 font-medium">
@@ -70,7 +70,7 @@ export default function Welcome() {
                             </p>
                         </div>
 
-                        <div className="flex gap-10">
+                        <div className="flex gap-10 text-white">
                             <div className="bg-[#f7f7f7]/40 w-52 h-[7rem] rounded-sm flex flex-col justify-center backdrop-blur-lg">
                                 <p className="text-5xl font-semibold text-center">100+</p>
                                 <p className="text-base font-semibold text-center">Clients</p>
@@ -106,7 +106,7 @@ export default function Welcome() {
                                 Deloitte Digital is part of block <span className='italic'>&quot; Deloitte &quot;</span>, delivering end-to-end digital transformation by combining deep industry insight, innovative technology, and human-centered design. We help organizations create meaningful digital experiences and sustainable business growth.
                             </h4>
 
-                            <blockquote className="mt-6 border-l-2 pl-6 italic">
+                            <blockquote data-aos="fade-left" className="mt-6 border-l-2 pl-6 italic">
                                 Backed by Deloitte’s global network and proven expertise.
                             </blockquote>
 
@@ -132,22 +132,22 @@ export default function Welcome() {
                         {/* <img src="/images/tech-about.jpg" alt="" className='w-full h-96 object-cover' /> */}
 
                         <div className="flex items-end flex-col text-right">
-                            <h2 className="scroll-m-20 border-b pb-2 text-3xl text-right font-semibold tracking-tight first:mt-0 ">
+                            <h2 data-aos="fade-up" className="scroll-m-20 border-b pb-2 text-3xl text-right font-semibold tracking-tight first:mt-0 ">
                                 Vision & Mission
                             </h2>
 
-                            <blockquote className="mt-6 border-l-2 pl-6 italic">
+                            <blockquote data-aos="fade-up" className="mt-6 border-l-2 pl-6 italic">
                                 To be a trusted digital partner that helps organizations shape the future through meaningful, human-centered digital transformation.
                             </blockquote>
 
-                            <h2 className="scroll-m-20 border-b pb-2 text-3xl text-right font-semibold tracking-tight first:mt-0 mt-5 ">
+                            <h2 data-aos="fade-up" data-aos-duration="1000" className="scroll-m-20 border-b pb-2 text-3xl text-right font-semibold tracking-tight first:mt-0 mt-5 ">
                                 Mission
                             </h2>
 
                             <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
-                                <li>Deliver impactful digital solutions</li>
-                                <li>Create human-centric experiences</li>
-                                <li>Drive sustainable business growth</li>
+                                <li data-aos="fade-left" data-aos-duration="1500">Deliver impactful digital solutions</li>
+                                <li data-aos="fade-left" data-aos-duration="2000">Create human-centric experiences</li>
+                                <li data-aos="fade-left" data-aos-duration="2500">Drive sustainable business growth</li>
                             </ul>
 
                             {/* <h4 className="scroll-m-20 text-xl font-semibold tracking-tight mt-5">
@@ -174,11 +174,11 @@ export default function Welcome() {
 
                 <div className="flex items-center justify-center flex-col" id='client'>
 
-                    <h2 className="scroll-m-20 border-b-2 border-black pb-3 text-5xl font-semibold tracking-tight first:mt-0 mx-auto max-w-xl flex justify-center">
+                    <h2 data-aos="fade-left" data-aos-duration="1500" className="scroll-m-20 border-b-2 border-black pb-3 text-5xl font-semibold tracking-tight first:mt-0 mx-auto max-w-xl flex justify-center">
                         Our Clients
                     </h2>
 
-                    <p className="leading-7 [&:not(:first-child)]:mt-6 max-w-lg text-center">
+                    <p data-aos="fade-left" data-aos-duration="2000" className="leading-7 [&:not(:first-child)]:mt-6 max-w-lg text-center">
                         We partner with leading organizations across industries to deliver impactful and measurable digital transformation.
                     </p>
                 </div>
@@ -241,23 +241,23 @@ export default function Welcome() {
 
                 <div className="mt-36" id='product'>
 
-                    <h2 className="scroll-m-20 border-b-2 border-black pb-3 text-5xl font-semibold tracking-tight first:mt-0 mx-auto max-w-xl flex justify-center">
+                    <h2 data-aos="fade-up" className="scroll-m-20 border-b-2 border-black pb-3 text-5xl font-semibold tracking-tight first:mt-0 mx-auto max-w-xl flex justify-center">
                         Products
                     </h2>
 
                     <div className="text-center mt-6 mb-8">
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                        <p data-aos="fade-up" data-aos-duration="1000" className="text-lg text-gray-600 max-w-2xl mx-auto">
                             Discover our innovative digital solutions designed to transform your business and drive sustainable growth.
                         </p>
 
                         <div className="flex items-center justify-center gap-8 mt-6">
                             <div className="flex items-center gap-2">
-                                <span className="text-sm font-medium text-gray-700">
+                                <span data-aos="fade-up" data-aos-duration="1500" className="text-sm font-medium text-gray-700">
                                     {products.filter(p => p.is_active).length} Active Products
                                 </span>
                             </div>
                             <div className="w-px h-4 bg-gray-300"></div>
-                            <span className="text-sm text-gray-500">Trusted by 100+ clients worldwide</span>
+                            <span className="text-sm text-gray-500" data-aos="fade-up" data-aos-duration="2000">Trusted by 100+ clients worldwide</span>
                         </div>
                     </div>
 
@@ -340,18 +340,18 @@ export default function Welcome() {
                 <div className="mt-36 px-12">
                     <div className="max-w-4xl mx-auto text-center mb-12">
 
-                        <h2 className="text-5xl font-semibold tracking-tight mb-4" id='article'>
+                        <h2 data-aos="fade-up" className="text-5xl font-semibold tracking-tight mb-4" id='article'>
                             Latest Articles
                         </h2>
-                        <div className="w-24 h-1 bg-black mx-auto mb-6"></div>
+                        <div className="w-24 h-1 bg-black mx-auto mb-6" data-aos="fade-up" data-aos-duration="1000"></div>
 
-                        <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                        <p data-aos="fade-up" data-aos-duration="1500" className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
                             Deep insights, case studies, and thought leadership from our team of digital transformation experts
                         </p>
 
                         <div className="flex items-center justify-center gap-8 mt-8">
                             <div className="flex items-center gap-2">
-                                <span className="text-sm font-medium text-gray-700">
+                                <span data-aos="fade-up" data-aos-duration="1500" className="text-sm font-medium text-gray-700">
                                     {articles.length} Articles Published
                                 </span>
                             </div>
@@ -426,15 +426,14 @@ export default function Welcome() {
                 </div>
 
                 <   div className="mt-36 px-12">
-                    {/* Header */}
                     <div className="max-w-4xl mx-auto text-center mb-12">
 
-                        <h2 className="text-5xl font-semibold tracking-tight mb-4" id='gallery'>
+                        <h2 data-aos="fade-up" data-aos-duration="1000" className="text-5xl font-semibold tracking-tight mb-4" id='gallery'>
                             Gallery
                         </h2>
-                        <div className="w-24 h-1 bg-black mx-auto mb-6"></div>
+                        <div data-aos="fade-up" data-aos-duration="1500" className="w-24 h-1 bg-black mx-auto mb-6"></div>
 
-                        <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                        <p data-aos="fade-up" data-aos-duration="2000" className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
                             A curated collection showcasing our best work and memorable moments
                         </p>
                     </div>
@@ -485,23 +484,23 @@ export default function Welcome() {
                 <div className="mt-36 px-12">
                     <div className="max-w-4xl mx-auto text-center mb-12">
 
-                        <h2 className="text-5xl font-semibold tracking-tight mb-4" id='event'>
+                        <h2 data-aos="fade-up" className="text-5xl font-semibold tracking-tight mb-4" id='event'>
                             Upcoming Events
                         </h2>
-                        <div className="w-24 h-1 bg-black mx-auto mb-6"></div>
+                        <div className="w-24 h-1 bg-black mx-auto mb-6" data-aos="fade-up" data-aos-duration="1000"></div>
 
-                        <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                        <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto" data-aos="fade-up" data-aos-duration="1500">
                             Join us at our upcoming events, workshops, and networking opportunities
                         </p>
 
                         <div className="flex items-center justify-center gap-8 mt-8">
                             <div className="flex items-center gap-2">
-                                <span className="text-sm font-medium text-gray-700">
+                                <span className="text-sm font-medium text-gray-700" data-aos="fade-up" data-aos-duration="2000">
                                     {events.filter(e => e.is_active && new Date(e.start_date) > new Date()).length} Upcoming Events
                                 </span>
                             </div>
                             <div className="w-px h-4 bg-gray-300"></div>
-                            <span className="text-sm text-gray-500">Register Now</span>
+                            <span className="text-sm text-gray-500" data-aos="fade-up" data-aos-duration="2500">Register Now</span>
                         </div>
                     </div>
 
@@ -692,12 +691,12 @@ export default function Welcome() {
                     <div className="mt-36">
                         <div className="max-w-4xl mx-auto text-center mb-12 px-12">
 
-                            <h2 className="text-5xl font-semibold tracking-tight mb-4" id='contact'>
+                            <h2 className="text-5xl font-semibold tracking-tight mb-4" id='contact' data-aos="fade-up">
                                 Contact Us
                             </h2>
-                            <div className="w-24 h-1 bg-black mx-auto mb-6"></div>
+                            <div className="w-24 h-1 bg-black mx-auto mb-6" data-aos="fade-up" data-aos-duration="1500"></div>
 
-                            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto" data-aos="fade-up" data-aos-duration="2000">
                                 Ready to transform your business? We'd love to hear from you.
                             </p>
                         </div>
