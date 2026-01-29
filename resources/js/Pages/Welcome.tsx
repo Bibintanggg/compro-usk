@@ -15,7 +15,7 @@ import {
     NavbarLink,
     NavbarToggle,
 } from "flowbite-react";
-import { ArrowUpRight, Calendar, Clock, Instagram, Linkedin, Mail, MapMinus, MapPin, Phone, Twitter, Users } from 'lucide-react';
+import { ArrowUpRight, ArrowUpRightIcon, BoxIcon, Calendar, Clock, Instagram, Linkedin, Mail, MapMinus, MapPin, Newspaper, Phone, PictureInPicture, Twitter, Users } from 'lucide-react';
 import { Card, CardContent } from "@/Components/ui/card"
 import {
     Carousel,
@@ -31,6 +31,9 @@ import { Event } from '@/features/events/types';
 import { formatDate } from '@/types/formatDate';
 import LeafletMap from '@/Components/LeafletMap';
 import { Button } from '@/Components/ui/button';
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/Components/ui/empty';
+import EmptyFallback from '@/Components/EmptyFallback';
+import Footer from '@/Components/Footer';
 
 interface WelcomeProps extends PageProps {
     products: Products[]
@@ -175,70 +178,82 @@ export default function Welcome() {
 
                 <div className="flex items-center justify-center flex-col" id='client'>
 
-                    <h2 data-aos="fade-left" data-aos-duration="1500" className="scroll-m-20 border-b-2 border-black pb-3 text-5xl font-semibold tracking-tight first:mt-0 mx-auto max-w-xl flex justify-center">
+                    <h2 data-aos="fade-up" data-aos-duration="1000" className="scroll-m-20 border-b-2 border-black pb-3 text-5xl font-semibold tracking-tight first:mt-0 mx-auto max-w-xl flex justify-center">
                         Our Clients
                     </h2>
 
-                    <p data-aos="fade-left" data-aos-duration="2000" className="leading-7 [&:not(:first-child)]:mt-6 max-w-lg text-center">
+
+                    <p data-aos="fade-up" data-aos-duration="1500" className="leading-7 [&:not(:first-child)]:mt-6 max-w-lg text-center">
                         We partner with leading organizations across industries to deliver impactful and measurable digital transformation.
                     </p>
                 </div>
 
-                <div className="grid px-10 gap-4 p-12 ">
-                    <Carousel
-                        opts={{ align: "start" }}
-                        className="w-full"
-                    >
-                        <CarouselContent>
-
-                            {clients.map((client) => (
-                                <CarouselItem
-                                    key={client.id}
-                                    className="basis-1/2 md:basis-1/3 lg:basis-1/4"
-                                >
-                                    <a
-                                        href={client.website}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="group relative bg-zinc-900 rounded-2xl p-8 hover:bg-zinc-800 transition-all duration-300 block"
+                {clients.length > 0 ? (
+                    <div className="grid px-10 gap-4 p-12 ">
+                        <Carousel
+                            opts={{ align: "start" }}
+                            className="w-full"
+                        >
+                            <CarouselContent>
+                                {clients.map((client) => (
+                                    <CarouselItem
+                                        key={client.id}
+                                        className="basis-1/2 md:basis-1/3 lg:basis-1/4"
                                     >
-                                        <div className="mb-6">
-                                            {client.logo ? (
-                                                <img
-                                                    src={`/storage/${client.logo}`}
-                                                    className="w-20 h-20 rounded-full object-cover"
-                                                />
-                                            ) : (
-                                                <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center">
-                                                    <Users className="w-10 h-10 text-gray-500" />
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        <div>
-                                            <div className="flex items-start justify-between gap-4">
-                                                <h4 className="text-xl font-semibold text-white">
-                                                    {client.name}
-                                                </h4>
-                                                <ArrowUpRight className="w-5 h-5 text-zinc-500 group-hover:text-white transition-all" />
+                                        <a
+                                            href={client.website}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="group relative bg-zinc-900 rounded-2xl p-8 hover:bg-zinc-800 transition-all duration-300 block"
+                                        >
+                                            <div className="mb-6">
+                                                {client.logo ? (
+                                                    <img
+                                                        src={`/storage/${client.logo}`}
+                                                        className="w-20 h-20 rounded-full object-cover"
+                                                    />
+                                                ) : (
+                                                    <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center">
+                                                        <Users className="w-10 h-10 text-gray-500" />
+                                                    </div>
+                                                )}
                                             </div>
 
-                                            <p className="text-zinc-400 text-sm">
-                                                {client.description}
-                                            </p>
-                                        </div>
+                                            <div>
+                                                <div className="flex items-start justify-between gap-4">
+                                                    <h4 className="text-xl font-semibold text-white">
+                                                        {client.name}
+                                                    </h4>
+                                                    <ArrowUpRight className="w-5 h-5 text-zinc-500 group-hover:text-white transition-all" />
+                                                </div>
 
-                                        <div className="absolute inset-0 rounded-2xl border border-zinc-800 group-hover:border-zinc-700 transition-colors" />
-                                    </a>
-                                </CarouselItem>
-                            ))}
+                                                <p className="text-zinc-400 text-sm">
+                                                    {client.description}
+                                                </p>
+                                            </div>
 
-                        </CarouselContent>
+                                            <div className="absolute inset-0 rounded-2xl border border-zinc-800 group-hover:border-zinc-700 transition-colors" />
+                                        </a>
+                                    </CarouselItem>
+                                ))}
 
-                        <CarouselPrevious />
-                        <CarouselNext />
-                    </Carousel>
-                </div>
+                            </CarouselContent>
+
+                            <CarouselPrevious />
+                            <CarouselNext />
+                        </Carousel>
+                    </div>
+                ) : (
+                    <div data-aos="fade-up" data-aos-duration="2000">
+
+                        <EmptyFallback
+                            title='No Client Yet'
+                            icon={<Users />}
+                            href='product.view'
+                            label='Lets Buy Our Products !' />
+                    </div>
+                )}
+
 
                 <div className="mt-36" id='product'>
 
@@ -262,70 +277,80 @@ export default function Welcome() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-4 auto-rows-[200px] gap-4 p-4">
-                        {products.filter((product) => product.is_active)
-                            .map((product: Products, index: number) => {
-                                const gridClass = (() => {
-                                    const pattern = index % 6;
-                                    switch (pattern) {
-                                        case 0:
-                                            return "col-span-1 row-span-1";
-                                        case 1:
-                                            return "col-span-1 row-span-1";
-                                        case 2:
-                                            return "col-span-2 row-span-1";
-                                        case 3:
-                                            return "col-span-2 row-span-1";
-                                        case 4:
-                                            return "col-span-1 row-span-1";
-                                        case 5:
-                                            return "col-span-1 row-span-1";
-                                        default:
-                                            return "col-span-1 row-span-1";
-                                    }
-                                })();
+                    {products.length > 0 ? (
 
-                                return (
-                                    <div
-                                        key={product.id}
-                                        className={`${gridClass} relative rounded-2xl overflow-hidden group cursor-pointer`}
-                                    >
-                                        <div className="absolute inset-0">
-                                            <img
-                                                src={`/storage/${product.image}`}
-                                                alt={product.name}
-                                                className="w-full h-full object-cover"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50" />
-                                        </div>
+                        <div className="grid grid-cols-4 auto-rows-[200px] gap-4 p-4">
+                            {products.filter((product) => product.is_active)
+                                .map((product: Products, index: number) => {
+                                    const gridClass = (() => {
+                                        const pattern = index % 6;
+                                        switch (pattern) {
+                                            case 0:
+                                                return "col-span-1 row-span-1";
+                                            case 1:
+                                                return "col-span-1 row-span-1";
+                                            case 2:
+                                                return "col-span-2 row-span-1";
+                                            case 3:
+                                                return "col-span-2 row-span-1";
+                                            case 4:
+                                                return "col-span-1 row-span-1";
+                                            case 5:
+                                                return "col-span-1 row-span-1";
+                                            default:
+                                                return "col-span-1 row-span-1";
+                                        }
+                                    })();
 
-                                        <div className="relative h-full p-6 flex flex-col justify-between text-white">
-                                            <div>
-                                                <h2 className="text-2xl font-bold truncate">
-                                                    {product.name}
-                                                </h2>
-                                                <h3 className="text-sm font-light mb-1 opacity-90">
-                                                    {product.description}
-                                                </h3>
+                                    return (
+                                        <div
+                                            key={product.id}
+                                            className={`${gridClass} relative rounded-2xl overflow-hidden group cursor-pointer`}
+                                        >
+                                            <div className="absolute inset-0">
+                                                <img
+                                                    src={`/storage/${product.image}`}
+                                                    alt={product.name}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50" />
                                             </div>
 
-                                            <div className="flex justify-between items-center">
+                                            <div className="relative h-full p-6 flex flex-col justify-between text-white">
+                                                <div>
+                                                    <h2 className="text-2xl font-bold truncate">
+                                                        {product.name}
+                                                    </h2>
+                                                    <h3 className="text-sm font-light mb-1 opacity-90">
+                                                        {product.description}
+                                                    </h3>
+                                                </div>
 
-                                                <Link href={route('product.detail', product.id)}
-                                                    className="bg-white text-black px-6 py-2 rounded-full font-medium text-sm w-fit hover:bg-gray-100 transition-colors">
-                                                    Browse
-                                                </Link>
+                                                <div className="flex justify-between items-center">
 
-                                                <h3 className="text-xl font-semibold mb-1 opacity-90">
-                                                    {formatPrice(product.price)}
-                                                </h3>
+                                                    <Link href={route('product.detail', product.id)}
+                                                        className="bg-white text-black px-6 py-2 rounded-full font-medium text-sm w-fit hover:bg-gray-100 transition-colors">
+                                                        Browse
+                                                    </Link>
+
+                                                    <h3 className="text-xl font-semibold mb-1 opacity-90">
+                                                        {formatPrice(product.price)}
+                                                    </h3>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })}
 
-                    </div>
+                        </div>
+                    ) : (
+                        <div data-aos="fade-up" data-aos-duration="1500">
+                            <EmptyFallback
+                                title='No Product Found !'
+                                icon={<BoxIcon />} />
+                        </div>
+                    )}
+
                     <div className="text-center mt-12">
                         <Link
                             href="/products/all"
@@ -360,60 +385,69 @@ export default function Welcome() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
-                        {articles.map((article: Article, index: number) => {
-                            const isLarge = index % 4 === 0;
+                    {articles.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
+                            {articles.map((article: Article, index: number) => {
+                                const isLarge = index % 4 === 0;
 
-                            return (
-                                <Link
-                                    key={article.id}
-                                    href={`/articles/detail/${article.id}`}
-                                    className={`group ${isLarge ? 'md:col-span-2 md:row-span-2' : ''}`}
-                                >
-                                    <div className="relative h-full min-h-[300px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
-                                        {isLarge && (
-                                            <div className="absolute top-4 left-4 z-10 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                                                Article
-                                            </div>
-                                        )}
-
-                                        <img
-                                            src={`/storage/${article.thumbnail}`}
-                                            alt={article.title}
-                                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                        />
-
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-
-                                        <div className="relative h-full p-6 flex flex-col justify-end text-white">
-                                            <h3 className={`font-bold mb-2 group-hover:text-purple-400 transition-colors ${isLarge ? 'text-3xl' : 'text-xl'}`}>
-                                                {article.title}
-                                            </h3>
-
+                                return (
+                                    <Link
+                                        key={article.id}
+                                        href={`/articles/detail/${article.id}`}
+                                        className={`group ${isLarge ? 'md:col-span-2 md:row-span-2' : ''}`}
+                                    >
+                                        <div className="relative h-full min-h-[300px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
                                             {isLarge && (
-                                                <p className="text-gray-200 mb-4 line-clamp-3">
-                                                    {article.content}
-                                                </p>
+                                                <div className="absolute top-4 left-4 z-10 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                                                    Article
+                                                </div>
                                             )}
 
-                                            <div className="flex items-center justify-between">
-                                                <div className="flex items-center gap-2">
-                                                    <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-xs font-bold">
-                                                        {article.author.charAt(0).toUpperCase()}
-                                                    </div>
-                                                    <span className="text-sm text-gray-300">
-                                                        {article.author}
-                                                    </span>
-                                                </div>
+                                            <img
+                                                src={`/storage/${article.thumbnail}`}
+                                                alt={article.title}
+                                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                            />
 
-                                                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+
+                                            <div className="relative h-full p-6 flex flex-col justify-end text-white">
+                                                <h3 className={`font-bold mb-2 group-hover:text-purple-400 transition-colors ${isLarge ? 'text-3xl' : 'text-xl'}`}>
+                                                    {article.title}
+                                                </h3>
+
+                                                {isLarge && (
+                                                    <p className="text-gray-200 mb-4 line-clamp-3">
+                                                        {article.content}
+                                                    </p>
+                                                )}
+
+                                                <div className="flex items-center justify-between">
+                                                    <div className="flex items-center gap-2">
+                                                        <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-xs font-bold">
+                                                            {article.author.charAt(0).toUpperCase()}
+                                                        </div>
+                                                        <span className="text-sm text-gray-300">
+                                                            {article.author}
+                                                        </span>
+                                                    </div>
+
+                                                    <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </Link>
-                            );
-                        })}
-                    </div>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    ) : (
+                        <div data-aos="fade-up" data-aos-duration="1500">
+
+                            <EmptyFallback
+                                title='No Article Found !'
+                                icon={<Newspaper />} />
+                        </div>
+                    )}
 
                     <div className="text-center mt-12">
                         <Link
@@ -439,45 +473,56 @@ export default function Welcome() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-4 auto-rows-[200px] gap-4">
-                        {gallery.map((item: Gallery, index: number) => {
-                            const gridClass = (() => {
-                                const pattern = index % 8;
-                                switch (pattern) {
-                                    case 0: return "col-span-2 row-span-2";
-                                    case 1: return "col-span-1 row-span-1";
-                                    case 2: return "col-span-1 row-span-1";
-                                    case 3: return "col-span-2 row-span-1";
-                                    case 4: return "col-span-1 row-span-2";
-                                    case 5: return "col-span-1 row-span-1";
-                                    case 6: return "col-span-2 row-span-1";
-                                    case 7: return "col-span-1 row-span-1";
-                                    default: return "col-span-1 row-span-1";
-                                }
-                            })();
+                    {gallery.length > 0 ? (
+                        <div className="grid grid-cols-4 auto-rows-[200px] gap-4">
+                            {gallery.map((item: Gallery, index: number) => {
+                                const gridClass = (() => {
+                                    const pattern = index % 8;
+                                    switch (pattern) {
+                                        case 0: return "col-span-2 row-span-2";
+                                        case 1: return "col-span-1 row-span-1";
+                                        case 2: return "col-span-1 row-span-1";
+                                        case 3: return "col-span-2 row-span-1";
+                                        case 4: return "col-span-1 row-span-2";
+                                        case 5: return "col-span-1 row-span-1";
+                                        case 6: return "col-span-2 row-span-1";
+                                        case 7: return "col-span-1 row-span-1";
+                                        default: return "col-span-1 row-span-1";
+                                    }
+                                })();
 
-                            return (
-                                <div
-                                    key={item.id}
-                                    className={`${gridClass} relative rounded-2xl overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300`}
-                                >
-                                    <img
-                                        src={`/storage/${item.image}`}
-                                        alt={item.title}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                    />
+                                return (
+                                    <div
+                                        key={item.id}
+                                        className={`${gridClass} relative rounded-2xl overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300`}
+                                    >
+                                        <img
+                                            src={`/storage/${item.image}`}
+                                            alt={item.title}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                        />
 
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <div className="absolute bottom-0 left-0 right-0 p-4">
-                                            <h3 className="text-white text-lg font-semibold">
-                                                {item.title}
-                                            </h3>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            <div className="absolute bottom-0 left-0 right-0 p-4">
+                                                <h3 className="text-white text-lg font-semibold">
+                                                    {item.title}
+                                                </h3>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                                );
+                            })}
+                        </div>
+
+                    ) : (
+                        <div data-aos="fade-up" data-aos-duration="1500">
+
+                            <EmptyFallback
+                                title='No Gallery Found !'
+                                icon={<PictureInPicture />} />
+                        </div>
+                    )}
+
                     <div className="text-center mt-12">
                         <Link
                             href="/gallery/all"
@@ -760,7 +805,6 @@ export default function Welcome() {
                                 </div>
                             </div>
 
-                            {/* Social Media */}
                             <div className="text-center mt-12">
                                 <h3 className="text-xl font-bold mb-4">Follow Us</h3>
                                 <div className="flex gap-4 justify-center">
@@ -770,7 +814,7 @@ export default function Welcome() {
                                     <a href="#" className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center hover:bg-blue-400 transition-colors">
                                         <Twitter className="w-6 h-6 text-white" />
                                     </a>
-                                    <a href="#" className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center hover:bg-pink-600 transition-colors">
+                                    <a target='_blank' href="https://www.instagram.com/bintang.ydha_" className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center hover:bg-pink-600 transition-colors">
                                         <Instagram className="w-6 h-6 text-white" />
                                     </a>
                                 </div>
@@ -780,101 +824,7 @@ export default function Welcome() {
                 </div>
             </div >
 
-            <footer className="bg-gray-900 text-white mt-36">
-                <div className="max-w-7xl mx-auto px-12 py-16">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                        <div>
-                            <h3 className="text-2xl font-bold mb-4">Deloitte Digital</h3>
-                            <p className="text-gray-400 mb-6">
-                                Transforming businesses through innovative digital solutions and human-centered design.
-                            </p>
-                            <div className="flex gap-3">
-                                <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors">
-                                    <Linkedin className="w-5 h-5" />
-                                </a>
-                                <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-400 transition-colors">
-                                    <Twitter className="w-5 h-5" />
-                                </a>
-                                <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-pink-600 transition-colors">
-                                    <Instagram className="w-5 h-5" />
-                                </a>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h4 className="font-bold text-lg mb-4">Quick Links</h4>
-                            <ul className="space-y-3">
-                                <li>
-                                    <Link href="#about" className="text-gray-400 hover:text-white transition-colors">
-                                        About Us
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="#products" className="text-gray-400 hover:text-white transition-colors">
-                                        Products
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="#articles" className="text-gray-400 hover:text-white transition-colors">
-                                        Articles
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="#events" className="text-gray-400 hover:text-white transition-colors">
-                                        Events
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="#gallery" className="text-gray-400 hover:text-white transition-colors">
-                                        Gallery
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-bold text-lg mb-4">Services</h4>
-                            <ul className="space-y-3">
-                                <li className="text-gray-400">Digital Strategy</li>
-                                <li className="text-gray-400">UX/UI Design</li>
-                                <li className="text-gray-400">Web Development</li>
-                                <li className="text-gray-400">Cloud Solutions</li>
-                                <li className="text-gray-400">Data Analytics</li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-bold text-lg mb-4">Contact</h4>
-                            <ul className="space-y-3">
-                                <li className="flex items-start gap-2 text-gray-400">
-                                    <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                                    <a href="mailto:hello@deloittedigital.com" className="hover:text-white transition-colors">
-                                        hello@deloittedigital.com
-                                    </a>
-                                </li>
-                                <li className="flex items-start gap-2 text-gray-400">
-                                    <Phone className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                                    <a href="tel:+1234567890" className="hover:text-white transition-colors">
-                                        +1 (234) 567-890
-                                    </a>
-                                </li>
-                                <li className="flex items-start gap-2 text-gray-400">
-                                    <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                                    The Plaza Office Tower, 32nd Floor, Jl. M.H. Thamrin Kav 28-30, RT.9/RW.5, <br />Gondangdia, Menteng, RT.9/RW.5, Gondangdia, Kec. Menteng, Kota Jakarta
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p className="text-gray-400 text-sm">
-                            © {new Date().getFullYear()} Deloitte Digital. All rights reserved.
-                        </p>
-                    </div>
-                </div>
-            </footer>
-
-
+            <Footer/>
         </>
     );
 }

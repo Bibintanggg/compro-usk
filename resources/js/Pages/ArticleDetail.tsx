@@ -1,3 +1,4 @@
+import Footer from "@/Components/Footer";
 import AppNavbar from "@/Components/Navbar";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/Components/ui/breadcrumb";
 import { Button } from "@/Components/ui/button";
@@ -150,6 +151,8 @@ export default function ArticleDetail() {
                         </div>
                     </div>
                 </div>
+                <Footer />
+
             </div>
         </>
     );

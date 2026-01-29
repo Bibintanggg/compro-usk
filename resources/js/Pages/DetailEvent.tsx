@@ -20,6 +20,7 @@ import {
 import { useState } from 'react';
 import { formatDate } from '@/types/formatDate';
 import { Event } from '@/features/events/types';
+import Footer from '@/Components/Footer';
 
 interface EventDetailProps extends PageProps {
     event: Event;
@@ -305,6 +306,8 @@ export default function EventDetail() {
                     </div>
                 </div>
             )}
+            <Footer />
+
         </>
     );
 }

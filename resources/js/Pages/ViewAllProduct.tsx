@@ -4,6 +4,7 @@ import { PageProps } from "@/types";
 import { usePage, router } from "@inertiajs/react";
 import { useState } from "react";
 import { Search, SlidersHorizontal, Grid3x3, List, Heart, ShoppingBag, Star, TrendingUp, X } from "lucide-react";
+import Footer from "@/Components/Footer";
 
 interface ProductsPageProps extends PageProps {
     products: Products[];
@@ -76,21 +77,19 @@ export default function AllProducts() {
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => setViewMode("grid")}
-                                    className={`p-3 rounded-xl border-2 transition-all ${
-                                        viewMode === "grid"
+                                    className={`p-3 rounded-xl border-2 transition-all ${viewMode === "grid"
                                             ? "border-purple-500 bg-purple-50 text-purple-600"
                                             : "border-gray-200 hover:border-gray-300"
-                                    }`}
+                                        }`}
                                 >
                                     <Grid3x3 className="w-5 h-5" />
                                 </button>
                                 <button
                                     onClick={() => setViewMode("list")}
-                                    className={`p-3 rounded-xl border-2 transition-all ${
-                                        viewMode === "list"
+                                    className={`p-3 rounded-xl border-2 transition-all ${viewMode === "list"
                                             ? "border-purple-500 bg-purple-50 text-purple-600"
                                             : "border-gray-200 hover:border-gray-300"
-                                    }`}
+                                        }`}
                                 >
                                     <List className="w-5 h-5" />
                                 </button>
@@ -207,21 +206,12 @@ export default function AllProducts() {
                                 <Search className="w-12 h-12 text-gray-400" />
                             </div>
                             <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
-                            <p className="text-gray-600 mb-6">
-                                Try adjusting your search or filter to find what you're looking for.
-                            </p>
-                            <button
-                                onClick={() => {
-                                    setSearchQuery("");
-                                    setPriceRange([0, 10000000]);
-                                }}
-                                className="px-6 py-3 bg-purple-600 text-white rounded-xl font-bold hover:bg-purple-700 transition-colors"
-                            >
-                                Clear Filters
-                            </button>
                         </div>
                     )}
                 </div>
+
+                <Footer />
+
             </div>
         </>
     );

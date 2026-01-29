@@ -7,6 +7,7 @@ import { Heart, Share2, Star, ShoppingBag, TrendingUp, ArrowRight } from "lucide
 import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/Components/ui/breadcrumb";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/Components/ui/dropdown-menu";
 import { Button } from "@/Components/ui/button";
+import Footer from "@/Components/Footer";
 
 interface ProductProps extends PageProps {
     product: Products;
@@ -213,6 +214,9 @@ export default function ProductDetail() {
                         </div>
                     </div>
                 </div>
+
+                <Footer />
+
             </div>
         </>
     );

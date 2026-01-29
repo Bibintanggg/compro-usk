@@ -1,3 +1,4 @@
+import Footer from '@/Components/Footer';
 import AppNavbar from '@/Components/Navbar';
 import type { Gallery } from '@/features/gallery/types';
 import { PageProps } from '@/types';
@@ -156,6 +157,9 @@ export default function Gallery() {
                     </div>
                 </div>
             )}
+            <Footer />
+
+
         </>
     );
 }

@@ -78,7 +78,7 @@ export function DataTable<TData, TValue>({
                 {createHref && (
                     <a href={createHref}>
                         <Button>
-                            {createLabel}
+                            <p></p>{createLabel}
                             <PlusIcon />
                         </Button>
                     </a>

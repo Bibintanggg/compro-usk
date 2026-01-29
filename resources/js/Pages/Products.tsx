@@ -4,6 +4,7 @@ import { Link, usePage } from '@inertiajs/react';
 import { Products } from '@/features/products/types';
 import { PageProps } from '@/types';
 import AppNavbar from '@/Components/Navbar';
+import Footer from '@/Components/Footer';
 
 interface ProductProps extends PageProps {
     product: Products
@@ -339,7 +340,6 @@ export default function Product() {
                                 </div>
                             </div>
 
-                            {/* Shipping Info */}
                             <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center gap-3">
                                 <Truck className="w-10 h-10 text-blue-600 flex-shrink-0" />
                                 <div>
@@ -351,6 +351,9 @@ export default function Product() {
                     </div>
                 </div>
             </div>
+
+            <Footer />
+
         </div>
     );
 }

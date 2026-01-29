@@ -1,8 +1,9 @@
+import Footer from "@/Components/Footer";
 import AppNavbar from "@/Components/Navbar";
 import { Payment } from "@/features/articles/types";
 import { PageProps } from "@/types";
 import { router, usePage } from "@inertiajs/react";
-import { Users } from "lucide-react";
+import { Newspaper, Users } from "lucide-react";
 
 interface ArticleProps extends PageProps {
     article: Payment[]
@@ -85,7 +86,17 @@ export default function ViewAllArticles() {
 
                     );
                 })}
+
             </div>
+                {article.length === 0 && (
+                    <div className="text-center py-20 flex flex-col justify-center mx-auto ">
+                        <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <Newspaper className="text-black/40"/>
+                        </div>
+                        <h3 className="text-2xl font-bold text-gray-600 mb-2">No Articles Found</h3>
+                    </div>
+                )}
+            <Footer />
 
         </>
     )

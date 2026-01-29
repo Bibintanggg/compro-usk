@@ -43,7 +43,7 @@ export const columns: ColumnDef<Payment>[] = [
                     >
                         <PencilIcon size={15} />
                     </Link>
-
+                    
                     <Link
                         href={route('admin.articles.destroy', row.original.id)}
                         method="delete"
