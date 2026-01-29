@@ -10,7 +10,7 @@ interface ProductProps extends PageProps {
     product: Products
 }
 export default function Product() {
-    const [paymentMethod, setPaymentMethod] = useState('credit-card');
+    const [paymentMethod, setPaymentMethod] = useState('qris');
     const { product } = usePage<ProductProps>().props
 
     const formatPrice = (price: number) => {
@@ -23,7 +23,7 @@ export default function Product() {
 
     const [quantity, setQuantity] = useState(1)
 
-    const shippingCost = 5000
+    const shippingCost = 25000
     const taxRate = 0.1
 
     const subTotal = product.price * quantity
@@ -171,36 +171,23 @@ export default function Product() {
 
                             <div className="space-y-3 mb-6">
                                 <div
-                                    onClick={() => setPaymentMethod('credit-card')}
-                                    className={`border-2 rounded-xl p-4 cursor-pointer transition-all ${paymentMethod === 'credit-card'
+                                    onClick={() => setPaymentMethod('qris')}
+                                    className={`border-2 rounded-xl p-4 cursor-pointer transition-all ${paymentMethod === 'qris'
                                         ? 'border-black bg-gray-50'
                                         : 'border-gray-200 hover:border-gray-300'
                                         }`}
                                 >
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-3">
-                                            <CreditCard className="w-5 h-5" />
-                                            <span className="font-semibold">Credit Card</span>
+                                            {/* QRIS Logo */}
+                                            <div className="w-12 h-12 bg-gradient-to-br from-red-500 via-red-600 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <span className="text-white font-bold text-xs">QRIS</span>
+                                            </div>
+                                            <div>
+                                                <p className="font-semibold">QRIS Payment</p>
+                                                <p className="text-xs text-gray-500">Quick Response Code Indonesian Standard</p>
+                                            </div>
                                         </div>
-                                        <div className="flex gap-1">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" className="h-6" />
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-6" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div
-                                    onClick={() => setPaymentMethod('paypal')}
-                                    className={`border-2 rounded-xl p-4 cursor-pointer transition-all ${paymentMethod === 'paypal'
-                                        ? 'border-black bg-gray-50'
-                                        : 'border-gray-200 hover:border-gray-300'
-                                        }`}
-                                >
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-5 h-5 bg-blue-600 rounded flex items-center justify-center text-white text-xs font-bold">
-                                            P
-                                        </div>
-                                        <span className="font-semibold">PayPal</span>
                                     </div>
                                 </div>
 
@@ -220,40 +207,106 @@ export default function Product() {
                                 </div>
                             </div>
 
-                            {paymentMethod === 'credit-card' && (
+                            {paymentMethod === 'qris' && (
                                 <div className="space-y-4 pt-4 border-t">
-                                    <div>
-                                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                            Card Number
-                                        </label>
-                                        <input
-                                            type="text"
-                                            placeholder="1234 5678 9012 3456"
-                                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-black focus:ring-2 focus:ring-black/10 transition-all outline-none"
-                                        />
-                                    </div>
+                                    <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-8 border border-gray-200">
+                                        {/* Logo QRIS */}
+                                        <div className="flex justify-center mb-6">
+                                            <div className="bg-white px-6 py-3 rounded-lg shadow-sm border border-gray-200">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-blue-600 rounded flex items-center justify-center">
+                                                        <span className="text-white font-bold text-xs">QR</span>
+                                                    </div>
+                                                    <span className="font-bold text-xl bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">QRIS</span>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                                Expiry Date
-                                            </label>
-                                            <input
-                                                type="text"
-                                                placeholder="MM/YY"
-                                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-black focus:ring-2 focus:ring-black/10 transition-all outline-none"
-                                            />
+                                        <div className="text-center mb-4">
+                                            <p className="text-sm font-semibold text-gray-700 mb-1">Scan QR Code to Pay</p>
+                                            <p className="text-xs text-gray-500">Use any e-wallet app to scan</p>
                                         </div>
-                                        <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                                CVV
-                                            </label>
-                                            <input
-                                                type="text"
-                                                placeholder="123"
-                                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-black focus:ring-2 focus:ring-black/10 transition-all outline-none"
-                                            />
+                                        
+                                        {/* QR Code Display Area - Ready for Midtrans integration */}
+                                        <div className="flex justify-center mb-6">
+                                            <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-200">
+                                                {/* Placeholder QR Code - Replace with Midtrans QR Code */}
+                                                <div id="qris-code" className="w-64 h-64 bg-white flex items-center justify-center">
+                                                    <svg className="w-full h-full" viewBox="0 0 200 200">
+                                                        <rect width="200" height="200" fill="white"/>
+                                                        <rect x="10" y="10" width="60" height="60" fill="black"/>
+                                                        <rect x="20" y="20" width="40" height="40" fill="white"/>
+                                                        <rect x="30" y="30" width="20" height="20" fill="black"/>
+                                                        
+                                                        <rect x="130" y="10" width="60" height="60" fill="black"/>
+                                                        <rect x="140" y="20" width="40" height="40" fill="white"/>
+                                                        <rect x="150" y="30" width="20" height="20" fill="black"/>
+                                                        
+                                                        <rect x="10" y="130" width="60" height="60" fill="black"/>
+                                                        <rect x="20" y="140" width="40" height="40" fill="white"/>
+                                                        <rect x="30" y="150" width="20" height="20" fill="black"/>
+                                                        
+                                                        <rect x="80" y="30" width="10" height="10" fill="black"/>
+                                                        <rect x="100" y="30" width="10" height="10" fill="black"/>
+                                                        <rect x="90" y="50" width="10" height="10" fill="black"/>
+                                                        <rect x="80" y="70" width="10" height="10" fill="black"/>
+                                                        <rect x="110" y="60" width="10" height="10" fill="black"/>
+                                                        <rect x="100" y="80" width="10" height="10" fill="black"/>
+                                                        <rect x="130" y="90" width="10" height="10" fill="black"/>
+                                                        <rect x="80" y="100" width="10" height="10" fill="black"/>
+                                                        <rect x="110" y="110" width="10" height="10" fill="black"/>
+                                                        <rect x="90" y="130" width="10" height="10" fill="black"/>
+                                                        <rect x="140" y="130" width="10" height="10" fill="black"/>
+                                                        <rect x="160" y="140" width="10" height="10" fill="black"/>
+                                                        <rect x="130" y="160" width="10" height="10" fill="black"/>
+                                                        <rect x="150" y="170" width="10" height="10" fill="black"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
                                         </div>
+
+                                        <div className="text-center mb-6">
+                                            <p className="text-xs text-gray-500 mb-1">Amount to Pay</p>
+                                            <p className="text-2xl font-bold text-gray-900">
+                                                {formatPrice(total)}
+                                            </p>
+                                        </div>
+
+                                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                                            <div className="flex items-start gap-2">
+                                                <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                    <span className="text-white text-xs font-bold">i</span>
+                                                </div>
+                                                <div>
+                                                    <p className="text-xs text-blue-900 font-semibold">How to pay:</p>
+                                                    <ol className="text-xs text-blue-800 mt-1 space-y-1">
+                                                        <li>1. Open your e-wallet app (GoPay, OVO, DANA, ShopeePay, etc.)</li>
+                                                        <li>2. Scan the QR code above</li>
+                                                        <li>3. Confirm the payment amount</li>
+                                                        <li>4. Your order will be processed automatically</li>
+                                                    </ol>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex items-center justify-center gap-2 flex-wrap">
+                                            <span className="text-xs text-gray-600">Powered by:</span>
+                                            <span className="text-xs font-semibold bg-blue-600 text-white px-3 py-1 rounded-full">GoPay</span>
+                                            <span className="text-xs font-semibold bg-purple-600 text-white px-3 py-1 rounded-full">OVO</span>
+                                            <span className="text-xs font-semibold bg-blue-500 text-white px-3 py-1 rounded-full">DANA</span>
+                                            <span className="text-xs font-semibold bg-orange-500 text-white px-3 py-1 rounded-full">ShopeePay</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {paymentMethod === 'bank-transfer' && (
+                                <div className="space-y-4 pt-4 border-t">
+                                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                        <p className="text-sm font-semibold text-blue-900 mb-2">Transfer to:</p>
+                                        <p className="text-xs text-blue-700 mb-1">Bank: BCA</p>
+                                        <p className="text-xs text-blue-700 mb-1">Account: 1234567890</p>
+                                        <p className="text-xs text-blue-700">Name: Deloitte Digital</p>
                                     </div>
                                 </div>
                             )}
