@@ -23,4 +23,9 @@ class Product extends Model
         'is_active' => 'boolean',
         'price' => 'decimal:2',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

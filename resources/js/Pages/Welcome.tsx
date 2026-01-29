@@ -189,7 +189,7 @@ export default function Welcome() {
                 </div>
 
                 {clients.length > 0 ? (
-                    <div className="grid px-10 gap-4 p-12 ">
+                    <div className="grid px-10 gap-4 p-12" data-aos="fade-up" data-aos-duration="1500">
                         <Carousel
                             opts={{ align: "start" }}
                             className="w-full"
@@ -227,7 +227,7 @@ export default function Welcome() {
                                                     <ArrowUpRight className="w-5 h-5 text-zinc-500 group-hover:text-white transition-all" />
                                                 </div>
 
-                                                <p className="text-zinc-400 text-sm">
+                                                <p className="text-zinc-400 text-sm truncate">
                                                     {client.description}
                                                 </p>
                                             </div>
@@ -273,7 +273,7 @@ export default function Welcome() {
                                 </span>
                             </div>
                             <div className="w-px h-4 bg-gray-300"></div>
-                            <span className="text-sm text-gray-500" data-aos="fade-up" data-aos-duration="2000">Trusted by 100+ clients worldwide</span>
+                            <span className="text-sm text-gray-500" data-aos="fade-up" data-aos-duration="2000">Trusted by {clients.length} clients</span>
                         </div>
                     </div>
 
@@ -328,7 +328,7 @@ export default function Welcome() {
 
                                                 <div className="flex justify-between items-center">
 
-                                                    <Link href={route('product.detail', product.id)}
+                                                    <Link href={route('product.detail', product.slug)}
                                                         className="bg-white text-black px-6 py-2 rounded-full font-medium text-sm w-fit hover:bg-gray-100 transition-colors">
                                                         Browse
                                                     </Link>
@@ -393,7 +393,7 @@ export default function Welcome() {
                                 return (
                                     <Link
                                         key={article.id}
-                                        href={`/articles/detail/${article.id}`}
+                                        href={`/articles/detail/${article.slug}`}
                                         className={`group ${isLarge ? 'md:col-span-2 md:row-span-2' : ''}`}
                                     >
                                         <div className="relative h-full min-h-[300px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
@@ -646,7 +646,7 @@ export default function Welcome() {
                                                     </div>
                                                 </div>
 
-                                                <Link href={route('event.detail', closestEvent.id)}>
+                                                <Link href={route('event.detail', closestEvent.slug)}>
                                                     <button className="w-full flex items-center justify-center gap-4 bg-red-600 text-white py-4 rounded-xl ...">
                                                         See Detail
                                                         <ArrowUpRight className="w-5 h-5" />
@@ -737,7 +737,7 @@ export default function Welcome() {
 
                             {events.filter(e => e.is_active && new Date(e.start_date) > new Date()).length > 1 && (
                                 <Link
-                                    href="/events"
+                                    href="/event/all"
                                     className="block w-full bg-gray-900 text-white py-3 rounded-xl font-semibold text-center hover:bg-gray-800 transition-colors"
                                 >
                                     View All Events
@@ -824,7 +824,7 @@ export default function Welcome() {
                 </div>
             </div >
 
-            <Footer/>
+            <Footer />
         </>
     );
 }

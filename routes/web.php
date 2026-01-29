@@ -31,6 +31,8 @@ Route::get('/articles/detail/{article}', [UserController::class, 'article'])->na
 Route::get('/articles/all', [UserController::class, 'viewAllArticle'])->name('article.view');
 
 Route::get('/gallery/all', [UserController::class, 'viewAllGallery'])->name('gallery.view');
+
+Route::get('/event/all', [UserController::class, 'viewAllEvent'])->name('event.all');
 Route::get('/event/{event}', [UserController::class, 'viewDetailEvent'])->name('event.detail');
 
 Route::get('/dashboard', function () {

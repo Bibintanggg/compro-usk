@@ -75,4 +75,11 @@ class UserController extends Controller
             'event' => $event
         ]);
     }
+
+    public function viewAllEvent()
+    {
+        return Inertia::render('ViewAllEvent', [
+            'event' => Events::all()
+        ]);
+    }
 }

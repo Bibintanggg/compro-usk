@@ -58,7 +58,6 @@ export default function ArticleForm({
                                     id="dropzone-file"
                                     className="hidden"
                                     onChange={(e) => onChange('thumbnail', e.target.files?.[0] ?? null)}
-
                                 />
                             </Label>
 
@@ -85,7 +84,6 @@ export default function ArticleForm({
                     </div>
 
                     <div className="flex flex-col gap-6 w-full">
-
                         <Field>
                             <FieldLabel htmlFor="input-field-title" className="text-2xl font-semibold flex items-center">
                                 <Captions/>

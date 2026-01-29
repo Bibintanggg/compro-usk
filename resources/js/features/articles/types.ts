@@ -4,4 +4,5 @@ export type Payment = {
     thumbnail: string
     content: string
     author: string
+    slug: string
 }

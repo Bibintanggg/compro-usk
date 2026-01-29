@@ -1,6 +1,6 @@
 import AppNavbar from '@/Components/Navbar';
 import { PageProps } from '@/types';
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, Link, router, usePage } from '@inertiajs/react';
 import {
     Calendar,
     Clock,
@@ -21,6 +21,7 @@ import { useState } from 'react';
 import { formatDate } from '@/types/formatDate';
 import { Event } from '@/features/events/types';
 import Footer from '@/Components/Footer';
+import { Button } from '@/Components/ui/button';
 
 interface EventDetailProps extends PageProps {
     event: Event;
@@ -236,6 +237,10 @@ export default function EventDetail() {
                                 </div>
 
                             </div>
+
+                            <Button onClick={() => router.visit(route(''))} className='mt-5 w-full'>
+                                Back
+                            </Button>
                         </div>
                     </div>
                 </div>

@@ -25,4 +25,9 @@ class Events extends Model
         'start_date' => 'datetime',
         'end_date' => 'datetime',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

@@ -261,7 +261,7 @@ export default function Product() {
 
                         <div className="flex gap-4">
                             <Link
-                                href="/"
+                            href="/products/all"
                                 className="flex-1 py-4 px-6 rounded-xl border-2 border-gray-300 font-bold text-center hover:bg-gray-50 transition-colors"
                             >
                                 Back to Shop

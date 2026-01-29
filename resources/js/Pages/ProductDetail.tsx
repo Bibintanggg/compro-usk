@@ -139,7 +139,7 @@ export default function ProductDetail() {
                                     <ShoppingBag className="w-5 h-5" />
                                     Add to Bag
                                 </button>
-                                <button onClick={() => router.visit(route('product.checkout', product.id))}
+                                <button onClick={() => router.visit(route('product.checkout', product.slug))}
                                     className="w-full border-2 border-black text-black py-4 rounded-xl font-semibold hover:bg-gray-50 transition-colors">
                                     Buy Now
                                 </button>
@@ -165,7 +165,7 @@ export default function ProductDetail() {
                             <div className="bg-white rounded-2xl p-6 shadow-lg sticky top-4">
                                 <div className="flex items-center justify-between mb-6">
                                     <h3 className="text-xl font-bold text-gray-900">Another Product</h3>
-                                    <button className="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1">
+                                    <button onClick={() => router.visit(route('product.view'))} className="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1">
                                         View All
                                         <ArrowRight className="w-4 h-4" />
                                     </button>

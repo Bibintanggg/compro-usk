@@ -7,4 +7,5 @@ export type Products = {
     price: number
     is_active: boolean
     order: number
+    slug: string
 }

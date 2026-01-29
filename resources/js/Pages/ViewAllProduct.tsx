@@ -34,9 +34,10 @@ export default function AllProducts() {
             product.is_active
         )
 
-    const handleProductClick = (productId: string) => {
-        router.visit(`/products/detail/${productId}`);
+    const handleProductClick = (slug: string) => {
+        router.visit(route('product.detail', slug, false));
     };
+
 
     return (
         <>
@@ -78,8 +79,8 @@ export default function AllProducts() {
                                 <button
                                     onClick={() => setViewMode("grid")}
                                     className={`p-3 rounded-xl border-2 transition-all ${viewMode === "grid"
-                                            ? "border-purple-500 bg-purple-50 text-purple-600"
-                                            : "border-gray-200 hover:border-gray-300"
+                                        ? "border-purple-500 bg-purple-50 text-purple-600"
+                                        : "border-gray-200 hover:border-gray-300"
                                         }`}
                                 >
                                     <Grid3x3 className="w-5 h-5" />
@@ -87,8 +88,8 @@ export default function AllProducts() {
                                 <button
                                     onClick={() => setViewMode("list")}
                                     className={`p-3 rounded-xl border-2 transition-all ${viewMode === "list"
-                                            ? "border-purple-500 bg-purple-50 text-purple-600"
-                                            : "border-gray-200 hover:border-gray-300"
+                                        ? "border-purple-500 bg-purple-50 text-purple-600"
+                                        : "border-gray-200 hover:border-gray-300"
                                         }`}
                                 >
                                     <List className="w-5 h-5" />
@@ -108,7 +109,7 @@ export default function AllProducts() {
                             {filteredProducts.map((product) => (
                                 <div
                                     key={product.id}
-                                    onClick={() => handleProductClick(product.id)}
+                                    onClick={() => handleProductClick(product.slug)}
                                     className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer"
                                 >
                                     <div className="relative aspect-square bg-gray-100 overflow-hidden">
@@ -140,7 +141,7 @@ export default function AllProducts() {
                             {filteredProducts.map((product) => (
                                 <div
                                     key={product.id}
-                                    onClick={() => handleProductClick(product.id)}
+                                    onClick={() => handleProductClick(product.slug)}
                                     className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all cursor-pointer"
                                 >
                                     <div className="flex gap-6 p-6">
@@ -174,24 +175,12 @@ export default function AllProducts() {
                                                             />
                                                         ))}
                                                     </div>
-                                                    <span className="text-sm text-gray-600">(4.8 / 124 reviews)</span>
                                                 </div>
                                             </div>
                                             <div className="flex items-center justify-between">
                                                 <p className="text-3xl font-bold text-gray-900">
                                                     {formatPrice(product.price)}
                                                 </p>
-                                                <div className="flex gap-2">
-                                                    <button
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                        }}
-                                                        className="px-6 py-3 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition-colors flex items-center gap-2"
-                                                    >
-                                                        <ShoppingBag className="w-5 h-5" />
-                                                        Add to Bag
-                                                    </button>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

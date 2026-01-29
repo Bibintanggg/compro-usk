@@ -110,7 +110,7 @@ export default function ArticleDetail() {
                                                 key={item.id}
                                                 className="group cursor-pointer pb-6 border-b border-gray-200 last:border-0 last:pb-0"
                                             >
-                                                <button onClick={() => router.visit(`/articles/detail/${item.id}`)} className="flex gap-4">
+                                                <button onClick={() => router.visit(`/articles/detail/${item.slug}`)} className="flex gap-4">
                                                     <div className="w-24 h-24 bg-gradient-to-br from-orange-100 to-rose-100 rounded-xl overflow-hidden flex-shrink-0">
                                                         <img
                                                             src={`/storage/${item.thumbnail}`}
