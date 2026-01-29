@@ -30,7 +30,6 @@ export default function ViewAllArticles() {
                     </p>
                 </div>
             </div>
-            \
             <Breadcrumb className="p-10 bg-[#f7f7f7]">
                 <BreadcrumbList>
                     <BreadcrumbItem>
@@ -91,7 +90,7 @@ export default function ViewAllArticles() {
                                     </p>
                                 </div>
 
-                                <button onClick={() => router.visit(route('article.detail', item.id))}
+                                <button onClick={() => router.visit(route('article.detail', item.slug))}
                                     className="mt-4 w-fit flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-2 rounded-full
                                         opacity-0 translate-y-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
                                     Read Article

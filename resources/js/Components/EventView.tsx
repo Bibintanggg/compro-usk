@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 import { Calendar, MapPin, Clock, Grid3x3, List, Search, Filter } from 'lucide-react';
 import { Event } from '@/features/events/types';
+import { Button } from './ui/button';
 
 interface EventsListViewProps {
     events: Event[];
@@ -16,8 +17,8 @@ const EventsListView: React.FC<EventsListViewProps> = ({ events }) => {
             day: date.getDate(),
             month: date.toLocaleDateString('id-ID', { month: 'short' }).toUpperCase(),
             year: date.getFullYear(),
-            fullDate: date.toLocaleDateString('id-ID', { 
-                weekday: 'long', 
+            fullDate: date.toLocaleDateString('id-ID', {
+                weekday: 'long',
                 day: 'numeric',
                 month: 'long',
                 year: 'numeric'
@@ -54,21 +55,19 @@ const EventsListView: React.FC<EventsListViewProps> = ({ events }) => {
                             <div className="flex bg-gray-100 rounded-lg p-1">
                                 <button
                                     onClick={() => setViewMode('grid')}
-                                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                                        viewMode === 'grid'
+                                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${viewMode === 'grid'
                                             ? 'bg-white text-gray-900 shadow-sm'
                                             : 'text-gray-600 hover:text-gray-900'
-                                    }`}
+                                        }`}
                                 >
                                     <Grid3x3 className="w-4 h-4" />
                                 </button>
                                 <button
                                     onClick={() => setViewMode('list')}
-                                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                                        viewMode === 'list'
+                                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${viewMode === 'list'
                                             ? 'bg-white text-gray-900 shadow-sm'
                                             : 'text-gray-600 hover:text-gray-900'
-                                    }`}
+                                        }`}
                                 >
                                     <List className="w-4 h-4" />
                                 </button>
@@ -98,7 +97,7 @@ const EventsListView: React.FC<EventsListViewProps> = ({ events }) => {
                                     return (
                                         <Link
                                             key={event.id}
-                                            href={`/events/${event.slug}`}
+                                            href={`/event/${event.slug}`}
                                             className="group bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200"
                                         >
                                             <div className="relative h-48 overflow-hidden bg-gray-100">
@@ -107,7 +106,7 @@ const EventsListView: React.FC<EventsListViewProps> = ({ events }) => {
                                                     alt={event.name}
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                                 />
-                                                
+
                                                 <div className="absolute top-3 left-3 bg-white rounded-lg px-3 py-2 shadow-md">
                                                     <p className="text-2xl font-bold text-gray-900 leading-none">{startDate.day}</p>
                                                     <p className="text-xs font-semibold text-orange-600 uppercase">{startDate.month}</p>
@@ -165,7 +164,7 @@ const EventsListView: React.FC<EventsListViewProps> = ({ events }) => {
                                                         alt={event.name}
                                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                                     />
-                                                    
+
                                                     <div className="absolute top-3 left-3 bg-white rounded-lg px-3 py-2 shadow-md">
                                                         <p className="text-2xl font-bold text-gray-900 leading-none">{startDate.day}</p>
                                                         <p className="text-xs font-semibold text-orange-600 uppercase">{startDate.month}</p>
@@ -215,6 +214,9 @@ const EventsListView: React.FC<EventsListViewProps> = ({ events }) => {
                         )}
                     </>
                 )}
+                <Button onClick={() => router.visit(route('home'))} className='mt-5 w-full'>
+                Back
+            </Button>
             </div>
         </div>
     );

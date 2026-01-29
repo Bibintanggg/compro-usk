@@ -21,14 +21,14 @@ export default function Clients() {
                         </h3>
                     </h2>
 
-                <DataTable
-                    columns={clientColumn}
-                    data={clients as Client[]}
-                    filterColumn="name"
-                    createHref="/admin/clients/create"
-                    filterPlaceholder="Filter Clients..."
-                    createLabel="Create new clients" />
-                    </div>
+                    <DataTable
+                        columns={clientColumn}
+                        data={clients as Client[]}
+                        filterColumn="name"
+                        createHref="/admin/clients/create"
+                        filterPlaceholder="Filter Clients..."
+                        createLabel="Create new clients" />
+                </div>
             </Authenticated>
         </div>
     )

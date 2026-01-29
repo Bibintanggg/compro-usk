@@ -135,10 +135,6 @@ export default function ProductDetail() {
                             </div> */}
 
                             <div className="space-y-3 mb-8">
-                                <button className="w-full bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-900 transition-colors flex items-center justify-center gap-2 shadow-lg">
-                                    <ShoppingBag className="w-5 h-5" />
-                                    Add to Bag
-                                </button>
                                 <button onClick={() => router.visit(route('product.checkout', product.slug))}
                                     className="w-full border-2 border-black text-black py-4 rounded-xl font-semibold hover:bg-gray-50 transition-colors">
                                     Buy Now

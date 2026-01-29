@@ -45,6 +45,7 @@ interface WelcomeProps extends PageProps {
 
 export default function Welcome() {
     const { products, clients, articles, gallery, events } = usePage<WelcomeProps>().props
+
     const formatPrice = (price: number) => {
         return new Intl.NumberFormat("id-ID", {
             style: "currency",
@@ -585,7 +586,7 @@ export default function Welcome() {
 
                                 return (
                                     <Link
-                                        href={`/event/${closestEvent.id}`}
+                                        href={`/event/${closestEvent.slug}`}
                                         className="group block h-full"
                                     >
                                         <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 h-full">
@@ -688,7 +689,7 @@ export default function Welcome() {
                                         return (
                                             <Link
                                                 key={event.id}
-                                                href={`/event/${event.id}`}
+                                                href={`/event/${event.slug}`}
                                                 className="group block"
                                             >
                                                 <div className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-300 hover:shadow-lg transition-all duration-300">

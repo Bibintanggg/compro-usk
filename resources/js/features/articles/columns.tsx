@@ -1,6 +1,6 @@
 "use client"
 
-import { Link, useForm } from "@inertiajs/react"
+import { Link, router, useForm } from "@inertiajs/react"
 import { ColumnDef } from "@tanstack/react-table"
 import { PencilIcon, Trash2Icon } from "lucide-react"
 import { Payment } from "./types"
@@ -21,7 +21,7 @@ export const columns: ColumnDef<Payment>[] = [
             const thumbnail = row.original.thumbnail;
             const url = thumbnail ? `/storage/${thumbnail}` : "/no-image.png"
             return (
-                <img src={url} alt="" className="w-20" />
+                <img src={url} alt="" className="w-10 h-10" />
 
 
             )

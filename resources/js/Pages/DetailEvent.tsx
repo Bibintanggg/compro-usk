@@ -60,7 +60,7 @@ export default function EventDetail() {
 
                     <div className="absolute top-6 left-6 z-10">
                         <Link
-                            href="/"
+                            href="/event/all"
                             className="flex items-center gap-2 bg-white/10 backdrop-blur-md text-white px-4 py-2 rounded-full hover:bg-white/20 transition-all"
                         >
                             <ArrowLeft className="w-4 h-4" />
@@ -238,7 +238,7 @@ export default function EventDetail() {
 
                             </div>
 
-                            <Button onClick={() => router.visit(route(''))} className='mt-5 w-full'>
+                            <Button onClick={() => router.visit(route('event.all'))} className='mt-5 w-full'>
                                 Back
                             </Button>
                         </div>
