@@ -1,10 +1,11 @@
 import AppNavbar from "@/Components/Navbar";
 import { Products } from "@/features/products/types";
 import { PageProps } from "@/types";
-import { usePage, router } from "@inertiajs/react";
+import { usePage, router, Link } from "@inertiajs/react";
 import { useState } from "react";
-import { Search, SlidersHorizontal, Grid3x3, List, Heart, ShoppingBag, Star, TrendingUp, X } from "lucide-react";
+import { Search, SlidersHorizontal, Grid3x3, List, Heart, ShoppingBag, Star, TrendingUp, X, ChevronLeft } from "lucide-react";
 import Footer from "@/Components/Footer";
+import { Button } from "@/Components/ui/button";
 
 interface ProductsPageProps extends PageProps {
     products: Products[];
@@ -197,7 +198,15 @@ export default function AllProducts() {
                             <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
                         </div>
                     )}
+
                 </div>
+                    <Link href={route('home')} className=" flex items-center flex-col">
+                        <Button className="right-0">
+                            <ChevronLeft />
+                            Back
+                        </Button>
+                    </Link>
+
 
                 <Footer />
 

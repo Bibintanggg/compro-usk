@@ -3,7 +3,7 @@ import { Products } from "@/features/products/types";
 import { PageProps } from "@/types";
 import { Link, router, usePage } from "@inertiajs/react";
 import { useState } from "react";
-import { Heart, Share2, Star, ShoppingBag, TrendingUp, ArrowRight } from "lucide-react";
+import { Heart, Share2, Star, ShoppingBag, TrendingUp, ArrowRight, ChevronLeft } from "lucide-react";
 import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/Components/ui/breadcrumb";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/Components/ui/dropdown-menu";
 import { Button } from "@/Components/ui/button";
@@ -51,19 +51,29 @@ export default function ProductDetail() {
                 </div>
             </div>
 
-            <Breadcrumb className="p-10 bg-[#f7f7f7]">
-                <BreadcrumbList>
-                    <BreadcrumbItem>
-                        <BreadcrumbLink asChild>
-                            <Link href="/">Home</Link>
-                        </BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator />
-                    <BreadcrumbItem>
-                        <BreadcrumbPage>{product.name}</BreadcrumbPage>
-                    </BreadcrumbItem>
-                </BreadcrumbList>
-            </Breadcrumb>
+            <div className="flex justify-between bg-[#f7f7f7] items-center  w-full">
+
+                <Breadcrumb className="p-10 ">
+                    <BreadcrumbList>
+                        <BreadcrumbItem>
+                            <BreadcrumbLink asChild>
+                                <Link href="/">Home</Link>
+                            </BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                            <BreadcrumbPage>{product.name}</BreadcrumbPage>
+                        </BreadcrumbItem>
+                    </BreadcrumbList>
+                </Breadcrumb>
+
+                <Link href={route('home')} className="  p-10">
+                    <Button className="right-0">
+                        <ChevronLeft />
+                        Back
+                    </Button>
+                </Link>
+            </div>
 
             <div className="min-h-screen bg-gray-50">
                 <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -173,7 +183,7 @@ export default function ProductDetail() {
                                             key={item.id}
                                             className="group cursor-pointer border border-gray-200 rounded-xl p-3 hover:border-gray-400 hover:shadow-md transition-all"
                                         >
-                                            <button className="w-full flex gap-4" onClick={() => router.visit(route('product.detail', item.id))}>
+                                            <button className="w-full flex gap-4" onClick={() => router.visit(route('product.detail', item.slug))}>
                                                 <div className="w-24 h-24 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                                                     <img
                                                         src={`/storage/${item.image}`}
@@ -192,14 +202,6 @@ export default function ProductDetail() {
                                                         <p className="font-bold text-gray-900 text-sm">
                                                             {formatPrice(item.price)}
                                                         </p>
-                                                        <div className="flex">
-                                                            {[1, 2, 3, 4, 5].map((star) => (
-                                                                <Star
-                                                                    key={star}
-                                                                    className="w-3 h-3 fill-yellow-400 text-yellow-400"
-                                                                />
-                                                            ))}
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </button>
