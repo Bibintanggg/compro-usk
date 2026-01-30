@@ -25,6 +25,11 @@ export default function LeafletMap({
     longitude = 106.8236,
     zoom = 15
 }: LeafletMapProps) {
+    const locations = [
+        { lat: -6.1931, lng: 106.8236, title: 'The Plaza Office Tower' },
+        { lat: -6.2000, lng: 106.8167, title: 'Monas' },
+        { lat: -6.1754, lng: 106.8272, title: 'Istana Negara' },
+    ];
     return (
         <MapContainer
             center={[latitude, longitude]}
@@ -34,8 +39,8 @@ export default function LeafletMap({
             style={{ height: '100%', width: '100%' }}
         >
             <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+                attribution='&copy; OpenStreetMap &copy; CARTO'
             />
             <Marker position={[latitude, longitude]}>
                 <Popup>
@@ -50,5 +55,6 @@ export default function LeafletMap({
                 </Popup>
             </Marker>
         </MapContainer>
+
     );
 }

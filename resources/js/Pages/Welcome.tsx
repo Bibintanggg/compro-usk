@@ -56,774 +56,732 @@ export default function Welcome() {
     return (
         <>
             <AppNavbar />
-            <div className="w-full mx-auto relative">
-                <img
-                    src="/images/background.jpg"
-                    alt=""
-                    className="w-full h-[29rem] object-cover opacity-75"
-                />
+            <section className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.05),transparent_50%)]" />
 
-                <div className="absolute inset-0 flex items-center justify-between px-28">
+                <div className="container mx-auto px-6 lg:px-16 py-20 relative z-10">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="grid lg:grid-cols-2 gap-16 items-center">
+                            <div className="space-y-10">
+                                <div className="space-y-6">
+                                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full">
+                                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                                        <span className="text-sm font-medium text-blue-700">Digital Innovation Partner</span>
+                                    </div>
 
-                    <div className="flex flex-col space-y-8 max-w-xl">
-                        <div className='space-y-1'>
-                            <h1 className="text-7xl font-extrabold tracking-tight text-white/80">
-                                Deloitte Digital
-                            </h1>
-                            <p className="mt-6 font-medium">
-                                We help organizations transform their business through innovative digital solutions and human-centered design.
-                            </p>
-                        </div>
+                                    <h1 className="text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+                                        Transform Your
+                                        <br />
+                                        <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+                                            Digital Future
+                                        </span>
+                                    </h1>
 
-                        <div className="flex gap-10 text-white">
-                            <div className="bg-[#f7f7f7]/40 w-52 h-[7rem] rounded-sm flex flex-col justify-center backdrop-blur-lg">
-                                <p className="text-5xl font-semibold text-center">100+</p>
-                                <p className="text-base font-semibold text-center">Clients</p>
+                                    <p className="text-xl text-slate-600 leading-relaxed max-w-lg">
+                                        Deloitte Digital combines strategy, creativity, and technology to deliver transformative digital experiences.
+                                    </p>
+                                </div>
+
+                                <div className="flex items-center gap-12 pt-4">
+                                    <div className="space-y-1">
+                                        <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+                                            100+
+                                        </div>
+                                        <div className="text-sm text-slate-500 font-medium">Trusted Clients</div>
+                                    </div>
+                                    <div className="w-px h-12 bg-slate-200" />
+                                    <div className="space-y-1">
+                                        <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+                                            6+
+                                        </div>
+                                        <div className="text-sm text-slate-500 font-medium">Digital Solutions</div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div className="bg-[#f7f7f7]/40 w-52 h-[7rem] rounded-sm flex flex-col justify-center backdrop-blur-lg">
-                                <p className="text-5xl font-semibold text-center">6+</p>
-                                <p className="text-base font-semibold text-center">Products</p>
+                            <div className="relative">
+                                <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-violet-500 rounded-3xl blur-2xl opacity-20" />
+                                <div className="relative aspect-[4/4] rounded-3xl overflow-hidden ">
+                                    <img
+                                        src="/images/avatar.png"
+                                        alt="Digital Innovation"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <img
-                        src="/images/avatar.png"
-                        alt=""
-                        className="h-[29rem] object-cover "
-                    />
                 </div>
-            </div>
+            </section>
 
-            <div className="p-10" id='profile'>
-                <h2 className="scroll-m-20 border-b-2 border-black pb-3 text-5xl font-semibold tracking-tight first:mt-0 mx-auto max-w-xl flex justify-center">
-                    About Us
-                </h2>
+            <section className="bg-[#FAFAFA] py-32" id="profile">
+                <div className="container mx-auto px-6 lg:px-16">
+                    <div className="max-w-7xl mx-auto">
 
-                <div className="flex flex-col -space-y-10">
+                        <div className="grid lg:grid-cols-2 gap-16 items-start mb-40">
+                            <div className="lg:sticky lg:top-32 space-y-8">
+                                <div className="space-y-4">
+                                    <div className="inline-block">
+                                        <span className="text-xs font-medium tracking-[0.4em] uppercase text-slate-400">
+                                            01 — About
+                                        </span>
+                                    </div>
+                                    <h2 className="text-6xl lg:text-7xl font-semibold leading-[1.05] tracking-tight">
+                                        Who We Are
+                                    </h2>
+                                </div>
+                            </div>
 
-                    <div className='p-24 flex items-start justify-between gap-32'>
-                        <img src="/images/tech-about.jpg" alt="" className='w-full h-96 object-cover' />
+                            <div className="space-y-16">
+                                {/* Image */}
+                                <div className="relative aspect-[4/3] overflow-hidden">
+                                    <img
+                                        src="/images/tech-about.jpg"
+                                        alt="About Deloitte Digital"
+                                        className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
+                                    />
+                                </div>
 
-                        <div className="flex items-start flex-col space-y-40">
-                            <h4 data-aos="fade-up" className="scroll-m-20 text-2xl font-semibold tracking-tight">
-                                Deloitte Digital is part of block <span className='italic'>&quot; Deloitte &quot;</span>, delivering end-to-end digital transformation by combining deep industry insight, innovative technology, and human-centered design. We help organizations create meaningful digital experiences and sustainable business growth.
-                            </h4>
+                                {/* Content */}
+                                <div className="space-y-8">
+                                    <p className="text-2xl lg:text-3xl leading-[1.4] text-slate-800">
+                                        Deloitte Digital is part of <span className="font-medium">Deloitte</span>, delivering end-to-end digital transformation by combining deep industry insight, innovative technology, and human-centered design.
+                                    </p>
 
-                            <blockquote data-aos="fade-left" className="mt-6 border-l-2 pl-6 italic">
-                                Backed by Deloitte’s global network and proven expertise.
-                            </blockquote>
+                                    <p className="text-lg lg:text-xl text-slate-600 leading-relaxed">
+                                        We help organizations create meaningful digital experiences and sustainable business growth.
+                                    </p>
 
-                            {/* <h4 className="scroll-m-20 text-xl font-semibold tracking-tight mt-5">
-                            What We Do ??
-                        </h4>
-
-                        <blockquote className="mt-6 border-l-2 pl-6 italic">
-                            We work at the intersection of strategy, creativity, and technology to solve complex business challenges and deliver measurable impact.
-                        </blockquote>
-
-                        <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
-                            <li>Digital Strategy & Transformation</li>
-                            <li>Experience Design (UX/UI & CX)</li>
-                            <li>Enterprise & Cloud Solutions</li>
-                            <li>Data, Analytics & AI</li>
-                            <li>Digital Product Development</li>
-                        </ul> */}
-                        </div>
-                    </div>
-
-                    <div className='p-24 flex items-start justify-between gap-32' id='visi'>
-                        {/* <img src="/images/tech-about.jpg" alt="" className='w-full h-96 object-cover' /> */}
-
-                        <div className="flex items-end flex-col text-right">
-                            <h2 data-aos="fade-up" className="scroll-m-20 border-b pb-2 text-3xl text-right font-semibold tracking-tight first:mt-0 ">
-                                Vision & Mission
-                            </h2>
-
-                            <blockquote data-aos="fade-up" className="mt-6 border-l-2 pl-6 italic">
-                                To be a trusted digital partner that helps organizations shape the future through meaningful, human-centered digital transformation.
-                            </blockquote>
-
-                            <h2 data-aos="fade-up" data-aos-duration="1000" className="scroll-m-20 border-b pb-2 text-3xl text-right font-semibold tracking-tight first:mt-0 mt-5 ">
-                                Mission
-                            </h2>
-
-                            <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
-                                <li data-aos="fade-left" data-aos-duration="1500">Deliver impactful digital solutions</li>
-                                <li data-aos="fade-left" data-aos-duration="2000">Create human-centric experiences</li>
-                                <li data-aos="fade-left" data-aos-duration="2500">Drive sustainable business growth</li>
-                            </ul>
-
-                            {/* <h4 className="scroll-m-20 text-xl font-semibold tracking-tight mt-5">
-                            What We Do ??
-                        </h4>
-
-                        <blockquote className="mt-6 border-l-2 pl-6 italic">
-                            We work at the intersection of strategy, creativity, and technology to solve complex business challenges and deliver measurable impact.
-                        </blockquote>
-
-                        <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
-                            <li>Digital Strategy & Transformation</li>
-                            <li>Experience Design (UX/UI & CX)</li>
-                            <li>Enterprise & Cloud Solutions</li>
-                            <li>Data, Analytics & AI</li>
-                            <li>Digital Product Development</li>
-                        </ul> */}
+                                    <div className="pt-4 pl-6 border-l-[3px] border-slate-900">
+                                        <p className="text-base text-slate-700 italic">
+                                            Backed by Deloitte's global network and proven expertise.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <img src="/images/tech-about-right.jpg" alt="" className='w-[30rem] h-[19rem] object-cover' />
+                        <div className="grid lg:grid-cols-2 gap-16 items-start" id="visi">
+                            <div className="space-y-16 lg:order-2">
+                                <div className="relative aspect-[4/3] overflow-hidden">
+                                    <img
+                                        src="/images/tech-about-right.jpg"
+                                        alt="Our Vision"
+                                        className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="lg:sticky lg:top-32 space-y-12 lg:order-1">
+                                <div className="space-y-4">
+                                    <span className="text-xs font-medium tracking-[0.4em] uppercase text-slate-400">
+                                        02 — Vision
+                                    </span>
+                                    <p className="text-xl lg:text-2xl text-slate-800 leading-relaxed">
+                                        To be a trusted digital partner that helps organizations shape the future through meaningful, human-centered digital transformation.
+                                    </p>
+                                </div>
+
+                                <div className="h-px bg-slate-200" />
+
+                                <div className="space-y-6">
+                                    <span className="text-xs font-medium tracking-[0.4em] uppercase text-slate-400">
+                                        Mission
+                                    </span>
+                                    <ul className="space-y-5 text-lg text-slate-700">
+                                        <li className="flex items-start gap-4">
+                                            <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
+                                                1
+                                            </span>
+                                            <span>Deliver impactful digital solutions</span>
+                                        </li>
+                                        <li className="flex items-start gap-4">
+                                            <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
+                                                2
+                                            </span>
+                                            <span>Create human-centric experiences</span>
+                                        </li>
+                                        <li className="flex items-start gap-4">
+                                            <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
+                                                3
+                                            </span>
+                                            <span>Drive sustainable business growth</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
+            </section>
 
-                <div className="flex items-center justify-center flex-col" id='client'>
+            <section className="bg-white py-24 md:py-32" id="client">
+                <div className="container mx-auto px-6 lg:px-16">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="grid lg:grid-cols-2 gap-16 mb-24">
+                            <div className="space-y-6">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-[1px] bg-black"></div>
+                                    <span className="text-xs tracking-[0.25em] uppercase text-neutral-400 font-light">
+                                        Clients
+                                    </span>
+                                </div>
+                                <h2 className="text-5xl md:text-7xl font-light leading-[0.95] tracking-tight">
+                                    Trusted By
+                                    <br />
+                                    <span className="font-normal">Industry Leaders</span>
+                                </h2>
+                            </div>
+                            <div className="flex items-end lg:justify-end">
+                                <p className="text-base md:text-lg text-neutral-500 max-w-md leading-relaxed font-light">
+                                    We partner with leading organizations across industries to deliver impactful and measurable digital transformation.
+                                </p>
+                            </div>
+                        </div>
 
-                    <h2 data-aos="fade-up" data-aos-duration="1000" className="scroll-m-20 border-b-2 border-black pb-3 text-5xl font-semibold tracking-tight first:mt-0 mx-auto max-w-xl flex justify-center">
-                        Our Clients
-                    </h2>
-
-
-                    <p data-aos="fade-up" data-aos-duration="1500" className="leading-7 [&:not(:first-child)]:mt-6 max-w-lg text-center">
-                        We partner with leading organizations across industries to deliver impactful and measurable digital transformation.
-                    </p>
-                </div>
-
-                {clients.length > 0 ? (
-                    <div className="grid px-10 gap-4 p-12" data-aos="fade-up" data-aos-duration="1500">
-                        <Carousel
-                            opts={{ align: "start" }}
-                            className="w-full"
-                        >
-                            <CarouselContent>
+                        {clients.length > 0 ? (
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-neutral-200">
                                 {clients.map((client) => (
-                                    <CarouselItem
+                                    <a
                                         key={client.id}
-                                        className="basis-1/2 md:basis-1/3 lg:basis-1/4"
+                                        href={client.website}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group relative bg-white p-10 md:p-12 hover:bg-black transition-all duration-500 overflow-hidden"
                                     >
-                                        <a
-                                            href={client.website}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="group relative bg-zinc-900 rounded-2xl p-8 hover:bg-zinc-800 transition-all duration-300 block"
-                                        >
-                                            <div className="mb-6">
+                                        <div className="absolute inset-0 bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
+
+                                        <div className="relative z-10 h-full flex flex-col justify-between min-h-[280px]">
+                                            <div className="flex-1 flex items-center justify-center mb-8">
                                                 {client.logo ? (
                                                     <img
                                                         src={`/storage/${client.logo}`}
-                                                        className="w-20 h-20 rounded-full object-cover"
+                                                        className="w-32 h-32 rounded-md object-cover opacity-50 group-hover:opacity-100 transition-all duration-500 "
+                                                        alt={client.name}
                                                     />
                                                 ) : (
-                                                    <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center">
-                                                        <Users className="w-10 h-10 text-gray-500" />
-                                                    </div>
+                                                    <Users className="w-16 h-16 text-neutral-300 group-hover:text-white transition-colors duration-500" />
                                                 )}
                                             </div>
 
-                                            <div>
-                                                <div className="flex items-start justify-between gap-4">
-                                                    <h4 className="text-xl font-semibold text-white">
-                                                        {client.name}
-                                                    </h4>
-                                                    <ArrowUpRight className="w-5 h-5 text-zinc-500 group-hover:text-white transition-all" />
-                                                </div>
-
-                                                <p className="text-zinc-400 text-sm truncate">
+                                            {/* Info */}
+                                            <div className="space-y-3">
+                                                <h4 className="font-medium text-sm tracking-wide text-neutral-900 group-hover:text-white transition-colors duration-500">
+                                                    {client.name}
+                                                </h4>
+                                                <p className="text-xs text-neutral-400 line-clamp-2 leading-relaxed group-hover:text-neutral-300 transition-colors duration-500">
                                                     {client.description}
                                                 </p>
                                             </div>
 
-                                            <div className="absolute inset-0 rounded-2xl border border-zinc-800 group-hover:border-zinc-700 transition-colors" />
-                                        </a>
-                                    </CarouselItem>
+                                            {/* Arrow Icon */}
+                                            <div className="absolute top-8 right-8">
+                                                <ArrowUpRight className="w-5 h-5 text-neutral-300 opacity-0 group-hover:opacity-100 group-hover:text-white transition-all duration-500 transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                            </div>
+                                        </div>
+                                    </a>
                                 ))}
-
-                            </CarouselContent>
-
-                            <CarouselPrevious />
-                            <CarouselNext />
-                        </Carousel>
-                    </div>
-                ) : (
-                    <div data-aos="fade-up" data-aos-duration="2000">
-
-                        <EmptyFallback
-                            title='No Client Yet'
-                            icon={<Users />}
-                            href='product.view'
-                            label='Lets Buy Our Products !' />
-                    </div>
-                )}
-
-
-                <div className="mt-36" id='product'>
-
-                    <h2 data-aos="fade-up" className="scroll-m-20 border-b-2 border-black pb-3 text-5xl font-semibold tracking-tight first:mt-0 mx-auto max-w-xl flex justify-center">
-                        Products
-                    </h2>
-
-                    <div className="text-center mt-6 mb-8">
-                        <p data-aos="fade-up" data-aos-duration="1000" className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            Discover our innovative digital solutions designed to transform your business and drive sustainable growth.
-                        </p>
-
-                        <div className="flex items-center justify-center gap-8 mt-6">
-                            <div className="flex items-center gap-2">
-                                <span data-aos="fade-up" data-aos-duration="1500" className="text-sm font-medium text-gray-700">
-                                    {products.filter(p => p.is_active).length} Active Products
-                                </span>
                             </div>
-                            <div className="w-px h-4 bg-gray-300"></div>
-                            <span className="text-sm text-gray-500" data-aos="fade-up" data-aos-duration="2000">Trusted by {clients.length} clients</span>
+                        ) : (
+                            <EmptyFallback
+                                title='No Client Yet'
+                                icon={<Users />}
+                                href='product.view'
+                                label='Lets Buy Our Products !'
+                            />
+                        )}
+                    </div>
+                </div>
+            </section>
+
+            <section className="bg-white py-20 md:py-24" id="product">
+                <div className="container mx-auto px-6 lg:px-16">
+                    <div className="max-w-7xl mx-auto">
+                        {/* Header Section */}
+                        <div className="mb-16">
+                            <div className="grid lg:grid-cols-2 gap-8 mb-8">
+                                <div className="space-y-4">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-[1px] bg-black"></div>
+                                        <span className="text-[10px] tracking-[0.2em] uppercase text-neutral-400">
+                                            Products
+                                        </span>
+                                    </div>
+                                    <h2 className="text-3xl md:text-5xl font-light leading-tight tracking-tight">
+                                        Our
+                                        <br />
+                                        <span className="font-normal">Products</span>
+                                    </h2>
+                                </div>
+                                <div className="flex flex-col justify-end space-y-3">
+                                    <p className="text-xl text-neutral-500 leading-relaxed font-light">
+                                        Discover our innovative digital solutions designed to transform your business and drive sustainable growth.
+                                    </p>
+                                    <div className="flex gap-4 text-[15px] tracking-wider text-neutral-400">
+                                        <span>{products.filter(p => p.is_active).length} Active Products</span>
+                                        <span>•</span>
+                                        <span>Trusted by {clients.length} clients</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Products Masonry Grid */}
+                        {products.length > 0 ? (
+                            <>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    {products.filter((product) => product.is_active).map((product: Products, index: number) => (
+                                        <Link
+                                            key={product.id}
+                                            href={route('product.detail', product.slug)}
+                                            className="group relative bg-white border border-neutral-200 overflow-hidden hover:border-black transition-all duration-300"
+                                        >
+                                            {/* Image */}
+                                            <div className={`relative overflow-hidden bg-neutral-50 ${index === 0 || index === 3 ? 'aspect-[8/5]' : 'aspect-[5/2]'
+                                                }`}>
+                                                <img
+                                                    src={`/storage/${product.image}`}
+                                                    alt={product.name}
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                />
+
+                                                {/* Overlay */}
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                                                {/* Index Number */}
+                                                <div className="absolute top-4 left-4 text-[10px] tracking-[0.2em] text-white/60 font-light">
+                                                    {String(index + 1).padStart(2, '0')}
+                                                </div>
+                                            </div>
+
+                                            {/* Content */}
+                                            <div className="p-6 space-y-4">
+                                                <div className="space-y-2">
+                                                    <h3 className="text-lg md:text-xl font-light text-neutral-900 group-hover:text-neutral-600 transition-colors">
+                                                        {product.name}
+                                                    </h3>
+                                                    <p className="text-xs text-neutral-500 leading-relaxed line-clamp-2">
+                                                        {product.description}
+                                                    </p>
+                                                </div>
+
+                                                <div className="flex items-center justify-between pt-4 border-t border-neutral-100">
+                                                    <span className="text-base font-light text-neutral-900">
+                                                        {formatPrice(product.price)}
+                                                    </span>
+                                                    <div className="flex items-center gap-2 text-xs tracking-wider text-neutral-400">
+                                                        <span className="group-hover:text-neutral-900 transition-colors">EXPLORE</span>
+                                                        <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+
+                                {/* View All Button */}
+                                <div className="mt-12 flex justify-center">
+                                    <Link
+                                        href="/products/all"
+                                        className="group/all inline-flex items-center gap-3 border border-neutral-200 px-8 py-3 hover:border-black transition-all duration-300"
+                                    >
+                                        <span className="text-xs tracking-wider text-neutral-900">VIEW ALL PRODUCTS</span>
+                                        <ArrowUpRight className="w-3 h-3 text-neutral-900 group-hover/all:translate-x-0.5 group-hover/all:-translate-y-0.5 transition-transform" />
+                                    </Link>
+                                </div>
+                            </>
+                        ) : (
+                            <EmptyFallback
+                                title='No Product Found !'
+                                icon={<BoxIcon />}
+                            />
+                        )}
+                    </div>
+                </div>
+            </section>
+
+            {/* Articles Section - Magazine Style */}
+            <section className="bg-neutral-50 py-32" id="article">
+                <div className="container mx-auto px-6 lg:px-16">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="mb-20">
+                            <span className="text-sm tracking-[0.3em] uppercase text-neutral-400 mb-6 block">
+                                04 / Insights
+                            </span>
+                            <div className="grid lg:grid-cols-12 gap-12">
+                                <div className="lg:col-span-5">
+                                    <h2 className="text-6xl font-light leading-tight">
+                                        Latest
+                                        <br />
+                                        <span className="font-medium">Articles</span>
+                                    </h2>
+                                </div>
+                                <div className="lg:col-span-7 flex items-end">
+                                    <div className="space-y-4">
+                                        <p className="text-lg text-neutral-600">
+                                            Deep insights, case studies, and thought leadership from our team of digital transformation experts.
+                                        </p>
+                                        <span className="text-sm text-neutral-500">{articles.length} Articles Published</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {articles.length > 0 ? (
+                            <div className="space-y-8">
+                                {articles.map((article: Article, index: number) => (
+                                    <Link
+                                        key={article.id}
+                                        href={`/articles/detail/${article.slug}`}
+                                        className="group block"
+                                    >
+                                        <div className="grid lg:grid-cols-12 gap-8 bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500">
+                                            <div className="lg:col-span-5 relative h-80 overflow-hidden">
+                                                <img
+                                                    src={`/storage/${article.thumbnail}`}
+                                                    alt={article.title}
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                />
+                                            </div>
+
+                                            <div className="lg:col-span-7 p-12 flex flex-col justify-center">
+                                                <div className="space-y-6">
+                                                    <div className="flex items-center gap-4 text-sm text-neutral-500">
+                                                        <span>{article.author}</span>
+                                                    </div>
+
+                                                    <h3 className="text-3xl font-light text-neutral-900 group-hover:text-neutral-600 transition-colors">
+                                                        {article.title}
+                                                    </h3>
+
+                                                    <p className="text-neutral-600 leading-relaxed line-clamp-3">
+                                                        {article.content}
+                                                    </p>
+
+                                                    <div className="flex items-center gap-2 text-neutral-900 group-hover:gap-4 transition-all">
+                                                        <span className="text-sm font-medium">Read More</span>
+                                                        <ArrowUpRight className="w-4 h-4" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        ) : (
+                            <EmptyFallback
+                                title='No Article Found !'
+                                icon={<Newspaper />}
+                            />
+                        )}
+
+                        <div className="text-center mt-16">
+                            <Link
+                                href="/articles/all"
+                                className="inline-flex items-center gap-2 border-2 border-neutral-900 text-neutral-900 px-10 py-4 rounded-full hover:bg-neutral-900 hover:text-white transition-all"
+                            >
+                                View All Articles
+                                <ArrowUpRight className="w-4 h-4" />
+                            </Link>
                         </div>
                     </div>
+                </div>
+            </section>
 
-                    {products.length > 0 ? (
+            <section className="bg-white py-32" id="gallery">
+                <div className="container mx-auto px-6 lg:px-16">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="mb-20">
+                            <span className="text-sm tracking-[0.3em] uppercase text-neutral-400 mb-6 block">
+                                05 / Gallery
+                            </span>
+                            <div className="grid lg:grid-cols-12 gap-12">
+                                <div className="lg:col-span-5">
+                                    <h2 className="text-6xl font-light leading-tight">
+                                        Our
+                                        <br />
+                                        <span className="font-medium">Work</span>
+                                    </h2>
+                                </div>
+                                <div className="lg:col-span-7 flex items-end">
+                                    <p className="text-lg text-neutral-600">
+                                        A curated collection showcasing our best work and memorable moments.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
-                        <div className="grid grid-cols-4 auto-rows-[200px] gap-4 p-4">
-                            {products.filter((product) => product.is_active)
-                                .map((product: Products, index: number) => {
+                        {gallery.length > 0 ? (
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                {gallery.map((item: Gallery, index: number) => {
                                     const gridClass = (() => {
-                                        const pattern = index % 6;
+                                        const pattern = index % 8;
                                         switch (pattern) {
-                                            case 0:
-                                                return "col-span-1 row-span-1";
-                                            case 1:
-                                                return "col-span-1 row-span-1";
-                                            case 2:
-                                                return "col-span-2 row-span-1";
-                                            case 3:
-                                                return "col-span-2 row-span-1";
-                                            case 4:
-                                                return "col-span-1 row-span-1";
-                                            case 5:
-                                                return "col-span-1 row-span-1";
-                                            default:
-                                                return "col-span-1 row-span-1";
+                                            case 0: return "col-span-2 row-span-2";
+                                            case 1: return "col-span-1 row-span-1";
+                                            case 2: return "col-span-1 row-span-1";
+                                            case 3: return "col-span-2 row-span-1";
+                                            case 4: return "col-span-1 row-span-2";
+                                            case 5: return "col-span-1 row-span-1";
+                                            case 6: return "col-span-2 row-span-1";
+                                            case 7: return "col-span-1 row-span-1";
+                                            default: return "col-span-1 row-span-1";
                                         }
                                     })();
 
                                     return (
                                         <div
-                                            key={product.id}
-                                            className={`${gridClass} relative rounded-2xl overflow-hidden group cursor-pointer`}
+                                            key={item.id}
+                                            className={`${gridClass} group relative rounded-xl overflow-hidden cursor-pointer h-64`}
                                         >
-                                            <div className="absolute inset-0">
-                                                <img
-                                                    src={`/storage/${product.image}`}
-                                                    alt={product.name}
-                                                    className="w-full h-full object-cover"
-                                                />
-                                                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50" />
-                                            </div>
-
-                                            <div className="relative h-full p-6 flex flex-col justify-between text-white">
-                                                <div>
-                                                    <h2 className="text-2xl font-bold truncate">
-                                                        {product.name}
-                                                    </h2>
-                                                    <h3 className="text-sm font-light mb-1 opacity-90">
-                                                        {product.description}
-                                                    </h3>
-                                                </div>
-
-                                                <div className="flex justify-between items-center">
-
-                                                    <Link href={route('product.detail', product.slug)}
-                                                        className="bg-white text-black px-6 py-2 rounded-full font-medium text-sm w-fit hover:bg-gray-100 transition-colors">
-                                                        Browse
-                                                    </Link>
-
-                                                    <h3 className="text-xl font-semibold mb-1 opacity-90">
-                                                        {formatPrice(product.price)}
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-
-                        </div>
-                    ) : (
-                        <div data-aos="fade-up" data-aos-duration="1500">
-                            <EmptyFallback
-                                title='No Product Found !'
-                                icon={<BoxIcon />} />
-                        </div>
-                    )}
-
-                    <div className="text-center mt-12">
-                        <Link
-                            href="/products/all"
-                            className="inline-flex items-center gap-2 bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors"
-                        >
-                            View All Product
-                            <ArrowUpRight className="w-4 h-4" />
-                        </Link>
-                    </div>
-                </div>
-
-
-                <div className="mt-36 px-12">
-                    <div className="max-w-4xl mx-auto text-center mb-12">
-
-                        <h2 data-aos="fade-up" className="text-5xl font-semibold tracking-tight mb-4" id='article'>
-                            Latest Articles
-                        </h2>
-                        <div className="w-24 h-1 bg-black mx-auto mb-6" data-aos="fade-up" data-aos-duration="1000"></div>
-
-                        <p data-aos="fade-up" data-aos-duration="1500" className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                            Deep insights, case studies, and thought leadership from our team of digital transformation experts
-                        </p>
-
-                        <div className="flex items-center justify-center gap-8 mt-8">
-                            <div className="flex items-center gap-2">
-                                <span data-aos="fade-up" data-aos-duration="1500" className="text-sm font-medium text-gray-700">
-                                    {articles.length} Articles Published
-                                </span>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    {articles.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
-                            {articles.map((article: Article, index: number) => {
-                                const isLarge = index % 4 === 0;
-
-                                return (
-                                    <Link
-                                        key={article.id}
-                                        href={`/articles/detail/${article.slug}`}
-                                        className={`group ${isLarge ? 'md:col-span-2 md:row-span-2' : ''}`}
-                                    >
-                                        <div className="relative h-full min-h-[300px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
-                                            {isLarge && (
-                                                <div className="absolute top-4 left-4 z-10 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                                                    Article
-                                                </div>
-                                            )}
-
                                             <img
-                                                src={`/storage/${article.thumbnail}`}
-                                                alt={article.title}
-                                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                src={`/storage/${item.image}`}
+                                                alt={item.title}
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                             />
-
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-
-                                            <div className="relative h-full p-6 flex flex-col justify-end text-white">
-                                                <h3 className={`font-bold mb-2 group-hover:text-purple-400 transition-colors ${isLarge ? 'text-3xl' : 'text-xl'}`}>
-                                                    {article.title}
-                                                </h3>
-
-                                                {isLarge && (
-                                                    <p className="text-gray-200 mb-4 line-clamp-3">
-                                                        {article.content}
-                                                    </p>
-                                                )}
-
-                                                <div className="flex items-center justify-between">
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-xs font-bold">
-                                                            {article.author.charAt(0).toUpperCase()}
-                                                        </div>
-                                                        <span className="text-sm text-gray-300">
-                                                            {article.author}
-                                                        </span>
-                                                    </div>
-
-                                                    <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                );
-                            })}
-                        </div>
-                    ) : (
-                        <div data-aos="fade-up" data-aos-duration="1500">
-
-                            <EmptyFallback
-                                title='No Article Found !'
-                                icon={<Newspaper />} />
-                        </div>
-                    )}
-
-                    <div className="text-center mt-12">
-                        <Link
-                            href="/articles/all"
-                            className="inline-flex items-center gap-2 bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors"
-                        >
-                            View All Articles
-                            <ArrowUpRight className="w-4 h-4" />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className="mt-36 px-12">
-                    <div className="max-w-4xl mx-auto text-center mb-12">
-
-                        <h2 data-aos="fade-up" data-aos-duration="1000" className="text-5xl font-semibold tracking-tight mb-4" id='gallery'>
-                            Gallery
-                        </h2>
-                        <div data-aos="fade-up" data-aos-duration="1500" className="w-24 h-1 bg-black mx-auto mb-6"></div>
-
-                        <p data-aos="fade-up" data-aos-duration="2000" className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                            A curated collection showcasing our best work and memorable moments
-                        </p>
-                    </div>
-
-                    {gallery.length > 0 ? (
-                        <div className="grid grid-cols-4 auto-rows-[200px] gap-4">
-                            {gallery.map((item: Gallery, index: number) => {
-                                const gridClass = (() => {
-                                    const pattern = index % 8;
-                                    switch (pattern) {
-                                        case 0: return "col-span-2 row-span-2";
-                                        case 1: return "col-span-1 row-span-1";
-                                        case 2: return "col-span-1 row-span-1";
-                                        case 3: return "col-span-2 row-span-1";
-                                        case 4: return "col-span-1 row-span-2";
-                                        case 5: return "col-span-1 row-span-1";
-                                        case 6: return "col-span-2 row-span-1";
-                                        case 7: return "col-span-1 row-span-1";
-                                        default: return "col-span-1 row-span-1";
-                                    }
-                                })();
-
-                                return (
-                                    <div
-                                        key={item.id}
-                                        className={`${gridClass} relative rounded-2xl overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300`}
-                                    >
-                                        <img
-                                            src={`/storage/${item.image}`}
-                                            alt={item.title}
-                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                        />
-
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            <div className="absolute bottom-0 left-0 right-0 p-4">
-                                                <h3 className="text-white text-lg font-semibold">
+                                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-end p-6">
+                                                <h3 className="text-white text-lg font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                     {item.title}
                                                 </h3>
                                             </div>
                                         </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-
-                    ) : (
-                        <div data-aos="fade-up" data-aos-duration="1500">
-
+                                    );
+                                })}
+                            </div>
+                        ) : (
                             <EmptyFallback
                                 title='No Gallery Found !'
-                                icon={<PictureInPicture />} />
+                                icon={<PictureInPicture />}
+                            />
+                        )}
+
+                        <div className="text-center mt-16">
+                            <Link
+                                href="/gallery/all"
+                                className="inline-flex items-center gap-2 border-2 border-neutral-900 text-neutral-900 px-10 py-4 rounded-full hover:bg-neutral-900 hover:text-white transition-all"
+                            >
+                                View Full Gallery
+                                <ArrowUpRight className="w-4 h-4" />
+                            </Link>
                         </div>
-                    )}
-
-                    <div className="text-center mt-12">
-                        <Link
-                            href="/gallery/all"
-                            className="inline-flex items-center gap-2 bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors"
-                        >
-                            View Our Documentary
-                            <ArrowUpRight className="w-4 h-4" />
-                        </Link>
                     </div>
-
-
-
                 </div>
+            </section>
 
-                <div className="mt-36 px-12">
-                    <div className="max-w-4xl mx-auto text-center mb-12">
-
-                        <h2 data-aos="fade-up" className="text-5xl font-semibold tracking-tight mb-4" id='event'>
-                            Upcoming Events
-                        </h2>
-                        <div className="w-24 h-1 bg-black mx-auto mb-6" data-aos="fade-up" data-aos-duration="1000"></div>
-
-                        <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto" data-aos="fade-up" data-aos-duration="1500">
-                            Join us at our upcoming events, workshops, and networking opportunities
-                        </p>
-
-                        <div className="flex items-center justify-center gap-8 mt-8">
-                            <div className="flex items-center gap-2">
-                                <span className="text-sm font-medium text-gray-700" data-aos="fade-up" data-aos-duration="2000">
-                                    {events.filter(e => e.is_active && new Date(e.start_date) > new Date()).length} Upcoming Events
-                                </span>
+            <section className="bg-white py-16 md:py-20" id="event">
+                <div className="container mx-auto px-6 lg:px-16">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="mb-12">
+                            <div className="grid lg:grid-cols-2 gap-6">
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-6 h-[1px] bg-black"></div>
+                                        <span className="text-[15px] tracking-[0.2em] uppercase text-neutral-400">
+                                            Events
+                                        </span>
+                                    </div>
+                                    <h2 className="text-2xl md:text-5xl font-light leading-tight tracking-tight">
+                                        Upcoming
+                                        <br />
+                                        <span className="font-normal">Events</span>
+                                    </h2>
+                                </div>
+                                <div className="flex flex-col justify-end space-y-2">
+                                    <p className="text-xl text-neutral-500 leading-relaxed font-light">
+                                        Join us at our upcoming events, conferences, and workshops to connect with industry leaders and innovators.
+                                    </p>
+                                    <span className="text-[15px] text-neutral-400 tracking-wider">{events.length} Upcoming Events</span>
+                                </div>
                             </div>
-                            <div className="w-px h-4 bg-gray-300"></div>
-                            <span className="text-sm text-gray-500" data-aos="fade-up" data-aos-duration="2500">Register Now</span>
                         </div>
-                    </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <div className="lg:col-span-2">
-                            {(() => {
-                                const upcomingEvents = events
-                                    .filter(e => e.is_active && new Date(e.start_date) > new Date())
-                                    .sort((a, b) => new Date(a.start_date).getTime() - new Date(b.start_date).getTime());
+                        {events.length > 0 ? (
+                            <>
+                                <div className="space-y-6">
+                                    {events.map((event: Event, index: number) => (
+                                        <Link
+                                            key={event.id}
+                                            href={`/event/${event.slug}`}
+                                            className="group block"
+                                        >
+                                            <div className="grid lg:grid-cols-12 gap-6 border border-neutral-200 hover:border-black transition-all duration-300 overflow-hidden">
+                                                <div className="lg:col-span-2 bg-neutral-50 p-6 flex flex-col items-center justify-center text-center border-r border-neutral-200 group-hover:bg-black transition-colors duration-300">
+                                                    <div className="space-y-1">
+                                                        <div className="text-3xl font-light text-neutral-900 group-hover:text-white transition-colors">
+                                                            {new Date(event.start_date).getDate()}
+                                                        </div>
+                                                        <div className="text-[10px] tracking-wider uppercase text-neutral-400 group-hover:text-white/60 transition-colors">
+                                                            {new Date(event.start_date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                if (upcomingEvents.length === 0) {
-                                    return (
-                                        <div className="bg-gray-50 rounded-3xl p-12 text-center">
-                                            <Calendar className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                                            <h3 className="text-2xl font-bold text-gray-600 mb-2">No Upcoming Events</h3>
-                                            <p className="text-gray-500">Check back soon for new events!</p>
-                                        </div>
-                                    );
-                                }
+                                                <div className="lg:col-span-4 relative aspect-[16/10] lg:aspect-auto overflow-hidden bg-neutral-100">
+                                                    <img
+                                                        src={`/storage/${event.image}`}
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                    />
+                                                </div>
 
-                                const closestEvent = upcomingEvents[0];
-                                const startDate = new Date(closestEvent.start_date);
-                                const endDate = new Date(closestEvent.end_date);
-                                const today = new Date();
-                                const daysUntil = Math.ceil((startDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+                                                <div className="lg:col-span-6 p-6 flex flex-col justify-center space-y-4">
+                                                    <div className="flex flex-wrap items-center gap-3 text-[15px] text-black/60">
+                                                        <div className="flex items-center gap-1.5">
+                                                            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                            </svg>
+                                                            <span>{event.location}</span>
+                                                        </div>
+                                                        <span>•</span>
+                                                    </div>
 
-                                return (
+                                                    <h3 className="text-lg md:text-2xl font-light text-neutral-900 group-hover:text-neutral-600 transition-colors leading-snug">
+                                                        {event.name}
+                                                    </h3>
+
+                                                    <p className="text-[15px] text-neutral-500 leading-relaxed line-clamp-2">
+                                                        {event.description}
+                                                    </p>
+
+                                                    <div className="flex items-center justify-between pt-2">
+                                                        <div className="flex items-center gap-1.5 text-[10px] tracking-wider text-neutral-900">
+                                                            <span className="group-hover:text-neutral-600 transition-colors">VIEW DETAILS</span>
+                                                            <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+
+                                {/* View All Button */}
+                                <div className="mt-8 flex justify-center">
                                     <Link
-                                        href={`/event/${closestEvent.slug}`}
-                                        className="group block h-full"
+                                        href="/event/all"
+                                        className="group/all inline-flex items-center gap-2 border border-neutral-200 px-6 py-2.5 hover:border-black transition-all duration-300"
                                     >
-                                        <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 h-full">
-                                            {/* Image */}
-                                            <div className="relative h-80 overflow-hidden">
-                                                <img
-                                                    src={`/storage/${closestEvent.image}`}
-                                                    alt={closestEvent.name}
-                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                                />
-
-                                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-
-                                                <div className="absolute bottom-6 left-6 bg-white rounded-2xl p-5 shadow-2xl">
-                                                    <p className="text-5xl font-bold text-red-600 leading-none">
-                                                        {startDate.getDate()}
-                                                    </p>
-                                                    <p className="text-sm font-semibold text-gray-600 mt-1">
-                                                        {startDate.toLocaleDateString('en-US', { month: 'long' })}
-                                                    </p>
-                                                    <p className="text-xs text-gray-500">
-                                                        {startDate.getFullYear()}
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div className="p-8">
-
-                                                <h3 className="text-3xl font-bold mb-3 group-hover:text-red-600 transition-colors">
-                                                    {closestEvent.name}
-                                                </h3>
-
-                                                <p className="text-gray-600 mb-6 line-clamp-2">
-                                                    {closestEvent.description}
-                                                </p>
-
-                                                <div className="space-y-3 mb-6">
-                                                    <div className="flex items-center gap-3 text-gray-700">
-                                                        <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                                            <Clock className="w-5 h-5 text-red-600" />
-                                                        </div>
-                                                        <div>
-                                                            <p className="text-xs text-gray-500">Duration</p>
-                                                            <p className="font-semibold">
-                                                                {formatDate(closestEvent.start_date)} - {formatDate(closestEvent.end_date)}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="flex items-center gap-3 text-gray-700">
-                                                        <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                                            <MapPin className="w-5 h-5 text-red-600" />
-                                                        </div>
-                                                        <div>
-                                                            <p className="text-xs text-gray-500">Location</p>
-                                                            <p className="font-semibold">{closestEvent.location}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <Link href={route('event.detail', closestEvent.slug)}>
-                                                    <button className="w-full flex items-center justify-center gap-4 bg-red-600 text-white py-4 rounded-xl ...">
-                                                        See Detail
-                                                        <ArrowUpRight className="w-5 h-5" />
-                                                    </button>
-                                                </Link>
-                                            </div>
-                                        </div>
+                                        <span className="text-[10px] tracking-wider text-neutral-900">VIEW ALL EVENTS</span>
+                                        <ArrowUpRight className="w-3 h-3 text-neutral-900 group-hover/all:translate-x-0.5 group-hover/all:-translate-y-0.5 transition-transform" />
                                     </Link>
-                                );
-                            })()}
-                        </div>
-
-                        <div className="space-y-4">
-                            <div className="bg-gray-50 rounded-2xl p-4 mb-4">
-                                <h3 className="font-bold text-lg mb-1">Other Events</h3>
-                                <p className="text-sm text-gray-600">More events coming up</p>
-                            </div>
-
-                            <div className="space-y-3 max-h-[800px] overflow-y-auto pr-2 custom-scrollbar">
-                                {(() => {
-                                    const upcomingEvents = events
-                                        .filter(e => e.is_active && new Date(e.start_date) > new Date())
-                                        .sort((a, b) => new Date(a.start_date).getTime() - new Date(b.start_date).getTime())
-                                        .slice(1);
-
-                                    if (upcomingEvents.length === 0) {
-                                        return (
-                                            <div className="bg-white rounded-xl p-6 text-center border border-gray-200">
-                                                <p className="text-sm text-gray-500">No other events scheduled yet</p>
-                                            </div>
-                                        );
-                                    }
-
-                                    return upcomingEvents.map((event: Event) => {
-                                        const startDate = new Date(event.start_date);
-                                        const today = new Date();
-                                        const daysUntil = Math.ceil((startDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
-
-                                        return (
-                                            <Link
-                                                key={event.id}
-                                                href={`/event/${event.slug}`}
-                                                className="group block"
-                                            >
-                                                <div className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-300 hover:shadow-lg transition-all duration-300">
-                                                    <div className="flex gap-3 p-3">
-                                                        <div className="bg-red-50 rounded-lg p-3 text-center flex-shrink-0">
-                                                            <p className="text-2xl font-bold text-red-600 leading-none">
-                                                                {startDate.getDate()}
-                                                            </p>
-                                                            <p className="text-xs font-semibold text-gray-600 mt-1">
-                                                                {startDate.toLocaleDateString('en-US', { month: 'short' })}
-                                                            </p>
-                                                        </div>
-
-                                                        <div className="flex-1 min-w-0">
-                                                            <h4 className="font-bold text-sm mb-1 group-hover:text-red-600 transition-colors line-clamp-2">
-                                                                {event.name}
-                                                            </h4>
-
-                                                            <div className="space-y-1 mb-2">
-                                                                <div className="flex items-center gap-1 text-xs text-gray-600">
-                                                                    <Clock className="w-3 h-3 text-red-500 flex-shrink-0" />
-                                                                    <span className="truncate">
-                                                                        In {daysUntil} {daysUntil === 1 ? 'day' : 'days'}
-                                                                    </span>
-                                                                </div>
-
-                                                                <div className="flex items-center gap-1 text-xs text-gray-600">
-                                                                    <MapPin className="w-3 h-3 text-red-500 flex-shrink-0" />
-                                                                    <span className="truncate">{event.location}</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <span className="inline-block text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
-                                                                {formatDate(event.start_date)}
-                                                            </span>
-                                                        </div>
-
-                                                        <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-red-600 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all flex-shrink-0 mt-1" />
-                                                    </div>
-                                                </div>
-                                            </Link>
-                                        );
-                                    });
-                                })()}
-                            </div>
-
-                            {events.filter(e => e.is_active && new Date(e.start_date) > new Date()).length > 1 && (
-                                <Link
-                                    href="/event/all"
-                                    className="block w-full bg-gray-900 text-white py-3 rounded-xl font-semibold text-center hover:bg-gray-800 transition-colors"
-                                >
-                                    View All Events
-                                </Link>
-                            )}
-                        </div>
+                                </div>
+                            </>
+                        ) : (
+                            <EmptyFallback
+                                title='No Upcoming Events'
+                                icon={<Calendar />}
+                            />
+                        )}
                     </div>
+                </div>
+            </section>
 
-                    <div className="mt-36">
-                        <div className="max-w-4xl mx-auto text-center mb-12 px-12">
-
-                            <h2 className="text-5xl font-semibold tracking-tight mb-4" id='contact' data-aos="fade-up">
-                                Contact Us
-                            </h2>
-                            <div className="w-24 h-1 bg-black mx-auto mb-6" data-aos="fade-up" data-aos-duration="1500"></div>
-
-                            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto" data-aos="fade-up" data-aos-duration="2000">
-                                Ready to transform your business? We'd love to hear from you.
-                            </p>
+            <section className="bg-white py-32" id="contact">
+                <div className="container mx-auto px-6 lg:px-16">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="mb-20">
+                            <span className="text-sm tracking-[0.3em] uppercase text-neutral-400 mb-6 block">
+                                07 / Contact
+                            </span>
+                            <div className="grid lg:grid-cols-12 gap-12">
+                                <div className="lg:col-span-5">
+                                    <h2 className="text-6xl font-light leading-tight">
+                                        Let's
+                                        <br />
+                                        <span className="font-medium">Connect</span>
+                                    </h2>
+                                </div>
+                                <div className="lg:col-span-7 flex items-end">
+                                    <p className="text-lg text-neutral-600">
+                                        Ready to transform your business? We'd love to hear from you.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="relative h-96 bg-gray-200 mb-12">
+                        <div className="relative h-[500px] rounded-2xl overflow-hidden mb-16">
                             <LeafletMap />
                         </div>
 
-                        <div className="px-12 pb-20">
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                                <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 text-white hover:scale-105 transition-transform duration-300">
-                                    <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4">
-                                        <Mail className="w-7 h-7" />
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-2">Email Us</h3>
-                                    <p className="text-blue-100 text-sm mb-4">
-                                        We'll respond within 24 hours
-                                    </p>
-                                    <a href="mailto:hello@deloittedigital.com" className="text-white font-semibold hover:underline break-all">
-                                        hello@deloittedigital.com
-                                    </a>
-                                </div>
-
-                                <div className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl p-8 text-white hover:scale-105 transition-transform duration-300">
-                                    <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4">
-                                        <Phone className="w-7 h-7" />
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-2">Call Us</h3>
-                                    <p className="text-green-100 text-sm mb-4">
-                                        Monday to Friday, 9am-6pm
-                                    </p>
-                                    <a href="tel:+1234567890" className="text-white font-semibold hover:underline">
-                                        +62 857-1794-3270
-                                    </a>
-                                </div>
-
-                                <div className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-8 text-white hover:scale-105 transition-transform duration-300">
-                                    <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4">
-                                        <MapPin className="w-7 h-7" />
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-2">Visit Us</h3>
-                                    <p className="text-purple-100 text-sm mb-4">
-                                        Come say hello at our office
-                                    </p>
-                                    <p className="text-white font-semibold">
-                                        The Plaza Office Tower, 32nd Floor, Jl. M.H. Thamrin Kav 28-30, RT.9/RW.5, <br />Gondangdia, Menteng, RT.9/RW.5, Gondangdia, Kec. Menteng, Kota Jakarta
-                                    </p>
-                                </div>
+                        <div className="grid md:grid-cols-3 gap-8">
+                            <div className="group bg-neutral-50 rounded-2xl p-10 hover:bg-neutral-900 transition-all duration-500">
+                                <Mail className="w-10 h-10 text-neutral-900 group-hover:text-white mb-6 transition-colors" />
+                                <h3 className="text-xl font-light mb-2 text-neutral-900 group-hover:text-white transition-colors">
+                                    Email Us
+                                </h3>
+                                <p className="text-sm text-neutral-500 group-hover:text-neutral-400 mb-4 transition-colors">
+                                    We'll respond within 24 hours
+                                </p>
+                                <a
+                                    href="mailto:hello@deloittedigital.com"
+                                    className="text-neutral-900 group-hover:text-white font-light break-all transition-colors"
+                                >
+                                    hello@deloittedigital.com
+                                </a>
                             </div>
 
-                            <div className="text-center mt-12">
-                                <h3 className="text-xl font-bold mb-4">Follow Us</h3>
-                                <div className="flex gap-4 justify-center">
-                                    <a href="#" className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center hover:bg-blue-600 transition-colors">
-                                        <Linkedin className="w-6 h-6 text-white" />
-                                    </a>
-                                    <a href="#" className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center hover:bg-blue-400 transition-colors">
-                                        <Twitter className="w-6 h-6 text-white" />
-                                    </a>
-                                    <a target='_blank' href="https://www.instagram.com/bintang.ydha_" className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center hover:bg-pink-600 transition-colors">
-                                        <Instagram className="w-6 h-6 text-white" />
-                                    </a>
-                                </div>
+                            <div className="group bg-neutral-50 rounded-2xl p-10 hover:bg-neutral-900 transition-all duration-500">
+                                <Phone className="w-10 h-10 text-neutral-900 group-hover:text-white mb-6 transition-colors" />
+                                <h3 className="text-xl font-light mb-2 text-neutral-900 group-hover:text-white transition-colors">
+                                    Call Us
+                                </h3>
+                                <p className="text-sm text-neutral-500 group-hover:text-neutral-400 mb-4 transition-colors">
+                                    Monday to Friday, 9am-6pm
+                                </p>
+                                <a
+                                    href="tel:+6285717943270"
+                                    className="text-neutral-900 group-hover:text-white font-light transition-colors"
+                                >
+                                    +62 857-1794-3270
+                                </a>
+                            </div>
+
+                            <div className="group bg-neutral-50 rounded-2xl p-10 hover:bg-neutral-900 transition-all duration-500">
+                                <MapPin className="w-10 h-10 text-neutral-900 group-hover:text-white mb-6 transition-colors" />
+                                <h3 className="text-xl font-light mb-2 text-neutral-900 group-hover:text-white transition-colors">
+                                    Visit Us
+                                </h3>
+                                <p className="text-sm text-neutral-500 group-hover:text-neutral-400 mb-4 transition-colors">
+                                    Come say hello
+                                </p>
+                                <p className="text-neutral-900 group-hover:text-white font-light text-sm transition-colors">
+                                    The Plaza Office Tower, 32nd Floor
+                                    <br />
+                                    Jl. M.H. Thamrin Kav 28-30
+                                    <br />
+                                    Jakarta, Indonesia
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="text-center mt-20 pt-16 border-t border-neutral-200">
+                            <p className="text-sm text-neutral-500 mb-6">Follow Us</p>
+                            <div className="flex gap-4 justify-center">
+                                <a
+                                    href="#"
+                                    className="w-12 h-12 border border-neutral-300 rounded-full flex items-center justify-center hover:bg-neutral-900 hover:border-neutral-900 hover:text-white transition-all"
+                                >
+                                    <Linkedin className="w-5 h-5" />
+                                </a>
+                                <a
+                                    href="#"
+                                    className="w-12 h-12 border border-neutral-300 rounded-full flex items-center justify-center hover:bg-neutral-900 hover:border-neutral-900 hover:text-white transition-all"
+                                >
+                                    <Twitter className="w-5 h-5" />
+                                </a>
+                                <a
+                                    target="_blank"
+                                    href="https://www.instagram.com/bintang.ydha_"
+                                    className="w-12 h-12 border border-neutral-300 rounded-full flex items-center justify-center hover:bg-neutral-900 hover:border-neutral-900 hover:text-white transition-all"
+                                >
+                                    <Instagram className="w-5 h-5" />
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div >
+            </section>
 
             <Footer />
         </>
