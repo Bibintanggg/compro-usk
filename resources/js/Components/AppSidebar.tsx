@@ -8,12 +8,15 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
+    SidebarMenuSub,
+    SidebarMenuSubItem,
 } from "./ui/sidebar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { router, usePage } from "@inertiajs/react"
 import { Calendar1Icon } from "lucide-react"
 import { Users } from "lucide-react"
 import { Images } from "lucide-react"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
 
 const items = [
     {
@@ -28,8 +31,17 @@ const items = [
     },
     {
         title: "Products",
-        url: "/admin/products",
         icon: Package2,
+        children: [
+            {
+                title: "All Products",
+                url: "/admin/products",
+            },
+            {
+                title: "Transactions",
+                url: "/admin/products/transactions",
+            },
+        ],
     },
     {
         title: "Event",
@@ -59,17 +71,52 @@ export function AppSidebar() {
                     <SidebarGroupLabel className="text-lg font-semibold text-center mx-auto mt-2 mb-5">PT. Deloitte Digital ID</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
-                            {items.map((item) => (
-                                <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton asChild>
-                                        <a href={item.url}>
-                                            <item.icon />
-                                            <span className="text-lg">{item.title}</span>
-                                        </a>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
+                            {items.map((item) => {
+                                if (item.children) {
+                                    return (
+                                        <Collapsible
+                                            key={item.title}
+                                            defaultOpen={false}
+                                            className="group/collapsible"
+                                        >
+                                            <SidebarMenuItem>
+                                                <CollapsibleTrigger asChild>
+                                                    <SidebarMenuButton>
+                                                        <item.icon />
+                                                        <span className="text-lg">{item.title}</span>
+                                                        <ChevronUp className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                                                    </SidebarMenuButton>
+                                                </CollapsibleTrigger>
+
+                                                <CollapsibleContent>
+                                                    <SidebarMenuSub>
+                                                        {item.children.map((child) => (
+                                                            <SidebarMenuSubItem key={child.title}>
+                                                                <SidebarMenuButton asChild>
+                                                                    <a href={child.url}>{child.title}</a>
+                                                                </SidebarMenuButton>
+                                                            </SidebarMenuSubItem>
+                                                        ))}
+                                                    </SidebarMenuSub>
+                                                </CollapsibleContent>
+                                            </SidebarMenuItem>
+                                        </Collapsible>
+                                    )
+                                }
+
+                                return (
+                                    <SidebarMenuItem key={item.title}>
+                                        <SidebarMenuButton asChild>
+                                            <a href={item.url}>
+                                                <item.icon />
+                                                <span className="text-lg">{item.title}</span>
+                                            </a>
+                                        </SidebarMenuButton>
+                                    </SidebarMenuItem>
+                                )
+                            })}
                         </SidebarMenu>
+
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
@@ -86,7 +133,7 @@ export function AppSidebar() {
                     className="w-[--radix-popper-anchor-width]"
                 >
                     <DropdownMenuItem onClick={() => router.post('/logout')} className="cursor-pointer">
-                            Sign out
+                        Sign out
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>

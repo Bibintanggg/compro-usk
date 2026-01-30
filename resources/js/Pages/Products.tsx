@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Lock, ArrowLeft, CreditCard, ChevronLeft } from 'lucide-react';
 import { Link, usePage, router } from '@inertiajs/react';
 import { Products } from '@/features/products/types';
@@ -7,12 +7,19 @@ import AppNavbar from '@/Components/Navbar';
 import Footer from '@/Components/Footer';
 import { Button } from '@/Components/ui/button';
 
+declare global {
+    interface Window {
+        snap: any;
+    }
+}
+
 interface ProductProps extends PageProps {
     product: Products
+    snap_token?: string
 }
 
 export default function Product() {
-    const { product } = usePage<ProductProps>().props;
+    const { product, snap_token } = usePage<ProductProps>().props;
     const [paymentMethod, setPaymentMethod] = useState('');
     const [formData, setFormData] = useState({
         email: '',
@@ -24,6 +31,30 @@ export default function Product() {
         province: '',
         postalCode: '',
     });
+
+    useEffect(() => {
+        if (snap_token && window.snap) {
+            console.log('Snap token received:', snap_token);
+            window.snap.pay(snap_token, {
+                onSuccess: function (result: any) {
+                    console.log('Payment success:', result);
+                    alert('Pembayaran berhasil!');
+                    router.visit('/');
+                },
+                onPending: function (result: any) {
+                    console.log('Payment pending:', result);
+                    alert('Menunggu pembayaran...');
+                },
+                onError: function (result: any) {
+                    console.log('Payment error:', result);
+                    alert('Pembayaran gagal!');
+                },
+                onClose: function () {
+                    console.log('Popup closed');
+                }
+            });
+        }
+    }, [snap_token]);
 
     const formatPrice = (price: number) => {
         return new Intl.NumberFormat("id-ID", {
@@ -43,8 +74,31 @@ export default function Product() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Processing payment with:', { formData, paymentMethod, total });
+
+        router.post(
+            route('product.checkout.store', product.slug),
+            {
+                product_id: product.id,
+                customer_name: `${formData.firstName} ${formData.lastName}`,
+                customer_email: formData.email,
+                phone: formData.phone,
+                address: formData.address,
+                payment_method: paymentMethod,
+            },
+        );
     };
+
+
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://app.sandbox.midtrans.com/snap/snap.js';
+        script.setAttribute('data-client-key', import.meta.env.VITE_MIDTRANS_CLIENT_KEY);
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    })
 
     return (
         <div className="min-h-screen bg-gray-50">

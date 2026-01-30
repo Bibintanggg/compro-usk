@@ -29,6 +29,7 @@
         "vite": "^7.0.7"
     },
     "dependencies": {
+        "@radix-ui/react-collapsible": "^1.1.12",
         "@radix-ui/react-dialog": "^1.1.15",
         "@radix-ui/react-dropdown-menu": "^2.1.16",
         "@radix-ui/react-label": "^2.1.8",
@@ -49,9 +50,11 @@
         "flowbite-react": "^0.12.16",
         "leaflet": "^1.9.4",
         "lucide-react": "^0.562.0",
+        "next-themes": "^0.4.6",
         "react-day-picker": "^9.13.0",
         "react-leaflet": "^4.2.1",
         "react-textarea-autosize": "^8.5.9",
+        "sonner": "^2.0.7",
         "tailwind-merge": "^3.4.0",
         "tailwindcss-animate": "^1.0.7"
     }

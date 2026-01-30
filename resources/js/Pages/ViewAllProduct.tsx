@@ -200,12 +200,12 @@ export default function AllProducts() {
                     )}
 
                 </div>
-                    <Link href={route('home')} className=" flex items-center flex-col">
-                        <Button className="right-0">
-                            <ChevronLeft />
-                            Back
-                        </Button>
-                    </Link>
+                <Link href={route('home')} className=" flex items-center flex-col">
+                    <Button className="right-0">
+                        <ChevronLeft />
+                        Back
+                    </Button>
+                </Link>
 
 
                 <Footer />
