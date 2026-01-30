@@ -83,6 +83,7 @@ export default function AppNavbar() {
                             <Avatar
                                 alt="User"
                                 img="/images/avatar.png"
+                                className="object-cover w-full"
                                 rounded
                             />
                         }

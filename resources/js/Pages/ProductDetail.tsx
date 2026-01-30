@@ -113,12 +113,12 @@ export default function ProductDetail() {
                                 </div>
                                 <span className="text-sm text-gray-600">(4.8 / 128 reviews)</span>
                             </div> */}
-                            <p className="text-xl text-gray-600 mb-5">Stock Available : {product.order}</p>
+                            {/* <p className="text-xl text-gray-600 mb-5">Stock Available : {product.order}</p>
                             <div className="mb-8 pb-8 border-b border-gray-200">
                                 <p className="text-4xl font-bold text-gray-900">
                                     {formatPrice(product.price)}
                                 </p>
-                            </div>
+                            </div> */}
 
                             {/* <div className="mb-8">
                                 <label className="text-sm font-semibold text-gray-900 block mb-4">

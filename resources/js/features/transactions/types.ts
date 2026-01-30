@@ -10,4 +10,7 @@ export type Payment = {
     method: string
     amount: number
     status: string
+    transaction_id?: string
+    customer_name?: string
+    customer_email?: string
 }

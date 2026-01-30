@@ -8,12 +8,12 @@ export default function Transactions() {
     const user = usePage().props.auth.user
     const { transactions } = usePage().props
 
-    const uniqueTransactions = (transactions as Order[]).reduce<Order[]>((acc, order) => {
-        if (!acc.find(o => o.product?.id === order.product?.id)) {
-            acc.push(order);
-        }
-        return acc;
-    }, []);
+    // const uniqueTransactions = (transactions as Order[]).reduce<Order[]>((acc, order) => {
+    //     if (!acc.find(o => o.product?.id === order.product?.id)) {
+    //         acc.push(order);
+    //     }
+    //     return acc;
+    // }, []);
 
     return (
         <div className="p-10">
@@ -29,8 +29,8 @@ export default function Transactions() {
                     </h2>
                     <DataTable
                         columns={transactionsColumns}
-                        data={uniqueTransactions}
-                        filterColumn="name"
+                        data={transactions as Order[]}
+                        filterColumn="price"
                         filterPlaceholder="Filter Transactions"
                         />
                 </div>

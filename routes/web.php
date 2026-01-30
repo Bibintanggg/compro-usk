@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\MidtransWebhookController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -28,6 +29,8 @@ Route::get('/products/detail/{product}', [UserController::class, 'detail'])->nam
 Route::get('/products/all', [UserController::class, 'viewAllProduct'])->name('product.view');
 Route::get('/products/checkout/{product}', [UserController::class, 'product'])->name('product.checkout');
 Route::post('/products/checkout/{product}', [CheckoutController::class, 'store'])->name('product.checkout.store');
+
+Route::post('/midtrans/notification', [MidtransWebhookController::class, 'handle'])->name('midtrans.webhook');
 
 Route::get('/articles/detail/{article}', [UserController::class, 'article'])->name('article.detail');
 Route::get('/articles/all', [UserController::class, 'viewAllArticle'])->name('article.view');

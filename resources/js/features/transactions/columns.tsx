@@ -1,7 +1,16 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { Order } from "./types"
+import { Badge } from "@/Components/ui/badge"
 
 export const transactionsColumns: ColumnDef<Order>[] = [
+    {
+        header: "Customer Name",
+        accessorFn: (row) => row.payments?.[0]?.customer_name ?? "-",
+    },
+    {
+        header: "Email",
+        accessorFn: (row) => row.payments?.[0]?.customer_email ?? "-",
+    },
     {
         header: "Product",
         accessorFn: (row) => row.product?.name ?? "-",
@@ -12,22 +21,36 @@ export const transactionsColumns: ColumnDef<Order>[] = [
             `Rp ${row.price.toLocaleString("id-ID")}`,
     },
     {
-        header: "Payment Status",
-        accessorFn: (row) =>
-            row.payments?.[0]?.status ?? "No Payment",
+        header: "Status",
+        cell: ({ row }) => {
+            const status = row.original.payments?.[0]?.status ?? "pending";
+
+            // ✅ Badge dengan warna sesuai status
+            const variant =
+                status === "success" ? "default" :
+                status === "pending" ? "secondary" :
+                "destructive";
+
+            return (
+                <Badge variant={variant} className="capitalize">
+                    {status}
+                </Badge>
+            );
+        },
     },
     {
-        header: "Method",
-        accessorFn: (row) =>
-            row.payments?.[0]?.method ?? "-",
+        header: "Payment Method",
+        accessorFn: (row) => row.payments?.[0]?.method ?? "-",
     },
     {
-        header: "Date",
+        header: "Order Date",
         accessorFn: (row) =>
             new Date(row.created_at).toLocaleDateString("id-ID", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
             }),
-    }
+    },
 ]

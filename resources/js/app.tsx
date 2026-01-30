@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css'
 import { createInertiaApp } from '@inertiajs/react'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { createRoot } from 'react-dom/client'
+import { Toaster } from "@/Components/ui/sonner"
 
 import AosProvider from '@/Providers/AosProvider'
 
@@ -23,6 +24,7 @@ createInertiaApp({
         root.render(
             <AosProvider>
                 <App {...props} />
+                 <Toaster />
             </AosProvider>
         )
     },

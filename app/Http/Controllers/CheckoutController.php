@@ -49,6 +49,8 @@ class CheckoutController extends Controller
             'method' => $request->input('payment_method'),
             'amount' => $total,
             'status' => 'pending',
+            'customer_name' => $request->input('customer_name'),
+            'customer_email' => $request->input('customer_email'),
         ]);
 
         return Inertia::render('Products', [

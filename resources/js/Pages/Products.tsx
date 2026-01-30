@@ -5,7 +5,8 @@ import { Products } from '@/features/products/types';
 import { PageProps } from '@/types';
 import AppNavbar from '@/Components/Navbar';
 import Footer from '@/Components/Footer';
-import { Button } from '@/Components/ui/button';
+// import { Button } from '@/Components/ui/button';
+import { toast } from "sonner"
 
 declare global {
     interface Window {
@@ -38,16 +39,16 @@ export default function Product() {
             window.snap.pay(snap_token, {
                 onSuccess: function (result: any) {
                     console.log('Payment success:', result);
-                    alert('Pembayaran berhasil!');
+                    toast("Payment successful!");
                     router.visit('/');
                 },
                 onPending: function (result: any) {
                     console.log('Payment pending:', result);
-                    alert('Menunggu pembayaran...');
+                    toast("Payment Pending !!");
                 },
                 onError: function (result: any) {
                     console.log('Payment error:', result);
-                    alert('Pembayaran gagal!');
+                    toast("Payment failed!");
                 },
                 onClose: function () {
                     console.log('Popup closed');

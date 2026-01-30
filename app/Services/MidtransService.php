@@ -28,6 +28,9 @@ class MidtransService
                 'first_name' => $params['customer_name'] ?? 'Customer',
                 'email' => $params['customer_email'] ?? 'customer@mail.com',
             ],
+            'callbacks' => [
+                'finish' => route('home'),
+            ]
         ];
 
         return Snap::getSnapToken($payload);
