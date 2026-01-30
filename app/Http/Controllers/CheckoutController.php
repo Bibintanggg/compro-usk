@@ -22,7 +22,6 @@ class CheckoutController extends Controller
             'payment_method' => 'required|string',
         ]);
 
-        // Hitung total dengan benar (sesuai frontend)
         $quantity = 1;
         $shippingCost = 25000;
         $taxRate = 0.1;
@@ -33,14 +32,13 @@ class CheckoutController extends Controller
         $order = Order::create([
             'order_code' => 'ORD-' . time(),
             'product_id' => $product->id,
-            'price' => $total, // ✅ Gunakan total yang benar
+            'price' => $total,
             'status' => 'pending',
         ]);
 
-        // ✅ Buat snap token
         $snapToken = $midtrans->createSnapToken([
             'order_id' => $order->order_code,
-            'amount' => $total, // ✅ Gunakan total yang benar
+            'amount' => $total,
             'customer_name' => $request->input('customer_name'),
             'customer_email' => $request->input('customer_email'),
         ]);
@@ -49,14 +47,13 @@ class CheckoutController extends Controller
             'order_id' => $order->id,
             'gateway' => 'midtrans',
             'method' => $request->input('payment_method'),
-            'amount' => $total, // ✅ Gunakan total yang benar
+            'amount' => $total,
             'status' => 'pending',
         ]);
 
-        // ✅ PENTING: Return Inertia response dengan snap_token
         return Inertia::render('Products', [
             'product' => $product,
-            'snap_token' => $snapToken, // ← Ini yang penting!
+            'snap_token' => $snapToken,
         ]);
     }
 }

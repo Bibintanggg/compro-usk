@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -116,5 +117,14 @@ class ProductsController extends Controller
         $products->delete();
 
         return redirect()->route('admin.products.index')->with('success', 'Products succesfully deleted');
+    }
+
+    public function transactions()
+    {
+        $transactions = Order::with('product', 'payments')->get();
+
+        return Inertia::render('Admin/Products/View/Transactions', [
+            'transactions' => $transactions
+        ]);
     }
 }
