@@ -38,12 +38,12 @@ export const columns: ColumnDef<Payment>[] = [
             return (
                 <div className="flex gap-4">
                     <Link
-                        href={`/admin/articles/${row.original.id}/edit`}
+                        href={`/admin/articles/${row.original.slug}/edit`}
                         className="text-blue-600 hover:underline"
                     >
                         <PencilIcon size={15} />
                     </Link>
-                    
+
                     <Link
                         href={route('admin.articles.destroy', row.original.id)}
                         method="delete"

@@ -25,7 +25,6 @@ export const transactionsColumns: ColumnDef<Order>[] = [
         cell: ({ row }) => {
             const status = row.original.payments?.[0]?.status ?? "pending";
 
-            // ✅ Badge dengan warna sesuai status
             const variant =
                 status === "success" ? "default" :
                 status === "pending" ? "secondary" :

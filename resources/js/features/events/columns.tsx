@@ -83,7 +83,7 @@ export const eventColumns: ColumnDef<Event>[] = [
             return (
                 <div className="flex gap-4">
                     <Link
-                        href={`/admin/events/${row.original.id}/edit`}
+                        href={`/admin/events/${row.original.slug}/edit`}
                         className="text-blue-600 hover:underline"
                     >
                         <PencilIcon size={15} />
