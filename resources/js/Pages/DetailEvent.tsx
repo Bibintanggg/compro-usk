@@ -115,7 +115,7 @@ export default function EventDetail() {
                                     </div>
                                 </div>
 
-                                <div className="lg:col-span-1">
+                                {/* <div className="lg:col-span-1">
                                     <div className="bg-white rounded-3xl p-6 shadow-2xl">
                                         {isUpcoming && daysUntil > 0 && (
                                             <div className="text-center mb-6 pb-6 border-b border-gray-200">
@@ -146,7 +146,7 @@ export default function EventDetail() {
                                             )}
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

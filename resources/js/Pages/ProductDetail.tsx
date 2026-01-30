@@ -178,7 +178,7 @@ export default function ProductDetail() {
                                 </div>
 
                                 <div className="space-y-4">
-                                    {relatedProducts?.slice(3).filter(e => e.is_active).map((item) => (
+                                    {relatedProducts?.filter(e => e.is_active).map((item) => (
                                         <div
                                             key={item.id}
                                             className="group cursor-pointer border border-gray-200 rounded-xl p-3 hover:border-gray-400 hover:shadow-md transition-all"

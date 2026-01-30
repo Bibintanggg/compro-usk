@@ -29,7 +29,7 @@ class UserController extends Controller
         // dd($product);
         return Inertia::render('ProductDetail', [
             'product' => $product,
-            'relatedProducts' => Product::all()
+            'relatedProducts' => Product::latest()->limit(5)->get()
         ]);
     }
 

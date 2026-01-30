@@ -22,7 +22,7 @@ class MidtransService
         $payload = [
             'transaction_details' => [
                 'order_id' => $params['order_id'],
-                'gross_amount' => $params['amount'],
+                'gross_amount' => (int) $params['amount'],
             ],
             'customer_details' => [
                 'first_name' => $params['customer_name'] ?? 'Customer',
