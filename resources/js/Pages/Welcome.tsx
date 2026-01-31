@@ -458,7 +458,6 @@ export default function Welcome() {
                                                     <p className="text-neutral-600 leading-relaxed line-clamp-3">
                                                         {article.content}
                                                     </p>
-
                                                     <div className="flex items-center gap-2 text-neutral-900 group-hover:gap-4 transition-all">
                                                         <span className="text-sm font-medium">Read More</span>
                                                         <ArrowUpRight className="w-4 h-4" />

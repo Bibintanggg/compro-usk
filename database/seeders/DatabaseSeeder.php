@@ -30,10 +30,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
         ]);
 
-        Article::factory(15)->create();
-        Product::factory(15)->create();
-        Clients::factory(15)->create();
-        Gallery::factory(15)->create();
-        Events::factory(15)->create();
+        // Article::factory(15)->create();
+        // Product::factory(15)->create();
+        // Clients::factory(15)->create();
+        // Gallery::factory(15)->create();
+        // Events::factory(15)->create();
     }
 }

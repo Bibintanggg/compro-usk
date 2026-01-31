@@ -10,6 +10,7 @@ import { MoveLeftIcon } from "lucide-react";
 type Props = PageProps & {
     events: Event
 }
+
 export default function EventsEdit() {
     const { events } = usePage<Props>().props
     const user = usePage().props.auth.user

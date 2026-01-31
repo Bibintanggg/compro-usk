@@ -1,12 +1,26 @@
 import { DataTable } from "@/Components/payments/data-table";
 import { productsColumns } from "@/features/products/column";
-import type { Products } from "@/features/products/types";
+import type { Products} from "@/features/products/types";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { usePage } from "@inertiajs/react";
 
 export default function Products() {
     const { products } = usePage().props
     const user = usePage().props.auth.user
+
+    const product: Products[] = [
+        {
+            id: "1",
+            name: "Product 1",
+            description: "This is product 1",
+            content: "Content of product 1",
+            image: "product1.jpg",
+            price: 100,
+            is_active: true,
+            order: 1,
+            slug: "product-1"
+        }
+    ]
     return (
         <div className="p-10">
             <Authenticated>
