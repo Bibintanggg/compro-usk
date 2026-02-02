@@ -54,11 +54,17 @@ export default function ArticleDetail() {
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                         <div className="lg:col-span-8">
                             <div className="relative aspect-video mb-10 rounded-2xl overflow-hidden shadow-2xl">
-                                <img
-                                    src={`/storage/${article.thumbnail}`}
-                                    alt={article.title}
-                                    className="w-full h-full object-cover"
-                                />
+                                {article.thumbnail ? (
+
+                                    <img
+                                        src={`/storage/${article.thumbnail}`}
+                                        alt={article.title}
+                                        className="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <img src="/images/fallback.jpg" alt="" className="w-full h-full object-cover" />
+
+                                )}
                             </div>
 
                             <div className="mb-10">
@@ -112,11 +118,16 @@ export default function ArticleDetail() {
                                             >
                                                 <button onClick={() => router.visit(`/articles/detail/${item.slug}`)} className="flex gap-4">
                                                     <div className="w-24 h-24 bg-gradient-to-br from-orange-100 to-rose-100 rounded-xl overflow-hidden flex-shrink-0">
-                                                        <img
-                                                            src={`/storage/${item.thumbnail}`}
-                                                            alt={item.title}
-                                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                                                        />
+                                                        {item.thumbnail ? (
+                                                            <img
+                                                                src={`/storage/${item.thumbnail}`}
+                                                                alt={item.title}
+                                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                                            />
+
+                                                        ) : (
+                                                            <img src="/images/fallback.jpg" alt="" className="w-full h-full object-cover" />
+                                                        )}
                                                     </div>
                                                     <div className="flex-1 min-w-0 items-start flex flex-col">
                                                         <div className="text-xs font-bold text-orange-600 mb-2">

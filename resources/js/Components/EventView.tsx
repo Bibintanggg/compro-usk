@@ -9,7 +9,7 @@ interface EventsListViewProps {
 }
 
 const EventsListView: React.FC<EventsListViewProps> = ({ events }) => {
-    const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+    const [viewMode, setViewMode] = useState<'grid'>('grid');
 
     const formatDate = (dateString: string) => {
         const date = new Date(dateString);
@@ -62,15 +62,6 @@ const EventsListView: React.FC<EventsListViewProps> = ({ events }) => {
                                 >
                                     <Grid3x3 className="w-4 h-4" />
                                 </button>
-                                <button
-                                    onClick={() => setViewMode('list')}
-                                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${viewMode === 'list'
-                                            ? 'bg-white text-gray-900 shadow-sm'
-                                            : 'text-gray-600 hover:text-gray-900'
-                                        }`}
-                                >
-                                    <List className="w-4 h-4" />
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -101,11 +92,16 @@ const EventsListView: React.FC<EventsListViewProps> = ({ events }) => {
                                             className="group bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200"
                                         >
                                             <div className="relative h-48 overflow-hidden bg-gray-100">
-                                                <img
+                                                {event.image ? (
+
+                                                    <img
                                                     src={`/storage/${event.image}`}
                                                     alt={event.name}
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                                />
+                                                    />
+                                                ):(
+                                                    <img src="/images/fallback.jpg" alt="" className='w-full h-full object-cover' />
+                                                )}
 
                                                 <div className="absolute top-3 left-3 bg-white rounded-lg px-3 py-2 shadow-md">
                                                     <p className="text-2xl font-bold text-gray-900 leading-none">{startDate.day}</p>
@@ -144,74 +140,7 @@ const EventsListView: React.FC<EventsListViewProps> = ({ events }) => {
                             </div>
                         )}
 
-                        {viewMode === 'list' && (
-                            <div className="space-y-4">
-                                {activeEvents.map((event) => {
-                                    const startDate = formatDate(event.start_date);
-                                    const endDate = formatDate(event.end_date);
-                                    const isOngoing = ongoingEvents.some(e => e.id === event.id);
 
-                                    return (
-                                        <Link
-                                            key={event.id}
-                                            href={`/events/${event.slug}`}
-                                            className="group block bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200"
-                                        >
-                                            <div className="flex flex-col md:flex-row">
-                                                <div className="relative md:w-64 h-48 md:h-auto flex-shrink-0 overflow-hidden bg-gray-100">
-                                                    <img
-                                                        src={`/storage/${event.image}`}
-                                                        alt={event.name}
-                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                                    />
-
-                                                    <div className="absolute top-3 left-3 bg-white rounded-lg px-3 py-2 shadow-md">
-                                                        <p className="text-2xl font-bold text-gray-900 leading-none">{startDate.day}</p>
-                                                        <p className="text-xs font-semibold text-orange-600 uppercase">{startDate.month}</p>
-                                                    </div>
-
-                                                    {isOngoing && (
-                                                        <div className="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                                                            Live
-                                                        </div>
-                                                    )}
-                                                </div>
-
-                                                <div className="flex-1 p-6">
-                                                    <div className="flex items-start justify-between mb-3">
-                                                        <div className="flex-1">
-                                                            <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
-                                                                {event.name}
-                                                            </h3>
-                                                            <p className="text-sm text-gray-600 line-clamp-2 mb-4">
-                                                                {event.description}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="flex flex-wrap gap-4 text-sm">
-                                                        <div className="flex items-center text-gray-700">
-                                                            <Clock className="w-4 h-4 mr-2 text-gray-400" />
-                                                            <span>{startDate.day} {startDate.month} - {endDate.day} {endDate.month} {endDate.year}</span>
-                                                        </div>
-                                                        <div className="flex items-center text-gray-700">
-                                                            <MapPin className="w-4 h-4 mr-2 text-gray-400" />
-                                                            <span>{event.location}</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="mt-4">
-                                                        <span className="inline-block bg-orange-50 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">
-                                                            View Details →
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    );
-                                })}
-                            </div>
-                        )}
                     </>
                 )}
                 <Button onClick={() => router.visit(route('home'))} className='mt-5 w-full'>

@@ -41,6 +41,7 @@ class CheckoutController extends Controller
             'amount' => $total,
             'customer_name' => $request->input('customer_name'),
             'customer_email' => $request->input('customer_email'),
+            'payment_method' => $request->input('payment_method'),
         ]);
 
         Payment::create([

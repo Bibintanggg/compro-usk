@@ -257,11 +257,16 @@ export default function Product() {
 
                                 <div className="flex gap-3 pb-4 mb-4 border-b">
                                     <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden flex-shrink-0">
-                                        <img
-                                            src={`/storage/${product.image}`}
-                                            alt={product.name}
-                                            className="w-full h-full object-cover"
-                                        />
+                                        {product.image ? (
+
+                                            <img
+                                                src={`/storage/${product.image}`}
+                                                alt={product.name}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        ) : ((
+                                            <img src="/images/fallback.jpg" alt="" className="w-full h-full object-cover" />
+                                        ))}
                                     </div>
                                     <div className="flex-1 min-w-0">
                                         <h3 className="font-semibold text-sm truncate">{product.name}</h3>
