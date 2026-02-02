@@ -68,7 +68,7 @@ export function AppSidebar() {
             <SidebarContent>
                 <SidebarGroup>
                     <img src="/images/logo.jpg" className="w-24 rounded-lg mx-auto mt-4" />
-                    <SidebarGroupLabel className="text-lg font-semibold text-center mx-auto mt-2 mb-5">PT. Deloitte Digital ID</SidebarGroupLabel>
+                    <SidebarGroupLabel className="text-lg font-semibold text-center mx-auto mt-2 mb-5">AyoDev.id</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {items.map((item) => {

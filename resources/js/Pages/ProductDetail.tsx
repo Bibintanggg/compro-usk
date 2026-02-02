@@ -42,7 +42,7 @@ export default function ProductDetail() {
                         <span className="text-sm font-semibold tracking-wider uppercase text-yellow-400">Trending Now</span>
                     </div>
                     <h2 className="text-5xl lg:text-6xl font-black mb-4 max-w-3xl">
-                        Deloitte Digital Products
+                        AyoDev.id Products
                     </h2>
                     <p className="text-xl text-gray-300 max-w-2xl">
                         Digital solutions designed to drive business impact and innovation

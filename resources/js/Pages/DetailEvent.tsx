@@ -230,7 +230,7 @@ export default function EventDetail() {
                                             <img src="/images/logo.jpg" alt="" />
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-gray-900">Deloitte Digital</h4>
+                                            <h4 className="font-bold text-gray-900">AyoDev.id</h4>
                                             <p className="text-sm text-gray-600">Event Organizer</p>
                                         </div>
                                     </div>

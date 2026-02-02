@@ -78,7 +78,7 @@ export default function Welcome() {
                                     </h1>
 
                                     <p className="text-xl text-slate-600 leading-relaxed max-w-lg">
-                                        Deloitte Digital combines strategy, creativity, and technology to deliver transformative digital experiences.
+                                        AyoDev.id combines strategy, creativity, and technology to deliver transformative digital experiences.
                                     </p>
                                 </div>
 
@@ -137,7 +137,7 @@ export default function Welcome() {
                                 <div className="relative aspect-[4/3] overflow-hidden">
                                     <img
                                         src="/images/tech-about.jpg"
-                                        alt="About Deloitte Digital"
+                                        // alt="About Deloitte Digital"
                                         className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
                                     />
                                 </div>
@@ -145,19 +145,20 @@ export default function Welcome() {
                                 {/* Content */}
                                 <div className="space-y-8">
                                     <p className="text-2xl lg:text-3xl leading-[1.4] text-slate-800">
-                                        Deloitte Digital is part of <span className="font-medium">Deloitte</span>, delivering end-to-end digital transformation by combining deep industry insight, innovative technology, and human-centered design.
+                                        <span className="font-medium">AyoDev.id</span> is a technology service company focused on delivering reliable digital solutions, from website development to custom technology services tailored to business needs.
                                     </p>
 
                                     <p className="text-lg lg:text-xl text-slate-600 leading-relaxed">
-                                        We help organizations create meaningful digital experiences and sustainable business growth.
+                                        We help businesses and organizations build functional, scalable, and user-friendly digital products that support growth and efficiency.
                                     </p>
 
                                     <div className="pt-4 pl-6 border-l-[3px] border-slate-900">
                                         <p className="text-base text-slate-700 italic">
-                                            Backed by Deloitte's global network and proven expertise.
+                                            Turning ideas into digital solutions through technology and thoughtful design.
                                         </p>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 
@@ -178,7 +179,7 @@ export default function Welcome() {
                                         02 — Vision
                                     </span>
                                     <p className="text-xl lg:text-2xl text-slate-800 leading-relaxed">
-                                        To be a trusted digital partner that helps organizations shape the future through meaningful, human-centered digital transformation.
+                                        To become a trusted technology partner that helps businesses grow through reliable, innovative, and user-focused digital solutions.
                                     </p>
                                 </div>
 
@@ -189,24 +190,29 @@ export default function Welcome() {
                                         Mission
                                     </span>
                                     <ul className="space-y-5 text-lg text-slate-700">
-                                        <li className="flex items-start gap-4">
-                                            <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
-                                                1
-                                            </span>
-                                            <span>Deliver impactful digital solutions</span>
-                                        </li>
-                                        <li className="flex items-start gap-4">
-                                            <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
-                                                2
-                                            </span>
-                                            <span>Create human-centric experiences</span>
-                                        </li>
-                                        <li className="flex items-start gap-4">
-                                            <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
-                                                3
-                                            </span>
-                                            <span>Drive sustainable business growth</span>
-                                        </li>
+                                        <ul className="space-y-5 text-lg text-slate-700">
+                                            <li className="flex items-start gap-4">
+                                                <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
+                                                    1
+                                                </span>
+                                                <span>Provide high-quality website and digital development services tailored to each client’s needs.</span>
+                                            </li>
+
+                                            <li className="flex items-start gap-4">
+                                                <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
+                                                    2
+                                                </span>
+                                                <span>Design and build user-friendly, scalable, and efficient digital products.</span>
+                                            </li>
+
+                                            <li className="flex items-start gap-4">
+                                                <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
+                                                    3
+                                                </span>
+                                                <span>Support long-term business growth through technology, collaboration, and continuous improvement.</span>
+                                            </li>
+                                        </ul>
+
                                     </ul>
                                 </div>
                             </div>
@@ -230,12 +236,12 @@ export default function Welcome() {
                                 <h2 className="text-5xl md:text-7xl font-light leading-[0.95] tracking-tight">
                                     Trusted By
                                     <br />
-                                    <span className="font-normal">Industry Leaders</span>
+                                    <span className="font-normal">Growing Businesses</span>
                                 </h2>
                             </div>
                             <div className="flex items-end lg:justify-end">
                                 <p className="text-base md:text-lg text-neutral-500 max-w-md leading-relaxed font-light">
-                                    We partner with leading organizations across industries to deliver impactful and measurable digital transformation.
+                                    We collaborate with startups, small businesses, and organizations to build reliable digital solutions that support their growth.
                                 </p>
                             </div>
                         </div>
@@ -316,14 +322,15 @@ export default function Welcome() {
                                 </div>
                                 <div className="flex flex-col justify-end space-y-3">
                                     <p className="text-xl text-neutral-500 leading-relaxed font-light">
-                                        Discover our innovative digital solutions designed to transform your business and drive sustainable growth.
+                                        Explore our digital services, from website development to custom technology solutions built to support your business growth.
                                     </p>
                                     <div className="flex gap-4 text-[15px] tracking-wider text-neutral-400">
-                                        <span>{products.filter(p => p.is_active).length} Active Products</span>
+                                        <span>{products.filter(p => p.is_active).length} Active Services</span>
                                         <span>•</span>
                                         <span>Trusted by {clients.length} clients</span>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 
@@ -420,8 +427,9 @@ export default function Welcome() {
                                 <div className="lg:col-span-7 flex items-end">
                                     <div className="space-y-4">
                                         <p className="text-lg text-neutral-600">
-                                            Deep insights, case studies, and thought leadership from our team of digital transformation experts.
+                                            Stories, learnings, and practical tips from our journey building websites and digital products.
                                         </p>
+
                                         <span className="text-sm text-neutral-500">{articles.length} Articles Published</span>
                                     </div>
                                 </div>
@@ -588,7 +596,7 @@ export default function Welcome() {
                                 </div>
                                 <div className="flex flex-col justify-end space-y-2">
                                     <p className="text-xl text-neutral-500 leading-relaxed font-light">
-                                        Join us at our upcoming events, conferences, and workshops to connect with industry leaders and innovators.
+                                        Stay updated with our upcoming events, workshops, and online sessions where we share insights about web development and digital solutions.
                                     </p>
                                     <span className="text-[15px] text-neutral-400 tracking-wider">{events.length} Upcoming Events</span>
                                 </div>
@@ -714,9 +722,9 @@ export default function Welcome() {
                                 </p>
                                 <a
                                     href="mailto:hello@deloittedigital.com"
-                                    className="text-neutral-900 group-hover:text-white font-light break-all transition-colors"
+                                    className="text-neutral-900 group-hover:text-white   font-light break-all transition-colors"
                                 >
-                                    hello@deloittedigital.com
+                                    hello@ayodev.id
                                 </a>
                             </div>
 
@@ -745,11 +753,7 @@ export default function Welcome() {
                                     Come say hello
                                 </p>
                                 <p className="text-neutral-900 group-hover:text-white font-light text-sm transition-colors">
-                                    The Plaza Office Tower, 32nd Floor
-                                    <br />
-                                    Jl. M.H. Thamrin Kav 28-30
-                                    <br />
-                                    Jakarta, Indonesia
+                                    B7, Jl. Cipinang Pulo No.19, RT.7/RW.14, North Cipinang Besar, Jatinegara, East Jakarta City, Jakarta 13410
                                 </p>
                             </div>
                         </div>

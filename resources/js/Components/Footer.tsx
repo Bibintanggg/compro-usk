@@ -8,7 +8,7 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto px-12 py-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     <div>
-                        <h3 className="text-2xl font-bold mb-4">Deloitte Digital</h3>
+                        <h3 className="text-2xl font-bold mb-4">AyoDev.id</h3>
                         <p className="text-gray-400 mb-6">
                             Transforming businesses through innovative digital solutions and human-centered design.
                         </p>
@@ -59,11 +59,11 @@ export default function Footer() {
                     <div>
                         <h4 className="font-bold text-lg mb-4">Services</h4>
                         <ul className="space-y-3">
-                            <li className="text-gray-400">Digital Strategy</li>
-                            <li className="text-gray-400">UX/UI Design</li>
-                            <li className="text-gray-400">Web Development</li>
-                            <li className="text-gray-400">Cloud Solutions</li>
-                            <li className="text-gray-400">Data Analytics</li>
+                            <li className="text-gray-400">Company Profile</li>
+                            <li className="text-gray-400">E-Commerce</li>
+                            <li className="text-gray-400">Web Portfolio</li>
+                            <li className="text-gray-400">Web Event</li>
+                            <li className="text-gray-400">Web Custom</li>
                         </ul>
                     </div>
 
@@ -72,19 +72,19 @@ export default function Footer() {
                         <ul className="space-y-3">
                             <li className="flex items-start gap-2 text-gray-400">
                                 <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                                <a href="mailto:hello@deloittedigital.com" className="hover:text-white transition-colors">
-                                    hello@deloittedigital.com
+                                <a href="mailto:hello@ayodev.id" className="hover:text-white transition-colors">
+                                    hello@ayodev.id
                                 </a>
                             </li>
                             <li className="flex items-start gap-2 text-gray-400">
                                 <Phone className="w-5 h-5 mt-0.5 flex-shrink-0" />
                                 <a href="tel:+1234567890" className="hover:text-white transition-colors">
-                                    +1 (234) 567-890
+                                    +62 857-1794-3270
                                 </a>
                             </li>
                             <li className="flex items-start gap-2 text-gray-400">
                                 <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                                The Plaza Office Tower, 32nd Floor, Jl. M.H. Thamrin Kav 28-30, RT.9/RW.5, <br />Gondangdia, Menteng, RT.9/RW.5, Gondangdia, Kec. Menteng, Kota Jakarta
+                                B7, Jl. Cipinang Pulo No.19, RT.7/RW.14 , North Cipinang Besar, Jatinegara, East Jakarta City, Jakarta 13410
                             </li>
                         </ul>
                     </div>
@@ -92,7 +92,7 @@ export default function Footer() {
 
                 <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-gray-400 text-sm">
-                        © {new Date().getFullYear()} Deloitte Digital. All rights reserved.
+                        © {new Date().getFullYear()} AyoDev.id. All rights reserved.
                     </p>
                 </div>
             </div>

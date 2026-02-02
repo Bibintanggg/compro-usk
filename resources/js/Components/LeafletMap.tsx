@@ -21,9 +21,9 @@ interface LeafletMapProps {
 }
 
 export default function LeafletMap({
-    latitude = -6.1931,
-    longitude = 106.8236,
-    zoom = 15
+    latitude = -6.2170907,
+    longitude = 106.8838618,
+    zoom = 17
 }: LeafletMapProps) {
     const locations = [
         { lat: -6.1931, lng: 106.8236, title: 'The Plaza Office Tower' },
@@ -45,12 +45,11 @@ export default function LeafletMap({
             <Marker position={[latitude, longitude]}>
                 <Popup>
                     <div className="text-center">
-                        <strong>The Plaza Office Tower</strong>
+                        <strong>SMKN 46 Jakarta</strong>
                         <br />
-                        32nd Floor
-                        Jl. M.H. Thamrin Kav 28–30
+                        B7, Jl. Cipinang Pulo No.19, RT.7/RW.14, North Cipinang Besar
                         <br />
-                        Jakarta Pusat
+                        Jakarta Timur, Jakarta 13410
                     </div>
                 </Popup>
             </Marker>

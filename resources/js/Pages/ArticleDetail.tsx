@@ -26,7 +26,7 @@ export default function ArticleDetail() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="relative max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-20">
                     <h2 className="text-5xl lg:text-6xl font-black mb-4 max-w-3xl">
-                        Deloitte Digital Articles
+                        AyoDev.id Articles
                     </h2>
                     <p className="text-xl text-gray-300 max-w-2xl">
                         Insights and perspectives on digital transformation, technology, and innovation

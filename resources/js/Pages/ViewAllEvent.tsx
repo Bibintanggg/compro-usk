@@ -13,12 +13,12 @@ interface ViewAllEventProps extends PageProps {
 export default function ViewAllEvent({ event }: ViewAllEventProps) {
     return (
         <>
-            <Head title="All Events - Deloitte Digital" />
-            
+            <Head title="All Events - AyoDev.id" />
+
             <AppNavbar />
-            
+
             <EventsListView events={event} />
-            
+
             <Footer />
         </>
     );
