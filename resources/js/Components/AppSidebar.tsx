@@ -1,4 +1,4 @@
-import { Calendar, ChevronUp, Home, Inbox, Package2, Paperclip, Search, Settings, User2 } from "lucide-react"
+import { Calendar, ChevronLeft, ChevronUp, Home, Inbox, Package2, Paperclip, Search, Settings, User2 } from "lucide-react"
 import {
     Sidebar,
     SidebarContent,
@@ -57,6 +57,11 @@ const items = [
         title: "Gallery",
         url: "/admin/gallery",
         icon: Images,
+    },
+    {
+        title: "Back To Website",
+        url: "/",
+        icon: ChevronLeft,
     },
 ]
 
