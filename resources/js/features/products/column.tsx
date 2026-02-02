@@ -50,7 +50,7 @@ export const productsColumns: ColumnDef<Products>[] = [
             const image = row.original.image;
             const url = image ? `/storage/${image}` : "/no-image.png"
             return (
-                <img src={url} alt="" className="w-20" />
+                <img src={url} alt="" className="w-20 h-10 object-cover rounded-md" />
             )
         }
     },

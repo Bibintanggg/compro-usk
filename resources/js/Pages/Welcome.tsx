@@ -764,15 +764,12 @@ export default function Welcome() {
                             </div>
 
                             <div className="group bg-neutral-50 rounded-2xl p-10 hover:bg-neutral-900 transition-all duration-500">
-                                <MapPin className="w-10 h-10 text-neutral-900 group-hover:text-white mb-6 transition-colors" />
+                                <Instagram className="w-10 h-10 text-neutral-900 group-hover:text-white mb-6 transition-colors" />
                                 <h3 className="text-xl font-light mb-2 text-neutral-900 group-hover:text-white transition-colors">
-                                    Visit Us
+                                    Instagram
                                 </h3>
                                 <p className="text-sm text-neutral-500 group-hover:text-neutral-400 mb-4 transition-colors">
-                                    Come say hello
-                                </p>
-                                <p className="text-neutral-900 group-hover:text-white font-light text-sm transition-colors">
-                                    B7, Jl. Cipinang Pulo No.19, RT.7/RW.14, North Cipinang Besar, Jatinegara, East Jakarta City, Jakarta 13410
+                                    @ayodev.id
                                 </p>
                             </div>
                         </div>
@@ -794,7 +791,7 @@ export default function Welcome() {
                                 </a>
                                 <a
                                     target="_blank"
-                                    href="https://www.instagram.com/bintang.ydha_"
+                                    href="https://www.instagram.com/ayodev.id/"
                                     className="w-12 h-12 border border-neutral-300 rounded-full flex items-center justify-center hover:bg-neutral-900 hover:border-neutral-900 hover:text-white transition-all"
                                 >
                                     <Instagram className="w-5 h-5" />
