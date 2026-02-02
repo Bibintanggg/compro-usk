@@ -68,7 +68,7 @@ export default function AppNavbar() {
     return (
         <Navbar fluid rounded className=" bg-[#f7f7f7] sticky top-0 z-50">
             <NavbarBrand href="/">
-                <img src="/images/logo.jpg" className="mr-3 w-20 ml-10" />
+                <img src="/images/ayodev.jpg" className="mr-3 w-20 ml-10" />
                 {/* <span className="self-center text-xl font-semibold">
                     PT Deloitte Konsultan ID
                 </span> */}

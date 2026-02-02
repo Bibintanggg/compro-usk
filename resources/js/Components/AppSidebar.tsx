@@ -67,7 +67,7 @@ export function AppSidebar() {
         <Sidebar>
             <SidebarContent>
                 <SidebarGroup>
-                    <img src="/images/logo.jpg" className="w-24 rounded-lg mx-auto mt-4" />
+                    <img src="/images/ayodev.jpg" className="w-24 rounded-lg mx-auto mt-4" />
                     <SidebarGroupLabel className="text-lg font-semibold text-center mx-auto mt-2 mb-5">AyoDev.id</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>

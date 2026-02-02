@@ -347,11 +347,16 @@ export default function Welcome() {
                                             {/* Image */}
                                             <div className={`relative overflow-hidden bg-neutral-50 ${index === 0 || index === 3 ? 'aspect-[8/5]' : 'aspect-[5/2]'
                                                 }`}>
-                                                <img
-                                                    src={`/storage/${product.image}`}
-                                                    alt={product.name}
-                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                                />
+                                                    {product.image ? (
+
+                                                        <img
+                                                        src={`/storage/${product.image}`}
+                                                        alt={product.name}
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                        />
+                                                    ):(
+                                                        <img src="/images/fallback.jpg" alt="" />
+                                                    )}
 
                                                 {/* Overlay */}
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -446,11 +451,16 @@ export default function Welcome() {
                                     >
                                         <div className="grid lg:grid-cols-12 gap-8 bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500">
                                             <div className="lg:col-span-5 relative h-80 overflow-hidden">
-                                                <img
+                                                {article.thumbnail ? (
+                                                    <img
                                                     src={`/storage/${article.thumbnail}`}
                                                     alt={article.title}
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                                 />
+
+                                                ):(
+                                                    <img src="/images/fallback.jpg" alt="" />
+                                                )}
                                             </div>
 
                                             <div className="lg:col-span-7 p-12 flex flex-col justify-center">
@@ -542,11 +552,16 @@ export default function Welcome() {
                                             key={item.id}
                                             className={`${gridClass} group relative rounded-xl overflow-hidden cursor-pointer h-64`}
                                         >
-                                            <img
-                                                src={`/storage/${item.image}`}
-                                                alt={item.title}
-                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                            />
+                                            {item.image ? (
+                                                <img
+                                                    src={`/storage/${item.image}`}
+                                                    alt={item.title}
+                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                />
+
+                                            ):(
+                                                <img src="/images/fallback.jpg" alt="" />
+                                            )}
                                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-end p-6">
                                                 <h3 className="text-white text-lg font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                     {item.title}
@@ -625,10 +640,14 @@ export default function Welcome() {
                                                 </div>
 
                                                 <div className="lg:col-span-4 relative aspect-[16/10] lg:aspect-auto overflow-hidden bg-neutral-100">
-                                                    <img
-                                                        src={`/storage/${event.image}`}
-                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                                    />
+                                                    {event.image ? (
+                                                        <img
+                                                            src={`/storage/${event.image}`}
+                                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                        />
+                                                    ) : (
+                                                        <img src="/images/fallback.jpg" alt="Fallback" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                                    )}
                                                 </div>
 
                                                 <div className="lg:col-span-6 p-6 flex flex-col justify-center space-y-4">
