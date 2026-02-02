@@ -1,8 +1,13 @@
+import { Products } from "../products/types"
+
 export type Order = {
     id: string
     price: number
     order_code: string
     status: string
+    product?: Products
+    payments?: Payment[]
+    created_at: string
 }
 
 export type Payment = {

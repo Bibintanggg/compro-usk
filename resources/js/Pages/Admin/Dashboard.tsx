@@ -5,9 +5,10 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { PageProps } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
 import React, { useState, useEffect } from 'react';
-import { BookAudioIcon, BoxIcon, Calendars, CheckCheck, LucideLocationEdit, ShoppingBasket, UserCheck2, Users, UsersIcon, ArrowUpRight, Activity, TrendingUp, Clock } from 'lucide-react';
+import { BookAudioIcon, BoxIcon, Calendars, CheckCheck, LucideLocationEdit, ShoppingBasket, UserCheck2, Users, UsersIcon, ArrowUpRight, Activity, TrendingUp, Clock, CreditCard } from 'lucide-react';
 import { Event } from '@/features/events/types';
 import { Client } from '@/features/clients/types';
+import { Order } from '@/features/transactions/types';
 
 type DashboardProps = PageProps & {
     activeProducts: Products[],
@@ -17,11 +18,14 @@ type DashboardProps = PageProps & {
     clientCount: number
     eventCount: number
     articleCount: number
+    transactions: Order[]
 }
 
 export default function Dashboard() {
     const user = usePage().props.auth.user
-    const { activeProducts, activeEvents, clientsCustomer, productsCount, clientCount, eventCount, articleCount } = usePage<DashboardProps>().props
+    const { activeProducts, activeEvents, clientsCustomer, productsCount, clientCount, eventCount, articleCount, transactions } = usePage<DashboardProps>().props
+
+    // console.table(transactions)
 
     return (
         <AuthenticatedLayout>
@@ -215,58 +219,129 @@ export default function Dashboard() {
 
                     <div className="grid grid-cols-12 gap-4">
 
-                        <div className="col-span-5 card rounded-lg overflow-hidden">
-                            <div className="px-6 py-5 border-b border-gray-100">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <h3 className="text-lg font-semibold text-gray-900">
-                                            Products
-                                        </h3>
-                                        <p className="text-sm text-gray-500 mt-0.5">
-                                            Currently available
-                                        </p>
-                                    </div>
-                                    <div className="text-sm text-gray-500 number">
-                                        {activeProducts.length} items
+                        <div className="col-span-5 flex flex-col gap-4">
+
+                            <div className="card rounded-lg overflow-hidden">
+                                <div className="px-6 py-5 border-b border-gray-100">
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <h3 className="text-lg font-semibold text-gray-900">
+                                                Products
+                                            </h3>
+                                            <p className="text-sm text-gray-500 mt-0.5">
+                                                Currently available
+                                            </p>
+                                        </div>
+                                        <div className="text-sm text-gray-500 number">
+                                            {activeProducts.length} items
+                                        </div>
                                     </div>
                                 </div>
+
+                                <ScrollArea className="h-[350px]">
+                                    <div className="p-4">
+                                        {activeProducts.length === 0 ? (
+                                            <div className="flex flex-col items-center justify-center h-64 text-center">
+                                                <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-3">
+                                                    <BoxIcon className="w-6 h-6 text-gray-400" strokeWidth={2} />
+                                                </div>
+                                                <p className="text-sm text-gray-500">No products available</p>
+                                            </div>
+                                        ) : (
+                                            <div className="space-y-1">
+                                                {activeProducts.map((product: Products, index) => (
+                                                    <div
+                                                        key={product.id}
+                                                        className="list-item p-4 rounded-lg"
+                                                    >
+                                                        <div className="flex items-start justify-between gap-4 mb-2">
+                                                            <h4 className="text-base font-medium text-gray-900 flex-1">
+                                                                {product.name}
+                                                            </h4>
+                                                            <span className="text-sm font-semibold text-gray-900 number whitespace-nowrap">
+                                                                Rp {product.price.toLocaleString('id-ID')}
+                                                            </span>
+                                                        </div>
+                                                        <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
+                                                            {product.description}
+                                                        </p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                </ScrollArea>
                             </div>
 
-                            <ScrollArea className="h-[450px]">
-                                <div className="p-4">
-                                    {activeProducts.length === 0 ? (
-                                        <div className="flex flex-col items-center justify-center h-80 text-center">
-                                            <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-3">
-                                                <BoxIcon className="w-6 h-6 text-gray-400" strokeWidth={2} />
-                                            </div>
-                                            <p className="text-sm text-gray-500">No products available</p>
+                            {/* Transactions Card */}
+                            <div className="card rounded-lg overflow-hidden">
+                                <div className="px-6 py-5 border-b border-gray-100">
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <h3 className="text-lg font-semibold text-gray-900">
+                                                Transactions
+                                            </h3>
+                                            <p className="text-sm text-gray-500 mt-0.5">
+                                                Recent activity
+                                            </p>
                                         </div>
-                                    ) : (
-                                        <div className="space-y-1">
-                                            {activeProducts.map((product: Products, index) => (
-                                                <div
-                                                    key={product.id}
-                                                    className="list-item p-4 rounded-lg"
-                                                >
-                                                    <div className="flex items-start justify-between gap-4 mb-2">
-                                                        <h4 className="text-base font-medium text-gray-900 flex-1">
-                                                            {product.name}
-                                                        </h4>
-                                                        <span className="text-sm font-semibold text-gray-900 number whitespace-nowrap">
-                                                            Rp {product.price.toLocaleString('id-ID')}
-                                                        </span>
-                                                    </div>
-                                                    <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
-                                                        {product.description}
-                                                    </p>
-                                                </div>
-                                            ))}
+                                        <div className="text-sm text-gray-500">
+                                            {transactions.length} total
                                         </div>
-                                    )}
+                                    </div>
                                 </div>
-                            </ScrollArea>
+
+                                <ScrollArea className="h-[350px]">
+                                    <div className="p-4">
+                                        {transactions.length === 0 ? (
+                                            <div className="flex flex-col items-center justify-center h-64 text-center">
+                                                <CreditCard className="w-6 h-6 text-gray-400 mb-2" />
+                                                <p className="text-sm text-gray-500">
+                                                    No transactions yet
+                                                </p>
+                                            </div>
+                                        ) : (
+                                            <div className="space-y-2">
+                                                {transactions.map((order) => {
+                                                    const payment = order.payments?.[0]
+
+                                                    return (
+                                                        <div
+                                                            key={order.id}
+                                                            className="p-4 rounded-lg border"
+                                                        >
+                                                            <div className="flex justify-between">
+                                                                <div>
+                                                                    <p className="font-medium">
+                                                                        {payment?.customer_name ?? 'Unknown'}
+                                                                    </p>
+                                                                    <p className="text-sm text-gray-500">
+                                                                        {order.product?.name ?? '-'}
+                                                                    </p>
+                                                                </div>
+
+                                                                <div className="text-right">
+                                                                    <p className="font-semibold">
+                                                                        Rp {order.price.toLocaleString('id-ID')}
+                                                                    </p>
+                                                                    <p className="text-xs text-gray-500">
+                                                                        {new Date(order.created_at).toLocaleDateString('id-ID')}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        )}
+                                    </div>
+                                </ScrollArea>
+                            </div>
+
+
                         </div>
 
+                        {/* Events Column */}
                         <div className="col-span-4 card rounded-lg overflow-hidden">
                             <div className="px-6 py-5 border-b border-gray-100">
                                 <div className="flex items-center justify-between">
@@ -330,6 +405,7 @@ export default function Dashboard() {
                             </ScrollArea>
                         </div>
 
+                        {/* Clients Column */}
                         <div className="col-span-3 card rounded-lg overflow-hidden">
                             <div className="px-6 py-5 border-b border-gray-100">
                                 <div>
