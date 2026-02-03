@@ -87,17 +87,20 @@ export default function ArticleDetail() {
                             <div className="flex items-center justify-between mb-10  border-b-2 border-gray-200">
                             </div>
 
-                            <article className="prose prose-lg max-w-none">
+                            <article className="prose max-w-3xl">
                                 <div
-                                    className="text-gray-800 leading-relaxed space-y-6"
+                                    className="text-gray-800 space-y-6 break-words"
                                     style={{
                                         fontFamily: "'Georgia', serif",
                                         fontSize: '1.125rem',
-                                        lineHeight: '1.8'
+                                        lineHeight: '1.8',
+                                        overflowWrap: 'break-word',
+                                        wordBreak: 'break-word',
                                     }}
                                     dangerouslySetInnerHTML={{ __html: article.content }}
                                 />
                             </article>
+
                         </div>
 
                         <div className="lg:col-span-4">
