@@ -23,11 +23,11 @@ class CheckoutController extends Controller
         ]);
 
         $quantity = 1;
-        $shippingCost = 25000;
+        // $shippingCost = 25000;
         $taxRate = 0.1;
         $subTotal = $product->price * $quantity;
-        $tax = $subTotal * $taxRate;
-        $total = $subTotal + $shippingCost + $tax;
+        // $tax = $subTotal * $taxRate;
+        $total = $subTotal ;
 
         $order = Order::create([
             'order_code' => 'ORD-' . time(),

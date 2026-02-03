@@ -24,7 +24,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/Components/ui/carousel"
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Article } from '@/types/article';
 import { Gallery } from '@/features/gallery/types';
 import { Event } from '@/features/events/types';
@@ -34,6 +34,7 @@ import { Button } from '@/Components/ui/button';
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/Components/ui/empty';
 import EmptyFallback from '@/Components/EmptyFallback';
 import Footer from '@/Components/Footer';
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/Components/ui/alert-dialog';
 
 interface WelcomeProps extends PageProps {
     products: Products[]
@@ -53,6 +54,47 @@ export default function Welcome() {
             minimumFractionDigits: 0,
         }).format(price);
     };
+
+    const { showPaymentDialog, order } = usePage().props as {
+        showPaymentDialog?: boolean;
+        order?: any;
+    };
+
+    const [open, setOpen] = React.useState(false);
+    const [processing, setProcessing] = React.useState(true);
+    const [countDown, setCountdown] = React.useState(4);
+
+    useEffect(() => {
+        const hasShown = sessionStorage.getItem('payment_success_dialog');
+
+        if (!hasShown) {
+            setOpen(true);
+            sessionStorage.setItem('payment_success_dialog', 'true');
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!open) return;
+
+        setProcessing(true);
+        setCountdown(3);
+
+        const interval = setInterval(() => {
+            setCountdown((prev) => {
+                if (prev <= 1) {
+                    clearInterval(interval);
+                    setProcessing(false);
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [open]);
+
+
+
     return (
         <>
             <AppNavbar />
@@ -347,16 +389,16 @@ export default function Welcome() {
                                             {/* Image */}
                                             <div className={`relative overflow-hidden bg-neutral-50 ${index === 0 || index === 3 ? 'aspect-[8/5]' : 'aspect-[5/2]'
                                                 }`}>
-                                                    {product.image ? (
+                                                {product.image ? (
 
-                                                        <img
+                                                    <img
                                                         src={`/storage/${product.image}`}
                                                         alt={product.name}
                                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                                        />
-                                                    ):(
-                                                        <img src="/images/fallback.jpg" alt="" />
-                                                    )}
+                                                    />
+                                                ) : (
+                                                    <img src="/images/fallback.jpg" alt="" />
+                                                )}
 
                                                 {/* Overlay */}
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -414,7 +456,7 @@ export default function Welcome() {
             </section>
 
             {/* Articles Section - Magazine Style */}
-            <section className="bg-neutral-50 py-32" id="article">
+            <section className="bg-neutral-50 py-32" id="media">
                 <div className="container mx-auto px-6 lg:px-16">
                     <div className="max-w-7xl mx-auto">
                         <div className="mb-20">
@@ -453,12 +495,12 @@ export default function Welcome() {
                                             <div className="lg:col-span-5 relative h-80 overflow-hidden">
                                                 {article.thumbnail ? (
                                                     <img
-                                                    src={`/storage/${article.thumbnail}`}
-                                                    alt={article.title}
-                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                                />
+                                                        src={`/storage/${article.thumbnail}`}
+                                                        alt={article.title}
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                    />
 
-                                                ):(
+                                                ) : (
                                                     <img src="/images/fallback.jpg" alt="" />
                                                 )}
                                             </div>
@@ -559,7 +601,7 @@ export default function Welcome() {
                                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                                 />
 
-                                            ):(
+                                            ) : (
                                                 <img src="/images/fallback.jpg" alt="" />
                                             )}
                                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-end p-6">
@@ -803,6 +845,25 @@ export default function Welcome() {
             </section>
 
             <Footer />
+
+            {/* <AlertDialog open={open} onOpenChange={setOpen}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Payment Successfully !!</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            Please always check your email to wait for our team's reply to your order.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogAction
+                        disabled={processing}
+                            onClick={() => router.visit('/')}
+                        >
+                            {processing ? 'Processing...' : 'OK'}
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog> */}
         </>
     );
 }

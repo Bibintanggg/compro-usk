@@ -7,20 +7,26 @@ use App\Models\Article;
 use App\Models\Clients;
 use App\Models\Events;
 use App\Models\Gallery;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class UserController extends Controller
 {
     public function index()
     {
+        $order = Order::where('product_id', Auth::id())->where('status', 'success')->latest()->get();
         return Inertia::render('Welcome', [
             'products' => Product::latest()->limit(9)->get(),
             'clients' => Clients::latest()->limit(9)->get(),
             'articles' => Article::latest()->limit(6)->get(),
             'gallery' => Gallery::latest()->limit(4)->get(),
             'events' => Events::latest()->limit(5)->get(),
+
+            'showPaymentDialog' => !!$order,
+            'order' => $order
         ]);
     }
 
