@@ -43,6 +43,15 @@ export default function EventDetail() {
 
     const durationDays = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
 
+    const waNumber = '6285717943270';
+
+    const waMessage = encodeURIComponent(
+        `Halo Ka, aku mau ikut event ${event.name}. Gimana ya?`
+    );
+
+    const waLink = `https://wa.me/${waNumber}?text=${waMessage}`;
+
+
     return (
         <>
             <Head title={event.name} />
@@ -244,20 +253,26 @@ export default function EventDetail() {
                                     </div>
                                 </div>
 
-                                <Link className="top-6 space-y-6" href={'https://wa.me/6285717943270'}>
+                                <a
+                                    href={waLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="top-6 space-y-6"
+                                >
                                     <div className="bg-gradient-to-br from-red-50 to-red-100 border border-purple-200 rounded-3xl p-6 shadow-sm">
                                         <h3 className="font-bold text-lg mb-4">Want To Join ?</h3>
                                         <div className="flex items-center gap-4 mb-4">
-                                            <div className="w-16 h-16 bg-red-600 border border-red-600  rounded-2xl flex items-center justify-center text-white text-2xl font-bold">
-                                                <PhoneCall className='text-white' />
+                                            <div className="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center text-white">
+                                                <PhoneCall />
                                             </div>
                                             <div>
-                                                <h4 className="font-bold text-gray-900">Please Chat Me !</h4>
+                                                <h4 className="font-bold text-gray-900 w-40">Please Chat Me and Click This Card</h4>
                                                 <p className="text-sm text-gray-600">+62 857 1794 3270</p>
                                             </div>
                                         </div>
                                     </div>
-                                </Link>
+                                </a>
+
                             </div>
 
 

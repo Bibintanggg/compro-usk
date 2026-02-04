@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('location');
-            $table->text('description');
-            $table->text('content');
+            $table->longText('description');
+            $table->longText('content');
             $table->string('image')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');

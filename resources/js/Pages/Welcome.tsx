@@ -24,7 +24,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/Components/ui/carousel"
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Article } from '@/types/article';
 import { Gallery } from '@/features/gallery/types';
 import { Event } from '@/features/events/types';
@@ -35,6 +35,9 @@ import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTi
 import EmptyFallback from '@/Components/EmptyFallback';
 import Footer from '@/Components/Footer';
 import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/Components/ui/alert-dialog';
+import CalculateProduct from '@/Components/CalculateProduct';
+import { ComposableMap, Geographies, Geography, Marker, Line } from 'react-simple-maps';
+
 
 interface WelcomeProps extends PageProps {
     products: Products[]
@@ -43,6 +46,9 @@ interface WelcomeProps extends PageProps {
     gallery: Gallery[],
     events: Event[]
 }
+
+const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+
 
 export default function Welcome() {
     const { products, clients, articles, gallery, events } = usePage<WelcomeProps>().props
@@ -63,6 +69,17 @@ export default function Welcome() {
     const [open, setOpen] = React.useState(false);
     const [processing, setProcessing] = React.useState(true);
     const [countDown, setCountdown] = React.useState(4);
+    const [hoveredCountry, setHoveredCountry] = useState(null);
+
+    const clientCountries = ['360', '764', '116'];
+
+    const clientLocations = [
+        { name: 'Jakarta', coordinates: [106.8456, -6.2088], size: 8 },
+        { name: 'Bangkok', coordinates: [100.5018, 13.7563], size: 6 },
+        { name: 'Phnom Penh', coordinates: [104.9160, 11.5564], size: 5 },
+    ];
+
+    const HQ = [106.8456, -6.2088];
 
     useEffect(() => {
         const hasShown = sessionStorage.getItem('payment_success_dialog');
@@ -98,51 +115,144 @@ export default function Welcome() {
     return (
         <>
             <AppNavbar />
-            <section className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.05),transparent_50%)]" />
+            <section className="relative h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950">
+                {/* Animated World Map Background */}
+                <div className="absolute inset-0 flex items-center justify-end opacity-50">
+                    <div className="w-full h-full lg:w-[70%]">
+                        <ComposableMap
+                            projection="geoMercator"
+                            projectionConfig={{
+                                scale: 180,
+                                center: [10, 30]
+                            }}
+                            width={980}
+                            height={551}
+                            style={{ width: '100%', height: '100%' }}
+                        >
+                            <Geographies geography={geoUrl}>
+                                {({ geographies }) =>
+                                    geographies.map((geo) => {
+                                        if (geo.properties.name === 'Indonesia' ||
+                                            geo.properties.name === 'Thailand' ||
+                                            geo.properties.name === 'Cambodia') {
+                                        }
+
+                                        const isClientCountry = clientCountries.includes(geo.id);
+                                        return (
+                                            <Geography
+                                                key={geo.rsmKey}
+                                                geography={geo}
+                                                onMouseEnter={() => setHoveredCountry(geo.id)}
+                                                onMouseLeave={() => setHoveredCountry(null)}
+                                                style={{
+                                                    default: {
+                                                        fill: isClientCountry ? '#60a5fa' : '#1e293b',
+                                                        stroke: isClientCountry ? '#93c5fd' : '#334155',
+                                                        strokeWidth: 0.8,
+                                                        outline: 'none',
+                                                        animation: isClientCountry ? 'glowPulse 3s ease-in-out infinite' : 'none',
+                                                    },
+                                                    hover: {
+                                                        fill: isClientCountry ? '#93c5fd' : '#334155',
+                                                        stroke: '#93c5fd',
+                                                        strokeWidth: 1.2,
+                                                        outline: 'none',
+                                                    },
+                                                    pressed: {
+                                                        fill: '#60a5fa',
+                                                        outline: 'none',
+                                                    }
+                                                }}
+                                            />
+                                        );
+                                    })
+                                }
+                            </Geographies>
+
+                            {/* Glowing Markers for Client Locations */}
+                            {clientLocations.map(({ name, coordinates }) => (
+                                <Line
+                                    key={`line-${name}`}
+                                    from={HQ}
+                                    to={coordinates}
+                                    stroke="#60a5fa"
+                                    strokeWidth={1.5}
+                                    strokeLinecap="round"
+                                    strokeDasharray="4 6"
+                                >
+                                    <animate
+                                        attributeName="stroke-dashoffset"
+                                        from="20"
+                                        to="0"
+                                        dur="2s"
+                                        repeatCount="indefinite"
+                                    />
+                                    <animate
+                                        attributeName="opacity"
+                                        values="0;1;0"
+                                        dur="2s"
+                                        repeatCount="indefinite"
+                                    />
+                                </Line>
+                            ))}
+                        </ComposableMap>
+                    </div>
+                </div>
+
+                {/* Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/10 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent pointer-events-none" />
+
+                {/* Animated grid pattern */}
+                <div className="absolute inset-0 opacity-10">
+                    <div className="absolute inset-0" style={{
+                        backgroundImage: 'linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)',
+                        backgroundSize: '50px 50px'
+                    }} />
+                </div>
 
                 <div className="container mx-auto px-6 lg:px-16 py-20 relative z-10">
                     <div className="max-w-7xl mx-auto">
                         <div className="grid lg:grid-cols-2 gap-16 items-center">
                             <div className="space-y-10">
                                 <div className="space-y-6">
-                                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full">
-                                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
-                                        <span className="text-sm font-medium text-blue-700">Digital Innovation Partner</span>
+                                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 backdrop-blur-sm border border-blue-500/20 rounded-full">
+                                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+                                        <span className="text-sm font-medium text-blue-300">Global Digital Innovation Partner</span>
                                     </div>
 
-                                    <h1 className="text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+                                    <h1 className="text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-white">
                                         Transform Your
                                         <br />
-                                        <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+                                        <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
                                             Digital Future
                                         </span>
                                     </h1>
 
-                                    <p className="text-xl text-slate-600 leading-relaxed max-w-lg">
-                                        AyoDev.id combines strategy, creativity, and technology to deliver transformative digital experiences.
+                                    <p className="text-xl text-slate-300 leading-relaxed max-w-lg">
+                                        AyoDev.id combines strategy, creativity, and technology to deliver transformative digital experiences across the globe.
                                     </p>
                                 </div>
 
                                 <div className="flex items-center gap-12 pt-4">
                                     <div className="space-y-1">
-                                        <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+                                        <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
                                             100+
                                         </div>
-                                        <div className="text-sm text-slate-500 font-medium">Trusted Clients</div>
+                                        <div className="text-sm text-slate-400 font-medium">Trusted Clients</div>
                                     </div>
-                                    <div className="w-px h-12 bg-slate-200" />
+                                    <div className="w-px h-12 bg-slate-700" />
                                     <div className="space-y-1">
-                                        <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
-                                            6+
+                                        <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+                                            24/7
                                         </div>
-                                        <div className="text-sm text-slate-500 font-medium">Digital Solutions</div>
+                                        <div className="text-sm text-slate-400 font-medium">Support</div>
                                     </div>
                                 </div>
+
                             </div>
 
-                            <div className="relative">
-                                <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-violet-500 rounded-3xl blur-2xl opacity-20" />
+                            <div className="relative lg:block hidden">
                                 <div className="relative aspect-[4/4] rounded-3xl overflow-hidden ">
                                     <img
                                         src="/images/avatar.png"
@@ -744,6 +854,8 @@ export default function Welcome() {
                     </div>
                 </div>
             </section>
+
+            <CalculateProduct />
 
             <section className="bg-white py-32" id="contact">
                 <div className="container mx-auto px-6 lg:px-16">

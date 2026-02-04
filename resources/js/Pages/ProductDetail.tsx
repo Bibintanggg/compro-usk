@@ -169,8 +169,8 @@ export default function ProductDetail() {
                                         Product Details
                                     </button>
                                 </div>
-                                <div className="prose prose-sm max-w-none">
-                                    <p className="text-gray-700 leading-relaxed">
+                                <div className="prose max-w-xl break-all">
+                                    <p className="text-gray-700 ">
                                         {product.content}
                                     </p>
                                 </div>
