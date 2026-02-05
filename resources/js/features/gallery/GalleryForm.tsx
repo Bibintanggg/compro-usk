@@ -38,7 +38,7 @@ export default function GalleryForm({
 
     const completionPercentage =
         (data.title ? 50 : 0) +
-        (data.image ? 50 : 0);
+        (data.image || imagePreview ? 50 : 0);
 
     return (
         <form onSubmit={onSubmit} className="min-h-screen bg-[#FAFAFA]">
@@ -236,7 +236,7 @@ export default function GalleryForm({
                         </div>
                         <div className="completion-badge">
                             <svg className="w-5 h-5" viewBox="0 0 20 20">
-                                <circle cx="10" cy="10" r="8" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2"/>
+                                <circle cx="10" cy="10" r="8" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
                                 <circle
                                     cx="10"
                                     cy="10"
