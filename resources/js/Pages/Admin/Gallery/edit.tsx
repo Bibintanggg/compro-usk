@@ -35,6 +35,8 @@ export default function GalleryEdit() {
 
         if(file) {
             setImagePreview(URL.createObjectURL(file))
+        } else {
+            setImagePreview(null)
         }
     }
     return (

@@ -14,6 +14,12 @@ export const eventColumns: ColumnDef<Event>[] = [
     {
         accessorKey: "description",
         header: "Description",
+        cell: ({row}) => {
+            const description = row.original.description
+            return (
+                <p className="truncate max-w-[12rem]">{description}</p>
+            )
+        }
     },
     {
         accessorKey: "content",
@@ -39,6 +45,12 @@ export const eventColumns: ColumnDef<Event>[] = [
     {
         accessorKey: "location",
         header: "Location",
+        cell: ({row}) => {
+            const location = row.original.location
+            return (
+                <p className="truncate max-w-xs">{location}</p>
+            )
+        }
     },
     {
         accessorKey: "start_date",

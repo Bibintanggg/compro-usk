@@ -10,14 +10,38 @@ export const productsColumns: ColumnDef<Products>[] = [
     {
         accessorKey: "name",
         header: "Name",
+        cell: ({ row }) => {
+            const name = row.original.name;
+            return (
+                <div className="max-w-sm truncate">
+                    {name}
+                </div>
+            )
+        }
     },
     {
         accessorKey: "description",
         header: "Description",
+        cell: ({ row }) => {
+            const description = row.original.description;
+            return (
+                <div className="max-w-xs truncate">
+                    {description}
+                </div>
+            )
+        }
     },
     {
         accessorKey: "content",
         header: "Content",
+        cell: ({ row }) => {
+            const content = row.original.content;
+            return (
+                <div className="max-w-xs truncate">
+                    {content}
+                </div>
+            )
+        }
     },
     {
         accessorKey: "image",
@@ -26,7 +50,7 @@ export const productsColumns: ColumnDef<Products>[] = [
             const image = row.original.image;
             const url = image ? `/storage/${image}` : "/no-image.png"
             return (
-                <img src={url} alt="" className="w-20" />
+                <img src={url} alt="" className="w-20 h-10 object-cover rounded-md" />
             )
         }
     },

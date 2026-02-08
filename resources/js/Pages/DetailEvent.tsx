@@ -15,7 +15,8 @@ import {
     Ticket,
     Info,
     MessageCircle,
-    Mail
+    Mail,
+    PhoneCall
 } from 'lucide-react';
 import { useState } from 'react';
 import { formatDate } from '@/types/formatDate';
@@ -42,6 +43,15 @@ export default function EventDetail() {
 
     const durationDays = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
 
+    const waNumber = '6285717943270';
+
+    const waMessage = encodeURIComponent(
+        `Halo Ka, aku mau ikut event ${event.name}. Gimana ya?`
+    );
+
+    const waLink = `https://wa.me/${waNumber}?text=${waMessage}`;
+
+
     return (
         <>
             <Head title={event.name} />
@@ -50,11 +60,16 @@ export default function EventDetail() {
             <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
                 <div className="relative h-[70vh] overflow-hidden">
                     <div className="absolute inset-0">
-                        <img
-                            src={`/storage/${event.image}`}
-                            alt={event.name}
-                            className="w-full h-full object-cover"
-                        />
+                        {event.image ? (
+
+                            <img
+                                src={`/storage/${event.image}`}
+                                alt={event.name}
+                                className="w-full h-full object-cover"
+                            />
+                        ) : (
+                            <img src="/images/fallback.jpg" alt="" className='w-full h-full object-cover' />
+                        )}
                         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
                     </div>
 
@@ -222,21 +237,44 @@ export default function EventDetail() {
                         </div>
 
                         <div className="lg:col-span-1">
-                            <div className="sticky top-6 space-y-6">
-                                <div className="bg-white rounded-3xl p-6 shadow-sm">
-                                    <h3 className="font-bold text-lg mb-4">Organized by</h3>
-                                    <div className="flex items-center gap-4 mb-4">
-                                        <div className="w-16 h-16 bg-gradient-to-br  rounded-2xl flex items-center justify-center text-white text-2xl font-bold">
-                                            <img src="/images/logo.jpg" alt="" />
-                                        </div>
-                                        <div>
-                                            <h4 className="font-bold text-gray-900">Deloitte Digital</h4>
-                                            <p className="text-sm text-gray-600">Event Organizer</p>
+                            <div className="flex flex-col gap-3">
+                                <div className="     top-6 space-y-6">
+                                    <div className="bg-white rounded-3xl p-6 shadow-sm">
+                                        <h3 className="font-bold text-lg mb-4">Organized by</h3>
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <div className="w-16 h-16 bg-gradient-to-br  rounded-2xl flex items-center justify-center text-white text-2xl font-bold">
+                                                <img src="/images/ayodev.jpg" alt="" />
+                                            </div>
+                                            <div>
+                                                <h4 className="font-bold text-gray-900">AyoDev.id</h4>
+                                                <p className="text-sm text-gray-600">Event Organizer</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
+                                <a
+                                    href={waLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="top-6 space-y-6"
+                                >
+                                    <div className="bg-gradient-to-br from-red-50 to-red-100 border border-purple-200 rounded-3xl p-6 shadow-sm">
+                                        <h3 className="font-bold text-lg mb-4">Want To Join ?</h3>
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <div className="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center text-white">
+                                                <PhoneCall />
+                                            </div>
+                                            <div>
+                                                <h4 className="font-bold text-gray-900 w-40">Please Chat Me and Click This Card</h4>
+                                                <p className="text-sm text-gray-600">+62 857 1794 3270</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
                             </div>
+
 
                             <Button onClick={() => router.visit(route('event.all'))} className='mt-5 w-full'>
                                 Back

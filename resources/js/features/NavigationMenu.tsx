@@ -44,35 +44,15 @@ export default function NavigationMenuDemo() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger className="bg-transparent">
-                        About Us
-                    </NavigationMenuTrigger>
-
-                    <NavigationMenuContent className="bg-white shadow-md rounded-md">
-                        <ul className="p-2 space-y-1">
-                            <NavItem
-                                icon={<UserSquareIcon size={16} />}
-                                targetId="profile"
-                                onScroll={handleScroll}
-                            >
-                                Profile
-                            </NavItem>
-                            <NavItem
-                                icon={<Signature size={16} />}
-                                targetId="visi"
-                                onScroll={handleScroll}
-                            >
-                                Vision
-                            </NavItem>
-                            <NavItem
-                                icon={<Users size={16} />}
-                                targetId="client"
-                                onScroll={handleScroll}
-                            >
-                                Clients
-                            </NavItem>
-                        </ul>
-                    </NavigationMenuContent>
+                    <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                        <a
+                            className="bg-transparent cursor-pointer"
+                            href="#profile"
+                            onClick={(e) => handleScroll(e, 'profile')}
+                        >
+                            About Us
+                        </a>
+                    </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
@@ -87,36 +67,16 @@ export default function NavigationMenuDemo() {
                     </NavigationMenuLink>
                 </NavigationMenuItem>
 
-                <NavigationMenuItem value="media">
-                    <NavigationMenuTrigger className="bg-transparent">
-                        Media
-                    </NavigationMenuTrigger>
-
-                    <NavigationMenuContent className="bg-white shadow-md rounded-md">
-                        <ul className="p-2 space-y-1">
-                            <NavItem
-                                icon={<BookCopyIcon size={16} />}
-                                targetId="article"
-                                onScroll={handleScroll}
-                            >
-                                Article
-                            </NavItem>
-                            <NavItem
-                                icon={<ImagesIcon size={16} />}
-                                targetId="gallery"
-                                onScroll={handleScroll}
-                            >
-                                Gallery
-                            </NavItem>
-                            <NavItem
-                                icon={<LocationEditIcon size={16} />}
-                                targetId="event"
-                                onScroll={handleScroll}
-                            >
-                                Events
-                            </NavItem>
-                        </ul>
-                    </NavigationMenuContent>
+                <NavigationMenuItem>
+                    <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                        <a
+                            className="bg-transparent cursor-pointer"
+                            href="#media"
+                            onClick={(e) => handleScroll(e, 'media')}
+                        >
+                            Media
+                        </a>
+                    </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>

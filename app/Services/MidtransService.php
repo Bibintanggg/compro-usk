@@ -19,6 +19,44 @@ class MidtransService
 
     public function createSnapToken(array $params)
     {
+        $enabledPayments = [];
+
+        switch ($params['payment_method']) {
+            case 'qris':
+                $enabledPayments = [
+                    'qris',
+                    'gopay',
+                    'shopeepay',
+                ];
+                break;
+
+            case 'bank':
+                $enabledPayments = [
+                    'bca_va',
+                    'bni_va',
+                    'bri_va',
+                ];
+                break;
+
+            case 'gopay':
+                $enabledPayments = ['gopay'];
+                break;
+
+            default:
+                $enabledPayments = [
+                    'credit_card',
+                    'qris',
+                    'gopay',
+                    'shopeepay',
+                    'bca_va',
+                    'bni_va',
+                    'bri_va',
+                    'permata_va',
+                    'echannel',
+                    'cstore'
+                ];
+        }
+
         $payload = [
             'transaction_details' => [
                 'order_id' => $params['order_id'],
@@ -28,9 +66,10 @@ class MidtransService
                 'first_name' => $params['customer_name'] ?? 'Customer',
                 'email' => $params['customer_email'] ?? 'customer@mail.com',
             ],
+            'enabled_payments' => $enabledPayments,
             'callbacks' => [
                 'finish' => route('home'),
-            ]
+            ],
         ];
 
         return Snap::getSnapToken($payload);

@@ -13,6 +13,12 @@ export const columns: ColumnDef<Payment>[] = [
     {
         accessorKey: "content",
         header: "Content",
+        cell: ({ row }) => {
+            const content = row.original.content;
+            return (
+                <p className="truncate max-w-xs">{content}</p>
+            )
+        }
     },
     {
         accessorKey: "thumbnail",

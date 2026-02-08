@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Clients;
 use App\Models\Events;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -25,7 +26,11 @@ class DashboardController extends Controller
             'productsCount' => Product::count(),
             'clientCount' => Clients::count(),
             'eventCount' => Events::count(),
-            'articleCount' => Article::count()
+            'articleCount' => Article::count(),
+            'transactions' => Order::with(['product', 'payments'])
+                ->latest()
+                ->take(10)
+                ->get(),
         ]);
     }
 

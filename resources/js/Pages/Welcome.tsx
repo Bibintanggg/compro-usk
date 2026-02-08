@@ -24,7 +24,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/Components/ui/carousel"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Article } from '@/types/article';
 import { Gallery } from '@/features/gallery/types';
 import { Event } from '@/features/events/types';
@@ -34,6 +34,10 @@ import { Button } from '@/Components/ui/button';
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/Components/ui/empty';
 import EmptyFallback from '@/Components/EmptyFallback';
 import Footer from '@/Components/Footer';
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/Components/ui/alert-dialog';
+import CalculateProduct from '@/Components/CalculateProduct';
+import { ComposableMap, Geographies, Geography, Marker, Line } from 'react-simple-maps';
+
 
 interface WelcomeProps extends PageProps {
     products: Products[]
@@ -42,6 +46,9 @@ interface WelcomeProps extends PageProps {
     gallery: Gallery[],
     events: Event[]
 }
+
+const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+
 
 export default function Welcome() {
     const { products, clients, articles, gallery, events } = usePage<WelcomeProps>().props
@@ -53,54 +60,199 @@ export default function Welcome() {
             minimumFractionDigits: 0,
         }).format(price);
     };
+
+    const { showPaymentDialog, order } = usePage().props as {
+        showPaymentDialog?: boolean;
+        order?: any;
+    };
+
+    const [open, setOpen] = React.useState(false);
+    const [processing, setProcessing] = React.useState(true);
+    const [countDown, setCountdown] = React.useState(4);
+    const [hoveredCountry, setHoveredCountry] = useState(null);
+
+    const clientCountries = ['360', '764', '116'];
+
+    const clientLocations = [
+        { name: 'Jakarta', coordinates: [106.8456, -6.2088], size: 8 },
+        { name: 'Bangkok', coordinates: [100.5018, 13.7563], size: 6 },
+        { name: 'Phnom Penh', coordinates: [104.9160, 11.5564], size: 5 },
+    ];
+
+    const HQ = [106.8456, -6.2088];
+
+    useEffect(() => {
+        const hasShown = sessionStorage.getItem('payment_success_dialog');
+
+        if (!hasShown) {
+            setOpen(true);
+            sessionStorage.setItem('payment_success_dialog', 'true');
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!open) return;
+
+        setProcessing(true);
+        setCountdown(3);
+
+        const interval = setInterval(() => {
+            setCountdown((prev) => {
+                if (prev <= 1) {
+                    clearInterval(interval);
+                    setProcessing(false);
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [open]);
+
+
+
     return (
         <>
             <AppNavbar />
-            <section className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.05),transparent_50%)]" />
+            <section className="relative h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950">
+                {/* Animated World Map Background */}
+                <div className="absolute inset-0 flex items-center justify-end opacity-50">
+                    <div className="w-full h-full lg:w-[70%]">
+                        <ComposableMap
+                            projection="geoMercator"
+                            projectionConfig={{
+                                scale: 180,
+                                center: [10, 30]
+                            }}
+                            width={980}
+                            height={551}
+                            style={{ width: '100%', height: '100%' }}
+                        >
+                            <Geographies geography={geoUrl}>
+                                {({ geographies }) =>
+                                    geographies.map((geo) => {
+                                        if (geo.properties.name === 'Indonesia' ||
+                                            geo.properties.name === 'Thailand' ||
+                                            geo.properties.name === 'Cambodia') {
+                                        }
+
+                                        const isClientCountry = clientCountries.includes(geo.id);
+                                        return (
+                                            <Geography
+                                                key={geo.rsmKey}
+                                                geography={geo}
+                                                onMouseEnter={() => setHoveredCountry(geo.id)}
+                                                onMouseLeave={() => setHoveredCountry(null)}
+                                                style={{
+                                                    default: {
+                                                        fill: isClientCountry ? '#60a5fa' : '#1e293b',
+                                                        stroke: isClientCountry ? '#93c5fd' : '#334155',
+                                                        strokeWidth: 0.8,
+                                                        outline: 'none',
+                                                        animation: isClientCountry ? 'glowPulse 3s ease-in-out infinite' : 'none',
+                                                    },
+                                                    hover: {
+                                                        fill: isClientCountry ? '#93c5fd' : '#334155',
+                                                        stroke: '#93c5fd',
+                                                        strokeWidth: 1.2,
+                                                        outline: 'none',
+                                                    },
+                                                    pressed: {
+                                                        fill: '#60a5fa',
+                                                        outline: 'none',
+                                                    }
+                                                }}
+                                            />
+                                        );
+                                    })
+                                }
+                            </Geographies>
+
+                            {/* Glowing Markers for Client Locations */}
+                            {clientLocations.map(({ name, coordinates }) => (
+                                <Line
+                                    key={`line-${name}`}
+                                    from={HQ}
+                                    to={coordinates}
+                                    stroke="#60a5fa"
+                                    strokeWidth={1.5}
+                                    strokeLinecap="round"
+                                    strokeDasharray="4 6"
+                                >
+                                    <animate
+                                        attributeName="stroke-dashoffset"
+                                        from="20"
+                                        to="0"
+                                        dur="2s"
+                                        repeatCount="indefinite"
+                                    />
+                                    <animate
+                                        attributeName="opacity"
+                                        values="0;1;0"
+                                        dur="2s"
+                                        repeatCount="indefinite"
+                                    />
+                                </Line>
+                            ))}
+                        </ComposableMap>
+                    </div>
+                </div>
+
+                {/* Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/10 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent pointer-events-none" />
+
+                {/* Animated grid pattern */}
+                <div className="absolute inset-0 opacity-10">
+                    <div className="absolute inset-0" style={{
+                        backgroundImage: 'linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)',
+                        backgroundSize: '50px 50px'
+                    }} />
+                </div>
 
                 <div className="container mx-auto px-6 lg:px-16 py-20 relative z-10">
                     <div className="max-w-7xl mx-auto">
                         <div className="grid lg:grid-cols-2 gap-16 items-center">
                             <div className="space-y-10">
                                 <div className="space-y-6">
-                                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full">
-                                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
-                                        <span className="text-sm font-medium text-blue-700">Digital Innovation Partner</span>
+                                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 backdrop-blur-sm border border-blue-500/20 rounded-full">
+                                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+                                        <span className="text-sm font-medium text-blue-300">Global Digital Innovation Partner</span>
                                     </div>
 
-                                    <h1 className="text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+                                    <h1 className="text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-white">
                                         Transform Your
                                         <br />
-                                        <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+                                        <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
                                             Digital Future
                                         </span>
                                     </h1>
 
-                                    <p className="text-xl text-slate-600 leading-relaxed max-w-lg">
-                                        Deloitte Digital combines strategy, creativity, and technology to deliver transformative digital experiences.
+                                    <p className="text-xl text-slate-300 leading-relaxed max-w-lg">
+                                        AyoDev.id combines strategy, creativity, and technology to deliver transformative digital experiences across the globe.
                                     </p>
                                 </div>
 
                                 <div className="flex items-center gap-12 pt-4">
                                     <div className="space-y-1">
-                                        <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+                                        <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
                                             100+
                                         </div>
-                                        <div className="text-sm text-slate-500 font-medium">Trusted Clients</div>
+                                        <div className="text-sm text-slate-400 font-medium">Trusted Clients</div>
                                     </div>
-                                    <div className="w-px h-12 bg-slate-200" />
+                                    <div className="w-px h-12 bg-slate-700" />
                                     <div className="space-y-1">
-                                        <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
-                                            6+
+                                        <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+                                            24/7
                                         </div>
-                                        <div className="text-sm text-slate-500 font-medium">Digital Solutions</div>
+                                        <div className="text-sm text-slate-400 font-medium">Support</div>
                                     </div>
                                 </div>
+
                             </div>
 
-                            <div className="relative">
-                                <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-violet-500 rounded-3xl blur-2xl opacity-20" />
+                            <div className="relative lg:block hidden">
                                 <div className="relative aspect-[4/4] rounded-3xl overflow-hidden ">
                                     <img
                                         src="/images/avatar.png"
@@ -137,7 +289,7 @@ export default function Welcome() {
                                 <div className="relative aspect-[4/3] overflow-hidden">
                                     <img
                                         src="/images/tech-about.jpg"
-                                        alt="About Deloitte Digital"
+                                        // alt="About Deloitte Digital"
                                         className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
                                     />
                                 </div>
@@ -145,19 +297,20 @@ export default function Welcome() {
                                 {/* Content */}
                                 <div className="space-y-8">
                                     <p className="text-2xl lg:text-3xl leading-[1.4] text-slate-800">
-                                        Deloitte Digital is part of <span className="font-medium">Deloitte</span>, delivering end-to-end digital transformation by combining deep industry insight, innovative technology, and human-centered design.
+                                        <span className="font-medium">AyoDev.id</span> is a technology service company focused on delivering reliable digital solutions, from website development to custom technology services tailored to business needs.
                                     </p>
 
                                     <p className="text-lg lg:text-xl text-slate-600 leading-relaxed">
-                                        We help organizations create meaningful digital experiences and sustainable business growth.
+                                        We help businesses and organizations build functional, scalable, and user-friendly digital products that support growth and efficiency.
                                     </p>
 
                                     <div className="pt-4 pl-6 border-l-[3px] border-slate-900">
                                         <p className="text-base text-slate-700 italic">
-                                            Backed by Deloitte's global network and proven expertise.
+                                            Turning ideas into digital solutions through technology and thoughtful design.
                                         </p>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 
@@ -178,7 +331,7 @@ export default function Welcome() {
                                         02 — Vision
                                     </span>
                                     <p className="text-xl lg:text-2xl text-slate-800 leading-relaxed">
-                                        To be a trusted digital partner that helps organizations shape the future through meaningful, human-centered digital transformation.
+                                        To become a trusted technology partner that helps businesses grow through reliable, innovative, and user-focused digital solutions.
                                     </p>
                                 </div>
 
@@ -189,24 +342,29 @@ export default function Welcome() {
                                         Mission
                                     </span>
                                     <ul className="space-y-5 text-lg text-slate-700">
-                                        <li className="flex items-start gap-4">
-                                            <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
-                                                1
-                                            </span>
-                                            <span>Deliver impactful digital solutions</span>
-                                        </li>
-                                        <li className="flex items-start gap-4">
-                                            <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
-                                                2
-                                            </span>
-                                            <span>Create human-centric experiences</span>
-                                        </li>
-                                        <li className="flex items-start gap-4">
-                                            <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
-                                                3
-                                            </span>
-                                            <span>Drive sustainable business growth</span>
-                                        </li>
+                                        <ul className="space-y-5 text-lg text-slate-700">
+                                            <li className="flex items-start gap-4">
+                                                <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
+                                                    1
+                                                </span>
+                                                <span>Provide high-quality website and digital development services tailored to each client’s needs.</span>
+                                            </li>
+
+                                            <li className="flex items-start gap-4">
+                                                <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
+                                                    2
+                                                </span>
+                                                <span>Design and build user-friendly, scalable, and efficient digital products.</span>
+                                            </li>
+
+                                            <li className="flex items-start gap-4">
+                                                <span className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-slate-900 flex items-center justify-center text-white text-xs font-medium">
+                                                    3
+                                                </span>
+                                                <span>Support long-term business growth through technology, collaboration, and continuous improvement.</span>
+                                            </li>
+                                        </ul>
+
                                     </ul>
                                 </div>
                             </div>
@@ -230,12 +388,12 @@ export default function Welcome() {
                                 <h2 className="text-5xl md:text-7xl font-light leading-[0.95] tracking-tight">
                                     Trusted By
                                     <br />
-                                    <span className="font-normal">Industry Leaders</span>
+                                    <span className="font-normal">Growing Businesses</span>
                                 </h2>
                             </div>
                             <div className="flex items-end lg:justify-end">
                                 <p className="text-base md:text-lg text-neutral-500 max-w-md leading-relaxed font-light">
-                                    We partner with leading organizations across industries to deliver impactful and measurable digital transformation.
+                                    We collaborate with startups, small businesses, and organizations to build reliable digital solutions that support their growth.
                                 </p>
                             </div>
                         </div>
@@ -316,14 +474,15 @@ export default function Welcome() {
                                 </div>
                                 <div className="flex flex-col justify-end space-y-3">
                                     <p className="text-xl text-neutral-500 leading-relaxed font-light">
-                                        Discover our innovative digital solutions designed to transform your business and drive sustainable growth.
+                                        Explore our digital services, from website development to custom technology solutions built to support your business growth.
                                     </p>
                                     <div className="flex gap-4 text-[15px] tracking-wider text-neutral-400">
-                                        <span>{products.filter(p => p.is_active).length} Active Products</span>
+                                        <span>{products.filter(p => p.is_active).length} Active Services</span>
                                         <span>•</span>
                                         <span>Trusted by {clients.length} clients</span>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 
@@ -340,11 +499,16 @@ export default function Welcome() {
                                             {/* Image */}
                                             <div className={`relative overflow-hidden bg-neutral-50 ${index === 0 || index === 3 ? 'aspect-[8/5]' : 'aspect-[5/2]'
                                                 }`}>
-                                                <img
-                                                    src={`/storage/${product.image}`}
-                                                    alt={product.name}
-                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                                />
+                                                {product.image ? (
+
+                                                    <img
+                                                        src={`/storage/${product.image}`}
+                                                        alt={product.name}
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                    />
+                                                ) : (
+                                                    <img src="/images/fallback.jpg" alt="" />
+                                                )}
 
                                                 {/* Overlay */}
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -402,7 +566,7 @@ export default function Welcome() {
             </section>
 
             {/* Articles Section - Magazine Style */}
-            <section className="bg-neutral-50 py-32" id="article">
+            <section className="bg-neutral-50 py-32" id="media">
                 <div className="container mx-auto px-6 lg:px-16">
                     <div className="max-w-7xl mx-auto">
                         <div className="mb-20">
@@ -420,8 +584,9 @@ export default function Welcome() {
                                 <div className="lg:col-span-7 flex items-end">
                                     <div className="space-y-4">
                                         <p className="text-lg text-neutral-600">
-                                            Deep insights, case studies, and thought leadership from our team of digital transformation experts.
+                                            Stories, learnings, and practical tips from our journey building websites and digital products.
                                         </p>
+
                                         <span className="text-sm text-neutral-500">{articles.length} Articles Published</span>
                                     </div>
                                 </div>
@@ -438,11 +603,16 @@ export default function Welcome() {
                                     >
                                         <div className="grid lg:grid-cols-12 gap-8 bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500">
                                             <div className="lg:col-span-5 relative h-80 overflow-hidden">
-                                                <img
-                                                    src={`/storage/${article.thumbnail}`}
-                                                    alt={article.title}
-                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                                />
+                                                {article.thumbnail ? (
+                                                    <img
+                                                        src={`/storage/${article.thumbnail}`}
+                                                        alt={article.title}
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                    />
+
+                                                ) : (
+                                                    <img src="/images/fallback.jpg" alt="" />
+                                                )}
                                             </div>
 
                                             <div className="lg:col-span-7 p-12 flex flex-col justify-center">
@@ -534,11 +704,16 @@ export default function Welcome() {
                                             key={item.id}
                                             className={`${gridClass} group relative rounded-xl overflow-hidden cursor-pointer h-64`}
                                         >
-                                            <img
-                                                src={`/storage/${item.image}`}
-                                                alt={item.title}
-                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                            />
+                                            {item.image ? (
+                                                <img
+                                                    src={`/storage/${item.image}`}
+                                                    alt={item.title}
+                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                />
+
+                                            ) : (
+                                                <img src="/images/fallback.jpg" alt="" />
+                                            )}
                                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-end p-6">
                                                 <h3 className="text-white text-lg font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                     {item.title}
@@ -588,7 +763,7 @@ export default function Welcome() {
                                 </div>
                                 <div className="flex flex-col justify-end space-y-2">
                                     <p className="text-xl text-neutral-500 leading-relaxed font-light">
-                                        Join us at our upcoming events, conferences, and workshops to connect with industry leaders and innovators.
+                                        Stay updated with our upcoming events, workshops, and online sessions where we share insights about web development and digital solutions.
                                     </p>
                                     <span className="text-[15px] text-neutral-400 tracking-wider">{events.length} Upcoming Events</span>
                                 </div>
@@ -617,10 +792,14 @@ export default function Welcome() {
                                                 </div>
 
                                                 <div className="lg:col-span-4 relative aspect-[16/10] lg:aspect-auto overflow-hidden bg-neutral-100">
-                                                    <img
-                                                        src={`/storage/${event.image}`}
-                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                                    />
+                                                    {event.image ? (
+                                                        <img
+                                                            src={`/storage/${event.image}`}
+                                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                        />
+                                                    ) : (
+                                                        <img src="/images/fallback.jpg" alt="Fallback" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                                    )}
                                                 </div>
 
                                                 <div className="lg:col-span-6 p-6 flex flex-col justify-center space-y-4">
@@ -676,6 +855,8 @@ export default function Welcome() {
                 </div>
             </section>
 
+            <CalculateProduct />
+
             <section className="bg-white py-32" id="contact">
                 <div className="container mx-auto px-6 lg:px-16">
                     <div className="max-w-7xl mx-auto">
@@ -714,9 +895,9 @@ export default function Welcome() {
                                 </p>
                                 <a
                                     href="mailto:hello@deloittedigital.com"
-                                    className="text-neutral-900 group-hover:text-white font-light break-all transition-colors"
+                                    className="text-neutral-900 group-hover:text-white   font-light break-all transition-colors"
                                 >
-                                    hello@deloittedigital.com
+                                    hello@ayodev.id
                                 </a>
                             </div>
 
@@ -737,19 +918,12 @@ export default function Welcome() {
                             </div>
 
                             <div className="group bg-neutral-50 rounded-2xl p-10 hover:bg-neutral-900 transition-all duration-500">
-                                <MapPin className="w-10 h-10 text-neutral-900 group-hover:text-white mb-6 transition-colors" />
+                                <Instagram className="w-10 h-10 text-neutral-900 group-hover:text-white mb-6 transition-colors" />
                                 <h3 className="text-xl font-light mb-2 text-neutral-900 group-hover:text-white transition-colors">
-                                    Visit Us
+                                    Instagram
                                 </h3>
                                 <p className="text-sm text-neutral-500 group-hover:text-neutral-400 mb-4 transition-colors">
-                                    Come say hello
-                                </p>
-                                <p className="text-neutral-900 group-hover:text-white font-light text-sm transition-colors">
-                                    The Plaza Office Tower, 32nd Floor
-                                    <br />
-                                    Jl. M.H. Thamrin Kav 28-30
-                                    <br />
-                                    Jakarta, Indonesia
+                                    @ayodev.id
                                 </p>
                             </div>
                         </div>
@@ -771,7 +945,7 @@ export default function Welcome() {
                                 </a>
                                 <a
                                     target="_blank"
-                                    href="https://www.instagram.com/bintang.ydha_"
+                                    href="https://www.instagram.com/ayodev.id/"
                                     className="w-12 h-12 border border-neutral-300 rounded-full flex items-center justify-center hover:bg-neutral-900 hover:border-neutral-900 hover:text-white transition-all"
                                 >
                                     <Instagram className="w-5 h-5" />
@@ -783,6 +957,25 @@ export default function Welcome() {
             </section>
 
             <Footer />
+
+            {/* <AlertDialog open={open} onOpenChange={setOpen}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Payment Successfully !!</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            Please always check your email to wait for our team's reply to your order.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogAction
+                        disabled={processing}
+                            onClick={() => router.visit('/')}
+                        >
+                            {processing ? 'Processing...' : 'OK'}
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog> */}
         </>
     );
 }

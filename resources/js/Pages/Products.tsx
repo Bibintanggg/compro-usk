@@ -7,6 +7,15 @@ import AppNavbar from '@/Components/Navbar';
 import Footer from '@/Components/Footer';
 // import { Button } from '@/Components/ui/button';
 import { toast } from "sonner"
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "@/Components/ui/alert-dialog";
 
 declare global {
     interface Window {
@@ -21,6 +30,10 @@ interface ProductProps extends PageProps {
 
 export default function Product() {
     const { product, snap_token } = usePage<ProductProps>().props;
+    const [successOpen, setSuccessOpen] = useState(false)
+    const [processing, setProcessing] = useState(false);
+    const [snapReady, setSnapReady] = useState(false);
+
     const [paymentMethod, setPaymentMethod] = useState('');
     const [formData, setFormData] = useState({
         email: '',
@@ -34,28 +47,78 @@ export default function Product() {
     });
 
     useEffect(() => {
-        if (snap_token && window.snap) {
-            console.log('Snap token received:', snap_token);
-            window.snap.pay(snap_token, {
-                onSuccess: function (result: any) {
-                    console.log('Payment success:', result);
-                    toast("Payment successful!");
-                    router.visit('/');
-                },
-                onPending: function (result: any) {
-                    console.log('Payment pending:', result);
-                    toast("Payment Pending !!");
-                },
-                onError: function (result: any) {
-                    console.log('Payment error:', result);
-                    toast("Payment failed!");
-                },
-                onClose: function () {
-                    console.log('Popup closed');
-                }
-            });
+        if (window.snap) {
+            setSnapReady(true);
+            return;
         }
-    }, [snap_token]);
+
+        const script = document.createElement('script');
+        script.src = 'https://app.sandbox.midtrans.com/snap/snap.js';
+        script.setAttribute(
+            'data-client-key',
+            import.meta.env.VITE_MIDTRANS_CLIENT_KEY
+        );
+
+        script.onload = () => {
+            setSnapReady(true);
+        };
+
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
+
+    useEffect(() => {
+        if (!snap_token || !snapReady) return;
+
+        const alreadyPaid = sessionStorage.getItem(
+            `payment_success_${snap_token}`
+        );
+
+        if (alreadyPaid) return;
+
+        window.snap.pay(snap_token, {
+            onSuccess: () => {
+                sessionStorage.setItem(
+                    `payment_success_${snap_token}`,
+                    'true'
+                );
+                setSuccessOpen(true);
+            },
+            onPending: () => toast("Payment Pending"),
+            onError: () => toast("Payment Failed"),
+        });
+    }, [snap_token, snapReady]);
+
+
+    // useEffect(() => {
+    //     if (!successOpen) return;
+
+    //     setProcessing(true);
+
+    //     const timer = setTimeout(() => {
+    //         sessionStorage.removeItem(
+    //             `payment_success_${snap_token}`
+    //         );
+    //         router.visit('/');
+    //     }, 10000);
+
+    //     return () => clearTimeout(timer);
+    // }, [successOpen]);
+
+    const handleSuccessOk = () => {
+        setProcessing(true);
+
+        sessionStorage.removeItem(
+            `payment_success_${snap_token}`
+        );
+
+        router.visit('/');
+    };
+
 
     const formatPrice = (price: number) => {
         return new Intl.NumberFormat("id-ID", {
@@ -66,12 +129,12 @@ export default function Product() {
     };
 
     const quantity = 1;
-    const shippingCost = 25000;
+    // const shippingCost = 25000;
     const taxRate = 0.1;
 
     const subTotal = product.price * quantity;
-    const tax = subTotal * taxRate;
-    const total = subTotal + shippingCost + tax;
+    // const tax = subTotal * taxRate;
+    const total = subTotal;
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -88,7 +151,6 @@ export default function Product() {
             },
         );
     };
-
 
     useEffect(() => {
         const script = document.createElement('script');
@@ -216,7 +278,7 @@ export default function Product() {
                                         <img src="/images/qris-logo.png" alt="" className='w-10 h-10 rounded-lg' />
                                         <div>
                                             <p className="font-semibold text-gray-900">QRIS</p>
-                                            <p className="text-xs text-gray-500">GoPay, OVO, DANA, ShopeePay</p>
+                                            <p className="text-xs text-gray-500">GoPay, ShopeePay</p>
                                         </div>
                                     </label>
 
@@ -235,7 +297,7 @@ export default function Product() {
                                         </div>
                                         <div>
                                             <p className="font-semibold text-gray-900">Bank Transfer</p>
-                                            <p className="text-xs text-gray-500">BCA, BNI, Mandiri</p>
+                                            <p className="text-xs text-gray-500">BCA, BNI, BRI</p>
                                         </div>
                                     </label>
                                 </div>
@@ -257,22 +319,29 @@ export default function Product() {
 
                                 <div className="flex gap-3 pb-4 mb-4 border-b">
                                     <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden flex-shrink-0">
-                                        <img
-                                            src={`/storage/${product.image}`}
-                                            alt={product.name}
-                                            className="w-full h-full object-cover"
-                                        />
+                                        {product.image ? (
+
+                                            <img
+                                                src={`/storage/${product.image}`}
+                                                alt={product.name}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        ) : ((
+                                            <img src="/images/fallback.jpg" alt="" className="w-full h-full object-cover" />
+                                        ))}
                                     </div>
                                     <div className="flex-1 min-w-0">
                                         <h3 className="font-semibold text-sm truncate">{product.name}</h3>
                                         <p className="text-xs text-gray-600 mt-1">Qty: 1</p>
+                                        <h3 className="text-gray-600 text-sm truncate">{product.description}</h3>
+                                        <h3 className="text-gray-600 text-sm truncate">{product.content}</h3>
                                     </div>
                                     <div className="text-sm font-semibold">
                                         {formatPrice(product.price)}
                                     </div>
                                 </div>
 
-                                <div className="space-y-2 pb-4 mb-4 border-b text-sm">
+                                {/* <div className="space-y-2 pb-4 mb-4 border-b text-sm">
                                     <div className="flex justify-between">
                                         <span className="text-gray-600">Subtotal</span>
                                         <span>{formatPrice(subTotal)}</span>
@@ -285,7 +354,7 @@ export default function Product() {
                                         <span className="text-gray-600">Tax</span>
                                         <span>{formatPrice(tax)}</span>
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="flex justify-between items-center">
                                     <span className="font-bold">Total</span>
@@ -297,6 +366,25 @@ export default function Product() {
                 </form>
             </div>
 
+            <AlertDialog open={successOpen} onOpenChange={setSuccessOpen}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Payment Successfully !!</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            Please always check your email to wait for our team's reply to your order.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+
+                    <AlertDialogFooter>
+                        <AlertDialogAction
+                            onClick={handleSuccessOk}
+                            disabled={processing}
+                        >
+                            {processing ? 'Processing...' : 'OK'}
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
             <Footer />
         </div>
     );

@@ -17,3 +17,4 @@ class Clients extends Model
         'description',
     ];
 }
+    

@@ -42,7 +42,7 @@ export default function ProductDetail() {
                         <span className="text-sm font-semibold tracking-wider uppercase text-yellow-400">Trending Now</span>
                     </div>
                     <h2 className="text-5xl lg:text-6xl font-black mb-4 max-w-3xl">
-                        Deloitte Digital Products
+                        AyoDev.id Products
                     </h2>
                     <p className="text-xl text-gray-300 max-w-2xl">
                         Digital solutions designed to drive business impact and innovation
@@ -80,19 +80,29 @@ export default function ProductDetail() {
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                         <div className="lg:col-span-5 space-y-4">
                             <div className="relative aspect-square bg-white rounded-2xl overflow-hidden group shadow-lg">
-                                <img
-                                    src={`/storage/${product.image}`}
-                                    alt={product.name}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
+                                {product.image ? (
+                                    <img
+                                        src={`/storage/${product.image}`}
+                                        alt={product.name}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+
+                                ):(
+                                    <img src="/images/fallback.jpg" alt="Fallback" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                )}
                             </div>
 
                             <div className="grid grid-cols-4 gap-4">
                                 <div className="aspect-square bg-white rounded-lg overflow-hidden cursor-pointer hover:opacity-75 transition-opacity shadow">
-                                    <img
-                                        src={`/storage/${product.image}`}
-                                        className="w-full h-full object-cover"
-                                    />
+                                    {product.image ? (
+
+                                        <img
+                                            src={`/storage/${product.image}`}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    ):(
+                                        <img src="/images/fallback.jpg" alt="" className="w-full h-full object-cover" />
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -159,8 +169,8 @@ export default function ProductDetail() {
                                         Product Details
                                     </button>
                                 </div>
-                                <div className="prose prose-sm max-w-none">
-                                    <p className="text-gray-700 leading-relaxed">
+                                <div className="prose max-w-xl break-all">
+                                    <p className="text-gray-700 ">
                                         {product.content}
                                     </p>
                                 </div>
@@ -185,11 +195,16 @@ export default function ProductDetail() {
                                         >
                                             <button className="w-full flex gap-4" onClick={() => router.visit(route('product.detail', item.slug))}>
                                                 <div className="w-24 h-24 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
-                                                    <img
+                                                    {item.image ? (
+                                                        <img
                                                         src={`/storage/${item.image}`}
                                                         alt={item.name}
                                                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                                                    />
+                                                        />
+
+                                                    ):(
+                                                        <img src="/images/fallback.jpg" alt="" className="w-full h-full object-cover" />
+                                                    )}
                                                 </div>
                                                 <div className="flex-1 min-w-0 w-full text-start">
                                                     <h4 className="font-semibold max-w-2xl text-gray-900 text-sm mb-1 truncate">

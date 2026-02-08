@@ -1,4 +1,4 @@
-import { Calendar, ChevronUp, Home, Inbox, Package2, Paperclip, Search, Settings, User2 } from "lucide-react"
+import { Calendar, ChevronLeft, ChevronUp, Home, Inbox, Package2, Paperclip, Search, Settings, User2 } from "lucide-react"
 import {
     Sidebar,
     SidebarContent,
@@ -58,6 +58,11 @@ const items = [
         url: "/admin/gallery",
         icon: Images,
     },
+    {
+        title: "Back To Website",
+        url: "/",
+        icon: ChevronLeft,
+    },
 ]
 
 export function AppSidebar() {
@@ -67,8 +72,8 @@ export function AppSidebar() {
         <Sidebar>
             <SidebarContent>
                 <SidebarGroup>
-                    <img src="/images/logo.jpg" className="w-24 rounded-lg mx-auto mt-4" />
-                    <SidebarGroupLabel className="text-lg font-semibold text-center mx-auto mt-2 mb-5">PT. Deloitte Digital ID</SidebarGroupLabel>
+                    <img src="/images/ayodev.jpg" className="w-24 rounded-lg mx-auto mt-4" />
+                    <SidebarGroupLabel className="text-lg font-semibold text-center mx-auto mt-2 mb-5">AyoDev.id</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {items.map((item) => {

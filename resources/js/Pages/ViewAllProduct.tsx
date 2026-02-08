@@ -86,7 +86,7 @@ export default function AllProducts() {
                                 >
                                     <Grid3x3 className="w-5 h-5" />
                                 </button>
-                                <button
+                                {/* <button
                                     onClick={() => setViewMode("list")}
                                     className={`p-3 rounded-xl border-2 transition-all ${viewMode === "list"
                                         ? "border-purple-500 bg-purple-50 text-purple-600"
@@ -94,7 +94,7 @@ export default function AllProducts() {
                                         }`}
                                 >
                                     <List className="w-5 h-5" />
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>
