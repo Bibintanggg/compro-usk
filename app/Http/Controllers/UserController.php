@@ -24,6 +24,7 @@ class UserController extends Controller
             'articles' => Article::latest()->limit(6)->get(),
             'gallery' => Gallery::latest()->limit(4)->get(),
             'events' => Events::latest()->limit(5)->get(),
+            'totalCustomer' => Clients::count(),
 
             'showPaymentDialog' => !!$order,
             'order' => $order

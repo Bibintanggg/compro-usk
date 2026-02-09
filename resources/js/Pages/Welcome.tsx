@@ -44,14 +44,15 @@ interface WelcomeProps extends PageProps {
     clients: Client[],
     articles: Article[],
     gallery: Gallery[],
-    events: Event[]
+    events: Event[],
+    totalCustomer: number
 }
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 
 export default function Welcome() {
-    const { products, clients, articles, gallery, events } = usePage<WelcomeProps>().props
+    const { products, clients, articles, gallery, events, totalCustomer } = usePage<WelcomeProps>().props
 
     const formatPrice = (price: number) => {
         return new Intl.NumberFormat("id-ID", {
@@ -237,7 +238,7 @@ export default function Welcome() {
                                 <div className="flex items-center gap-12 pt-4">
                                     <div className="space-y-1">
                                         <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
-                                            100+
+                                            {totalCustomer}
                                         </div>
                                         <div className="text-sm text-slate-400 font-medium">Trusted Clients</div>
                                     </div>

@@ -4,13 +4,18 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { Button } from '@/Components/ui/button';
 import { Input } from '@/Components/ui/input';
 import { Label } from '@/Components/ui/label';
 import { Checkbox as ShadcnCheckbox } from '@/Components/ui/checkbox';
+import { Client } from '@/features/clients/types';
+import { PageProps } from '@/types';
 
+interface LoginProps  extends PageProps {
+    totalCustomer: number
+}
 export default function Login({
     status,
     canResetPassword,
@@ -31,6 +36,8 @@ export default function Login({
             onFinish: () => reset('password'),
         });
     };
+
+    const { totalCustomer } = usePage<LoginProps>().props
 
     return (
         <>
@@ -147,14 +154,14 @@ export default function Login({
                                     </label>
                                 </div>
 
-                                {canResetPassword && (
+                                {/* {canResetPassword && (
                                     <Link
                                         href={route('password.request')}
                                         className="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors"
                                     >
                                         Forgot password?
                                     </Link>
-                                )}
+                                )} */}
                             </div>
 
                             {/* Submit Button */}
@@ -193,7 +200,7 @@ export default function Login({
                         </form>
 
                         {/* Footer */}
-                        <div className="text-center pt-6 border-t border-gray-200">
+                        {/* <div className="text-center pt-6 border-t border-gray-200">
                             <p className="text-sm text-gray-600">
                                 Don't have an account?{' '}
                                 <Link
@@ -203,7 +210,7 @@ export default function Login({
                                     Contact sales
                                 </Link>
                             </p>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 
@@ -228,14 +235,14 @@ export default function Login({
                         </div>
 
                         {/* Stats */}
-                        <div className="grid grid-cols-3 gap-8 pt-8">
-                            <div className="space-y-1">
+                        <div className="grid grid-cols-2 gap-8 pt-8">
+                            {/* <div className="space-y-1">
                                 <p className="text-4xl font-bold text-white">99.9%</p>
                                 <p className="text-sm text-gray-400">Uptime</p>
-                            </div>
+                            </div> */}
                             <div className="space-y-1">
-                                <p className="text-4xl font-bold text-white">50K+</p>
-                                <p className="text-sm text-gray-400">Companies</p>
+                                <p className="text-4xl font-bold text-white">{totalCustomer}</p>
+                                <p className="text-sm text-gray-400">Clients</p>
                             </div>
                             <div className="space-y-1">
                                 <p className="text-4xl font-bold text-white">24/7</p>
@@ -244,7 +251,7 @@ export default function Login({
                         </div>
 
                         {/* Testimonial */}
-                        <div className="pt-8 space-y-4">
+                        {/* <div className="pt-8 space-y-4">
                             <div className="flex items-center gap-1">
                                 {[...Array(5)].map((_, i) => (
                                     <svg
@@ -267,7 +274,7 @@ export default function Login({
                                     <p className="text-sm text-gray-400">CEO, TechCorp</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
