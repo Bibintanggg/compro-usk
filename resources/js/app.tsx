@@ -8,6 +8,7 @@ import { createRoot } from 'react-dom/client'
 import { Toaster } from "@/Components/ui/sonner"
 
 import AosProvider from '@/Providers/AosProvider'
+import { PaymentStatusProvider } from './Providers/PaymentProvider'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel'
 
@@ -22,10 +23,12 @@ createInertiaApp({
         const root = createRoot(el)
 
         root.render(
-            <AosProvider>
-                <App {...props} />
-                 <Toaster />
-            </AosProvider>
+            <PaymentStatusProvider>
+                <AosProvider>
+                    <App {...props} />
+                    <Toaster />
+                </AosProvider>
+            </PaymentStatusProvider>
         )
     },
     progress: {

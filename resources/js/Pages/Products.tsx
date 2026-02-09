@@ -16,6 +16,7 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@/Components/ui/alert-dialog";
+import { usePaymentStatus } from '@/Providers/PaymentProvider';
 
 declare global {
     interface Window {
@@ -33,6 +34,7 @@ export default function Product() {
     const [successOpen, setSuccessOpen] = useState(false)
     const [processing, setProcessing] = useState(false);
     const [snapReady, setSnapReady] = useState(false);
+    const { showSuccess, showPending, showError } = usePaymentStatus()
 
     const [paymentMethod, setPaymentMethod] = useState('');
     const [formData, setFormData] = useState({
@@ -74,24 +76,28 @@ export default function Product() {
     useEffect(() => {
         if (!snap_token || !snapReady) return;
 
-        const alreadyPaid = sessionStorage.getItem(
-            `payment_success_${snap_token}`
-        );
-
+        const alreadyPaid = sessionStorage.getItem(`payment_success_${snap_token}`);
         if (alreadyPaid) return;
 
         window.snap.pay(snap_token, {
             onSuccess: () => {
-                sessionStorage.setItem(
-                    `payment_success_${snap_token}`,
-                    'true'
+                sessionStorage.setItem(`payment_success_${snap_token}`, 'true');
+                showSuccess(
+                    'Please check your email for order confirmation.',
+                    '/'
                 );
-                setSuccessOpen(true);
             },
-            onPending: () => toast("Payment Pending"),
-            onError: () => toast("Payment Failed"),
+            onPending: () => {
+                showPending(
+                    'Your payment is being verified. We will send you an email once confirmed.',
+                    '/'
+                );
+            },
+            onError: () => {
+                showError('Payment could not be processed. Please try again or contact support.');
+            },
         });
-    }, [snap_token, snapReady]);
+    }, [snap_token, snapReady, showSuccess, showPending, showError]);
 
 
     // useEffect(() => {
@@ -129,11 +135,9 @@ export default function Product() {
     };
 
     const quantity = 1;
-    // const shippingCost = 25000;
     const taxRate = 0.1;
 
     const subTotal = product.price * quantity;
-    // const tax = subTotal * taxRate;
     const total = subTotal;
 
     const handleSubmit = (e: React.FormEvent) => {

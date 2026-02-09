@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\MidtransWebhookController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -29,6 +30,10 @@ Route::get('/products/detail/{product}', [UserController::class, 'detail'])->nam
 Route::get('/products/all', [UserController::class, 'viewAllProduct'])->name('product.view');
 Route::get('/products/checkout/{product}', [UserController::class, 'product'])->name('product.checkout');
 Route::post('/products/checkout/{product}', [CheckoutController::class, 'store'])->name('product.checkout.store');
+
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::post('/orders/{order}/retry-payment', [OrderController::class, 'retryPayment'])->name('orders.retry-payment');
+Route::post('/orders/{order}/update-status', [OrderController::class, 'updateStatus'])->name('orders.update-status');
 
 Route::post('/midtrans/notification', [MidtransWebhookController::class, 'handle'])->name('midtrans.webhook');
 

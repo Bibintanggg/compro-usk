@@ -28,4 +28,14 @@ class Order extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function scopeStatus($query, $status)
+    {
+        return $query->where('status', $status); // scope filter status
+    }
+
+     public function getLatestPaymentAttribute()
+    {
+        return $this->payments()->latest()->first(); // ambil latest payment
+    }
 }

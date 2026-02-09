@@ -90,6 +90,12 @@ export default function NavigationMenuDemo() {
                         </a>
                     </NavigationMenuLink>
                 </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                    <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                        <Link href="/orders" className="bg-transparent">My Order</Link>
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
             </NavigationMenuList>
             <div className="absolute left-0 top-full z-50">
                 <NavigationMenuViewport className="bg-white shadow-md rounded-md" />
