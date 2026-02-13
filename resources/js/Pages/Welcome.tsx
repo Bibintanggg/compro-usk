@@ -74,13 +74,17 @@ export default function Welcome() {
 
     const clientCountries = ['360', '764', '116'];
 
-    const clientLocations = [
-        { name: 'Jakarta', coordinates: [106.8456, -6.2088], size: 8 },
-        { name: 'Bangkok', coordinates: [100.5018, 13.7563], size: 6 },
-        { name: 'Phnom Penh', coordinates: [104.9160, 11.5564], size: 5 },
-    ];
+    const clientLocations: Array<{
+        name: string;
+        coordinates: [number, number];
+        size: number;
+    }> = [
+            { name: 'Jakarta', coordinates: [106.8456, -6.2088], size: 8 },
+            { name: 'Bangkok', coordinates: [100.5018, 13.7563], size: 6 },
+            { name: 'Phnom Penh', coordinates: [104.9160, 11.5564], size: 5 },
+        ];
 
-    const HQ = [106.8456, -6.2088];
+    const HQ: [number, number] = [106.8456, -6.2088];
 
     useEffect(() => {
         const hasShown = sessionStorage.getItem('payment_success_dialog');

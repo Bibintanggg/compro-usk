@@ -123,7 +123,6 @@ export function PaymentStatusProvider({ children }: { children: ReactNode }) {
                     </AlertDialogHeader>
                     <AlertDialogFooter className="flex gap-2">
                         <AlertDialogAction
-                            variant="outline"
                             onClick={() => {
                                 setPendingOpen(false);
                                 // Re-open Midtrans Snap kalau masih available

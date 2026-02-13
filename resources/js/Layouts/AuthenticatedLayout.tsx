@@ -12,7 +12,6 @@ export default function Authenticated({ children }: { children: React.ReactNode 
         <SidebarProvider>
             <AppSidebar />
             <main className='w-full'>
-                {/* <SidebarTrigger /> */}
                 {children}
             </main>
         </SidebarProvider>

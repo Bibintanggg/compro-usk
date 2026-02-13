@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, router } from '@inertiajs/react';
 import { Calendar, MapPin, Clock, Grid3x3, List, Search, Filter } from 'lucide-react';
 import { Event } from '@/features/events/types';
-import { Button } from './ui/button';
+import { Button } from '@/Components/ui/button';
 
 interface EventsListViewProps {
     events: Event[];

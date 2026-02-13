@@ -1,6 +1,6 @@
 import { Users } from "lucide-react";
 import { Empty, EmptyContent, EmptyHeader, EmptyMedia, EmptyTitle } from "./ui/empty";
-import { Button } from "./ui/button";
+import { Button } from "@/Components/ui/button";
 import { router } from "@inertiajs/react";
 import React from "react";
 
